@@ -1,0 +1,29 @@
+@font-face {
+    font-family: headline;
+    src: url(font/Gagalin-Regular.otf);
+}
+body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+#startpage{
+   background-image: url(img/pyramid-startpage.png);
+   margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+   background-size: cover;
+   background-repeat: no-repeat;
+}
+#headline-startpage{
+    text-align: center;
+    margin-top: 2em;
+    font-family: headline;
+    font-size: 6em;
+    color: #fcf3cf;
+    text-shadow: 2px 2px 1px #7e7551;
+}
