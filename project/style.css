@@ -2,6 +2,13 @@
     font-family: headline;
     src: url(font/Gagalin-Regular.otf);
 }
+@font-face {
+    font-family: basicFont;
+    src: url(font/Adumu.ttf);
+}
+*{
+    user-select: none;
+}
 body{
     margin: 0;
     padding: 0;
@@ -23,7 +30,36 @@ body{
     text-align: center;
     margin-top: 2em;
     font-family: headline;
-    font-size: 6em;
+    font-size: 5.5em;
     color: #fcf3cf;
     text-shadow: 2px 2px 1px #7e7551;
+}
+#info-element{
+    width: 5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    margin: 0.5em;
+}
+#start-button{
+    cursor: pointer;
+    background-color: rgba(252, 243, 207, 0.7);
+    font-family: basicFont;
+    color: #592a1d;
+    border-radius: 2em;
+    padding: 0.5em 1em;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 6em;
+    text-align: center;
+    font-size: 1.75em;
+    letter-spacing: 0.4em;
+    animation: biggerText 1s infinite ease;
+}
+@keyframes biggerText {
+    0%{transform: scale3d(1,1,1);}
+    50%{transform: scale3d(1.1,1.1,1.1);}
+    100%{transform: scale3d(1,1,1);}
 }
