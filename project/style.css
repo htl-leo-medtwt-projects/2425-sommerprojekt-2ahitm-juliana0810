@@ -61,3 +61,37 @@ body{
 #start-button:hover{
     transform: scale3d(1.1,1.1,1.1);
 }
+#howTo{
+    display: none;
+    padding: 1em 2em;
+    background-color: rgba(252, 243, 207, 0.7);
+    border-radius: 1.5em;
+    position: absolute;
+    top: 10vh;
+    right: 20vw;
+}
+.questionBox{
+    display: flex;
+    flex-direction: row;
+    margin: 1em;
+}
+.questionBox p{
+    font-family: basicFont;
+    color: #592a1d;
+    margin-top: 2em;
+}
+.questionmark{
+    width: auto;
+    height: 12vh;
+    margin-right: 1em;
+}
+.arrows{
+    width: 15em;
+    height: auto;
+    margin-left: 2em;
+}
+#shift{
+    width: auto;
+    height: 10vh;
+    margin-left: 3em;
+}
