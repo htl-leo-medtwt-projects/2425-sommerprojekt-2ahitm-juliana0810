@@ -6,6 +6,10 @@
     font-family: basicFont;
     src: url(font/Adumu.ttf);
 }
+@font-face {
+    font-family: message;
+    src: url(font/Biro_Script_reduced.otf);
+}
 *{
     user-select: none;
 }
@@ -138,12 +142,13 @@ body{
 /*** Fremdcode ***/
 .text-container {
     text-align: center; 
-    font-size: 180%;
+    font-size: 90%;
     margin: 0 auto;
-    width: 80%; 
+    width: 45%; 
     position: absolute;
-    top: 10vh;
-    font-family: ;
+    top: 22vh;
+    left: 27vw;
+    font-family: message;
 }
 
 .typewriter {
@@ -180,7 +185,10 @@ body{
 .delay-6 { animation-delay: 15s; }
 .delay-7 { animation-delay: 18s; }
 .delay-8 { animation-delay: 21s; }
-
+.delay-9 { animation-delay: 24s; }
+.delay-10 { animation-delay: 27s; }
+.delay-11 { animation-delay: 30s; }
+.delay-12 { animation-delay: 33s; }
 
 /*************/
 
