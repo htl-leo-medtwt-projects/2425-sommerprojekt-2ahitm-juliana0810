@@ -11,7 +11,7 @@
     <div id="startpage">
         <img onclick="openInfo()" id="info-element" src="img/info-element.png" alt="info-element">
         <h1 id="headline-startpage">The Last Expedition</h1>
-        <div id="start-button">start</div>
+        <div onclick="switchToStory()" id="start-button">start</div>
         <div id="howTo">
             <div class="questionBox">
                 <img class="questionmark" src="img/questionmark.png" alt="questionmark">
@@ -33,6 +33,12 @@
                 <p>how to jump</p>
                 <img id="shift" src="img/shift.png" alt="shift">
             </div>
+        </div>
+    </div>
+    <div id="storyTelling">
+        <div id="container-scroll">
+            <img onclick="openScroll()" id="scroll-closed" src="img/scroll.png" alt="scroll">
+            <p id="textScroll">You recieved a message</p>
         </div>
     </div>
 </body>
