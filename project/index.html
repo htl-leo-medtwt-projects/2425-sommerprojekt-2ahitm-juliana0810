@@ -11,7 +11,7 @@
     <div id="startpage">
         <img onclick="openInfo()" id="info-element" src="img/info-element.png" alt="info-element">
         <h1 id="headline-startpage">The Last Expedition</h1>
-        <div onclick="switchToStory()" id="start-button">start</div>
+        <div onclick="switchToEntry()" id="start-button">start</div>
         <div id="howTo">
             <div class="questionBox">
                 <img class="questionmark" src="img/questionmark.png" alt="questionmark">
@@ -33,6 +33,14 @@
                 <p>how to jump</p>
                 <img id="shift" src="img/shift.png" alt="shift">
             </div>
+        </div>
+    </div>
+    <div id="entry">
+        <div id="text-entry">
+            <p>You are now standing directly in front of the pyramid</p>
+        </div>
+        <div id="enter-text">
+            <p onclick="switchToStory()">ENTER</p>
         </div>
     </div>
     <div id="storyTelling">

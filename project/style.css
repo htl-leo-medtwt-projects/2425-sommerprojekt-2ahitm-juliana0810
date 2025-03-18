@@ -1,3 +1,5 @@
+
+/*font*/
 @font-face {
     font-family: headline;
     src: url(font/Gagalin-Regular.otf);
@@ -10,6 +12,7 @@
     font-family: message;
     src: url(font/Biro_Script_reduced.otf);
 }
+
 *{
     user-select: none;
 }
@@ -20,6 +23,8 @@ body{
     width: 100%;
     overflow: hidden;
 }
+
+/******************* STARTPAGE *****************/
 #startpage{
     background-image: url(img/pyramid-startpage.png);
     margin: 0;
@@ -38,14 +43,7 @@ body{
     color: #fcf3cf;
     text-shadow: 2px 2px 1px #7e7551;
 }
-#info-element{
-    width: 5em;
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-    margin: 0.5em;
-}
+
 #start-button{
     cursor: pointer;
     background-color: rgba(252, 243, 207, 0.7);
@@ -64,6 +62,16 @@ body{
 }
 #start-button:hover{
     transform: scale3d(1.1,1.1,1.1);
+}
+
+/* info */
+#info-element{
+    width: 5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    margin: 0.5em;
 }
 #howTo{
     display: none;
@@ -99,6 +107,8 @@ body{
     height: 10vh;
     margin-left: 3em;
 }
+
+/******************* STORYTELLING *****************/
 #storyTelling{
     display: none;
     background-image: url(img/story-background-text.png);
@@ -119,6 +129,8 @@ body{
     cursor: pointer;
     animation: movingScroll 2.5s infinite ease;
 }
+
+/*animation for turning scroll */
 @keyframes movingScroll {
     0%{transform: rotate(20deg);}
     50%{transform: rotate(-10deg);}
@@ -142,13 +154,14 @@ body{
 /*** Fremdcode ***/
 .text-container {
     text-align: center; 
-    font-size: 90%;
+    font-size: 85%;
     margin: 0 auto;
-    width: 45%; 
+    width: 35%; 
     position: absolute;
-    top: 22vh;
-    left: 27vw;
+    top: 23vh;
+    left: 33vw;
     font-family: message;
+    font-weight: bold;
 }
 
 .typewriter {
@@ -165,7 +178,7 @@ body{
     visibility: hidden; 
 }
 
-/* Animations-Definition */
+/* Animations*/
 @keyframes typing {
     from { max-width: 0; visibility: visible; }  
     to { max-width: 100%; visibility: visible; } 
@@ -198,4 +211,50 @@ body{
     top: 5vh;
     left: 20vw;
     color: #592a1d;
+}
+
+/******************* ENTRY *****************/
+#entry{
+    display: none;
+    background-image: url(img/pyramid-entry.jpg);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#enter-text{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8em;
+    font-size: 3em;
+    text-align: center;
+    font-family: headline;
+    color: #592a1d;
+    text-shadow: 2px 2px 2px #ffcc99;
+    cursor: pointer;
+    animation: enterText 1s infinite ease;
+}
+/*animation for "enter" text */
+@keyframes enterText {
+    0%{transform: scale3d(1,1,1);}
+    50%{transform: scale3d(1.1,1.1,1.1);}
+    100%{transform: scale3d(1,1,1);}
+}
+#text-entry{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    font-family: basicFont;
+    color: #592a1d;
+    font-size: 1.5em;
+    background-color: rgba(252, 243, 207, 0.7);
+    width: 30em;
+    padding: 0.5%;
+    border-radius: 1.5em;
 }
