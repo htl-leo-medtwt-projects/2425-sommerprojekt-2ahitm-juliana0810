@@ -1,12 +1,22 @@
 let infoOpen = false;
-function openInfo(){
+let infoTextOpen = false;
+function openInfo(index){
     if(!infoOpen){
-        document.getElementById("howTo").style.display = "block";
+        document.getElementById(`howTo${index}`).style.display = "block";
     }
     else{
-        document.getElementById("howTo").style.display = "none";
+        document.getElementById(`howTo${index}`).style.display = "none";
     }
     infoOpen = !infoOpen;
+}
+function openInfoText(){
+    if(!infoTextOpen){
+        document.getElementById(`storyText`).style.display = "block";
+    }
+    else{
+        document.getElementById(`storyText`).style.display = "none";
+    }
+    infoTextOpen = !infoTextOpen;
 }
 function switchToStory(){
     document.getElementById("entry").style.display = "none";

@@ -64,8 +64,8 @@ body{
     transform: scale3d(1.1,1.1,1.1);
 }
 
-/* info */
-#info-element{
+/* how to */
+.info-element{
     width: 5em;
     position: absolute;
     top: 0;
@@ -73,7 +73,7 @@ body{
     cursor: pointer;
     margin: 0.5em;
 }
-#howTo{
+.howTo{
     display: none;
     padding: 1em 2em;
     background-color: rgba(252, 243, 207, 0.7);
@@ -102,10 +102,34 @@ body{
     height: auto;
     margin-left: 2em;
 }
-#shift{
+.shift{
     width: auto;
     height: 10vh;
     margin-left: 3em;
+}
+
+/*text story*/
+#storyText{
+    display: none;
+    background-color: rgba(252, 243, 207, 0.9);
+    padding: 0.5em 1em;
+    position: absolute;
+    top: 10vh;
+    left: 7vw;
+    border: 1px solid #592a1d;
+}
+#storyText p{
+    color: #592a1d;
+    font-family: basicFont;
+    text-align: center;
+}
+#mummy-info{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3.5em;
+    margin: 1em;
+    cursor: pointer;
 }
 
 /******************* STORYTELLING *****************/
@@ -188,6 +212,7 @@ body{
     from, to { border-color: transparent; }
     50% { border-color: #592a1d; }
 }
+/*************/
 
 /* delay for every line */
 .delay-1 { animation-delay: 0s; }
@@ -202,8 +227,6 @@ body{
 .delay-10 { animation-delay: 27s; }
 .delay-11 { animation-delay: 30s; }
 .delay-12 { animation-delay: 33s; }
-
-/*************/
 
 #styling-line1{
     font-family: basicText;

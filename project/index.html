@@ -9,10 +9,19 @@
 </head>
 <body>
     <div id="startpage">
-        <img onclick="openInfo()" id="info-element" src="img/info-element.png" alt="info-element">
+        <img onclick="openInfoText()" id="mummy-info" src="img/mummy-info.png" alt="mummy-info">
+        <img onclick="openInfo(1)" class="info-element" src="img/info-element.png" alt="info-element">
         <h1 id="headline-startpage">The Last Expedition</h1>
         <div onclick="switchToEntry()" id="start-button">start</div>
-        <div id="howTo">
+        <div id="storyText">
+            <p>𓂀  Explore the Mysterious Pyramid!  𓂀</p>
+            <p>You are an explorer who has discovered an unknown pyramid in the middle of the desert. </p>
+            <p>No one knows what secrets it holds — treasures, hidden traps, or maybe something even more mysterious...</p>
+            <p>With no map to guide you, you must be brave and clever to uncover its secrets. </p>
+            <p>Will you make it out with great discoveries, or will the pyramid keep its mysteries forever?</p>
+            <p>Step inside and find out!</p> 
+        </div>
+        <div id="howTo1" class="howTo">
             <div class="questionBox">
                 <img class="questionmark" src="img/questionmark.png" alt="questionmark">
                 <p>how to move forward</p>
@@ -31,11 +40,34 @@
             <div class="questionBox">
                 <img class="questionmark" src="img/questionmark.png" alt="questionmark">
                 <p>how to jump</p>
-                <img id="shift" src="img/shift.png" alt="shift">
+                <img class="shift" src="img/shift.png" alt="shift">
             </div>
         </div>
     </div>
     <div id="entry">
+        <img onclick="openInfo(2)" class="info-element" src="img/info-element.png" alt="info-element">
+        <div id="howTo2" class="howTo">
+            <div class="questionBox">
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to move forward</p>
+                <img class="arrows" src="img/arrows1.png" alt="arrows1">
+            </div>
+            <div class="questionBox">
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to move sideways</p>
+                <img class="arrows" src="img/arrows2.png" alt="arrows2">
+            </div>
+            <div class="questionBox"> 
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to roll under obstacles</p>
+                <img class="arrows" src="img/arrows3.png" alt="arrows3">
+            </div>
+            <div class="questionBox">
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to jump</p>
+                <img class="shift" src="img/shift.png" alt="shift">
+            </div>
+        </div>
         <div id="text-entry">
             <p>You are now standing directly in front of the pyramid</p>
         </div>
@@ -44,6 +76,29 @@
         </div>
     </div>
     <div id="storyTelling">
+        <img onclick="openInfo(3)" class="info-element" src="img/info-element.png" alt="info-element">
+        <div id="howTo3" class="howTo">
+            <div class="questionBox">
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to move forward</p>
+                <img class="arrows" src="img/arrows1.png" alt="arrows1">
+            </div>
+            <div class="questionBox">
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to move sideways</p>
+                <img class="arrows" src="img/arrows2.png" alt="arrows2">
+            </div>
+            <div class="questionBox"> 
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to roll under obstacles</p>
+                <img class="arrows" src="img/arrows3.png" alt="arrows3">
+            </div>
+            <div class="questionBox">
+                <img class="questionmark" src="img/questionmark.png" alt="questionmark">
+                <p>how to jump</p>
+                <img class="shift" src="img/shift.png" alt="shift">
+            </div>
+        </div>
         <div id="container-scroll">
             <img onclick="openScroll()" id="scroll-closed" src="img/scroll.png" alt="scroll">
             <p id="textScroll">You recieved a message</p>
