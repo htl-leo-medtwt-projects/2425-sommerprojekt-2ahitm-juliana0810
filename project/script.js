@@ -1,5 +1,4 @@
 let infoOpen = false;
-let infoTextOpen = false;
 function openInfo(index){
     if(!infoOpen){
         document.getElementById(`howTo${index}`).style.display = "block";
@@ -9,19 +8,37 @@ function openInfo(index){
     }
     infoOpen = !infoOpen;
 }
+
+/******** switch pages ********/
 function openInfoText(){
-    if(!infoTextOpen){
-        document.getElementById(`storyText`).style.display = "block";
-    }
-    else{
-        document.getElementById(`storyText`).style.display = "none";
-    }
-    infoTextOpen = !infoTextOpen;
+    document.getElementById(`storyText`).style.display = "block";
+}
+function closeInfoText(){
+    document.getElementById(`storyText`).style.display = "none";
 }
 function switchToStory(){
     document.getElementById("entry").style.display = "none";
     document.getElementById("storyTelling").style.display = "block";
 }
+function switchToEntry(){
+    document.getElementById("startpage").style.display = "none";
+    document.getElementById("entry").style.display = "block";
+}
+function switchToLogin(){
+    document.getElementById("storyTelling").innerHTML = 
+        `<div id="name-input">
+            <label for="username">username: </label>
+            <input id="username" type="text">
+            <br>
+            <div id="container-profilpicture">
+                <img id="profil-placeholder" src="img/profil-placeholder.png" alt="profil-placeholder">
+                <p>click to upload profil picture</p>
+            </div>
+            <p id="next">next</p>
+        </div>`
+}
+
+
 function openScroll(){
     document.getElementById("container-scroll").innerHTML = 
         `<img id="scroll-opened" src="img/scroll-opened.png" alt="scroll-opened">
@@ -40,7 +57,4 @@ function openScroll(){
             <p class="typewriter delay-12">Make it count.</p>
         </div>`;
 }
-function switchToEntry(){
-    document.getElementById("startpage").style.display = "none";
-    document.getElementById("entry").style.display = "block";
-}
+

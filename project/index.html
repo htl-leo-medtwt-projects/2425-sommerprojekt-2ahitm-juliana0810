@@ -15,11 +15,15 @@
         <div onclick="switchToEntry()" id="start-button">start</div>
         <div id="storyText">
             <p>𓂀  Explore the Mysterious Pyramid!  𓂀</p>
+            <br>
             <p>You are an explorer who has discovered an unknown pyramid in the middle of the desert. </p>
             <p>No one knows what secrets it holds — treasures, hidden traps, or maybe something even more mysterious...</p>
             <p>With no map to guide you, you must be brave and clever to uncover its secrets. </p>
             <p>Will you make it out with great discoveries, or will the pyramid keep its mysteries forever?</p>
+            <br>
             <p>Step inside and find out!</p> 
+            <br>
+            <p onclick="closeInfoText()" id="close">CLOSE</p>
         </div>
         <div id="howTo1" class="howTo">
             <div class="questionBox">
@@ -102,6 +106,9 @@
         <div id="container-scroll">
             <img onclick="openScroll()" id="scroll-closed" src="img/scroll.png" alt="scroll">
             <p id="textScroll">You recieved a message</p>
+        </div>
+        <div>
+            <p onclick="switchToLogin()" id="ready">ready</p>
         </div>
     </div>
 </body>

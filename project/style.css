@@ -71,7 +71,7 @@ body{
     top: 0;
     right: 0;
     cursor: pointer;
-    margin: 0.5em;
+    margin: 1em;
 }
 .howTo{
     display: none;
@@ -115,7 +115,7 @@ body{
     padding: 0.5em 1em;
     position: absolute;
     top: 10vh;
-    left: 7vw;
+    left: 15vw;
     border: 1px solid #592a1d;
 }
 #storyText p{
@@ -131,7 +131,9 @@ body{
     margin: 1em;
     cursor: pointer;
 }
-
+#close{
+    cursor: pointer;
+}
 /******************* STORYTELLING *****************/
 #storyTelling{
     display: none;
@@ -236,6 +238,26 @@ body{
     color: #592a1d;
 }
 
+#ready{
+    font-family: headline;
+    color: #ffcc99;
+    text-shadow: 2px 2px 2px #592a1d;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 3em;
+    font-size: 1.5em;
+    animation: readyText 35s 1 ease;
+    cursor: pointer;
+}
+@keyframes readyText {
+    0%{opacity: 0;}
+    20%{opacity: 0;}
+    40%{opacity: 0;}
+    60%{opacity: 0;}
+    80%{opacity: 0;}
+    100%{opacity: 1;}
+}
 /******************* ENTRY *****************/
 #entry{
     display: none;
@@ -280,4 +302,42 @@ body{
     width: 30em;
     padding: 0.5%;
     border-radius: 1.5em;
+}
+/*log in*/
+#name-input{
+    background-color: rgba(252, 243, 207, 0.7);
+    padding: 1em;
+    border-radius: 2em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: basicFont;
+    color: #592a1d;
+    margin-top: 15em;
+    width: 40vw;
+}
+#profil-placeholder{
+    width: 3em;
+    margin-right: 1em;
+}
+#container-profilpicture{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-top: 2.5em;
+}
+#container-profilpicture p{
+    transition: all 0.5s ease;
+    cursor: pointer;
+}
+#container-profilpicture p:hover{
+    color: #9e8769;
+}
+#next{
+    font-family: basicFont;
+    color: #592a1d;
+    cursor: pointer;
+    margin-left: 30em;
+    margin-top: 5em;
+    text-transform: uppercase;
 }
