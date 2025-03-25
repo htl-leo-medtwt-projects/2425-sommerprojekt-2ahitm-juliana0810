@@ -111,7 +111,7 @@ function openScroll(){
             <p class="typewriter delay-12">Make it count.</p>
         </div>`;
 
-    setTimeout(readyButton,35000);
+    setTimeout(readyButton,32000);
 }
 function readyButton(){
     document.getElementById("ready").innerHTML = "ready";

@@ -81,6 +81,7 @@ body{
     position: absolute;
     top: 10vh;
     right: 20vw;
+    z-index: 5;
 }
 .questionBox{
     display: flex;
@@ -306,7 +307,7 @@ body{
     color: #592a1d;
     margin-top: 15em;
     width: 40vw;
-    height: 20vh;
+    height: 17vh;
 }
 #profil-placeholder{
     width: 3em;
@@ -329,8 +330,9 @@ body{
     font-family: basicFont;
     color: #592a1d;
     cursor: pointer;
-    margin-left: 29em;
-    margin-top: 0.5em;
+    margin-left: 25em;
+    margin-top: 1em;
+    font-size: 1.2em;
     text-transform: uppercase;
 }
 /*character choosing*/
@@ -360,7 +362,7 @@ body{
     color: #592a1d;
     cursor: pointer;
     margin-top: 1em;
-    font-size: 2em;
+    font-size: 1.5em;
     cursor: pointer;
 }
 #container-character{
