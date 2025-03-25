@@ -316,7 +316,7 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: left;
-    margin-top: 2.5em;
+    margin-top: 1em;
 }
 #container-profilpicture p{
     transition: all 0.5s ease;
@@ -330,10 +330,9 @@ body{
     color: #592a1d;
     cursor: pointer;
     margin-left: 29em;
-    margin-top: 1em;
+    margin-top: 0.5em;
     text-transform: uppercase;
 }
-
 /*character choosing*/
 #characterChoosing{
     background-color: rgba(252, 243, 207, 0.7);
@@ -361,6 +360,8 @@ body{
     color: #592a1d;
     cursor: pointer;
     margin-top: 1em;
+    font-size: 2em;
+    cursor: pointer;
 }
 #container-character{
     display: flex;
@@ -419,4 +420,16 @@ body{
     top: 0;
     left: 0;
     margin: 0.5em;
+    z-index: 3;
+}
+.username{
+    color: #592a1dab;
+    text-align: center;
+    font-family: basicFont;
+    padding: 0.5em;
+    background-color: rgba(252, 243, 207, 0.7);
+    position: absolute;
+    top: 3vh;
+    left: 6vw;
+    border-radius: .5em;
 }

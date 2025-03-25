@@ -1,6 +1,6 @@
 let infoOpen = false;
 let profileImageSrc = ""; 
-
+let username = "";
 
 function openInfo(index){
     if(!infoOpen){
@@ -60,7 +60,15 @@ function switchToLogin(){
         /**********/
 }
 function switchToCharacter(){
-    document.getElementById("storyTelling").innerHTML = 
+    let usernameInput = document.getElementById("username").value;
+    
+    if(usernameInput == ""){
+        alert("Username must not be empty!");
+    }
+    else{
+        username = document.getElementById("username").value;
+
+        document.getElementById("storyTelling").innerHTML = 
         `<div id="characterChoosing">
             <div id="container-character">
                 <img class="arrows-character" src="img/arrow-left.png">
@@ -69,6 +77,8 @@ function switchToCharacter(){
             </div>
             <p id="select" onclick="switchToGame()">select</p>
         </div>`
+    }
+    
 }
 function switchToGame(){
     document.getElementById("storyTelling").style.display = "none";
@@ -77,6 +87,10 @@ function switchToGame(){
     if (profileImageSrc) {
         document.getElementById("level1-profilimg").src = profileImageSrc;
     }
+    else{
+        document.getElementById("level1-profilimg").src = "img/profil-placeholder.png";
+    }
+    document.querySelector(".username").innerHTML = username;
 }
 
 function openScroll(){
@@ -102,5 +116,3 @@ function openScroll(){
 function readyButton(){
     document.getElementById("ready").innerHTML = "ready";
 }
-
-
