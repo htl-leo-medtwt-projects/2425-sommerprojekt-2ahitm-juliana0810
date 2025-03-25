@@ -6,6 +6,10 @@
     <title>The Last Expedition</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <script src="script.js" defer></script>
+    <script src="keyevents.js" defer></script>
+    <script src="player.js" defer></script>
+    <script src="collision.js" defer></script>
+    <script src="script_game.js" defer></script>
 </head>
 <body>
     <div id="startpage">
@@ -108,7 +112,16 @@
             <p id="textScroll">You recieved a message</p>
         </div>
         <div>
-            <p onclick="switchToLogin()" id="ready">ready</p>
+            <p onclick="switchToLogin()" id="ready">skip</p>
+        </div>
+    </div>
+    <div id="gameBody">
+        <div id="surface">
+            <div class="profile-container">
+                <img class="profile-placeholder" id="level1-profilimg" src="img/profil-placeholder.png" alt="Profile Picture">
+                <span class="username"></span>
+            </div>            
+            <div id="gameBoard"></div>
         </div>
     </div>
 </body>

@@ -1,4 +1,7 @@
 let infoOpen = false;
+let profileImageSrc = ""; 
+
+
 function openInfo(index){
     if(!infoOpen){
         document.getElementById(`howTo${index}`).style.display = "block";
@@ -31,11 +34,30 @@ function switchToLogin(){
             <input id="username" type="text">
             <br>
             <div id="container-profilpicture">
-                <img id="profil-placeholder" src="img/profil-placeholder.png" alt="profil-placeholder">
-                <p>click to upload profil picture</p>
+                <img class="profil-placeholder" id="profil-placeholder" src="img/profil-placeholder.png" alt="profil-placeholder">
+                <p id="profilpicture-click">click to upload profil picture</p>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
             </div>
             <p id="next" onclick="switchToCharacter()">next</p>
         </div>`
+
+        document.getElementById("profilpicture-click").addEventListener("click", function() {
+            document.getElementById("fileInput").click();
+        });
+        
+        /*Fremdcode*/
+        document.getElementById("fileInput").addEventListener("change", function(event) {
+            const file = event.target.files[0]; 
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    profileImageSrc = e.target.result;
+                    document.querySelector(".profil-placeholder").src = e.target.result; 
+                };
+                reader.readAsDataURL(file); 
+            }
+        });
+        /**********/
 }
 function switchToCharacter(){
     document.getElementById("storyTelling").innerHTML = 
@@ -45,10 +67,17 @@ function switchToCharacter(){
                 <div id="characterBox"></div>
                 <img class="arrows-character" src="img/arrow-right.png">
             </div>
-            <p id="select">select</p>
+            <p id="select" onclick="switchToGame()">select</p>
         </div>`
 }
+function switchToGame(){
+    document.getElementById("storyTelling").style.display = "none";
+    document.getElementById("gameBody").style.display = "block";
 
+    if (profileImageSrc) {
+        document.getElementById("level1-profilimg").src = profileImageSrc;
+    }
+}
 
 function openScroll(){
     document.getElementById("container-scroll").innerHTML = 
@@ -67,5 +96,11 @@ function openScroll(){
             <p class="typewriter delay-11">This is your final expedition.</p>
             <p class="typewriter delay-12">Make it count.</p>
         </div>`;
+
+    setTimeout(readyButton,35000);
 }
+function readyButton(){
+    document.getElementById("ready").innerHTML = "ready";
+}
+
 
