@@ -306,7 +306,7 @@ body{
 /*log in*/
 #name-input{
     background-color: rgba(252, 243, 207, 0.7);
-    padding: 1em;
+    padding: 2em;
     border-radius: 2em;
     display: block;
     margin-left: auto;
@@ -315,6 +315,7 @@ body{
     color: #592a1d;
     margin-top: 15em;
     width: 40vw;
+    height: 20vh;
 }
 #profil-placeholder{
     width: 3em;
@@ -337,7 +338,47 @@ body{
     font-family: basicFont;
     color: #592a1d;
     cursor: pointer;
-    margin-left: 30em;
-    margin-top: 5em;
+    margin-left: 29em;
+    margin-top: 1em;
     text-transform: uppercase;
+}
+
+/*character choosing*/
+#characterChoosing{
+    background-color: rgba(252, 243, 207, 0.7);
+    padding: 2em;
+    border-radius: 2em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15em;
+    width: 40vw;
+    height: auto;
+}
+#characterBox{
+    background-color: rgba(252, 243, 207, 0.7);
+    padding: 1em;
+    border-radius: 2em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #592a1d;
+}
+#select{
+    text-align: center;
+    font-family: headline;
+    color: #592a1d;
+    cursor: pointer;
+    margin-top: 1em;
+}
+#container-character{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+}
+#arrows-character{
+    width: 7em;
+    margin-top: 3em;
+    cursor: pointer;
 }

@@ -34,7 +34,18 @@ function switchToLogin(){
                 <img id="profil-placeholder" src="img/profil-placeholder.png" alt="profil-placeholder">
                 <p>click to upload profil picture</p>
             </div>
-            <p id="next">next</p>
+            <p id="next" onclick="switchToCharacter()">next</p>
+        </div>`
+}
+function switchToCharacter(){
+    document.getElementById("storyTelling").innerHTML = 
+        `<div id="characterChoosing">
+            <div id="container-character">
+                <img class="arrows-character" src="img/arrow-left.png">
+                <div id="characterBox"></div>
+                <img class="arrows-character" src="img/arrow-right.png">
+            </div>
+            <p id="select">select</p>
         </div>`
 }
 
