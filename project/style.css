@@ -435,3 +435,92 @@ body{
     left: 6vw;
     border-radius: .5em;
 }
+
+/*collisions*/
+.collider{
+    background-color: rgba(255, 0, 0, 0.607);
+}
+#colliderright{
+    position: absolute;
+    width: 26.2vw;
+    height: 100vh;
+    right: 0%;
+    z-index: 100;
+}
+#colliderleft{
+    position: absolute;
+    width: 30.5vw;
+    height: 100vh;
+    left: 0%;
+    z-index: 100;
+}
+#collidertop{
+    position: absolute;
+    width: 100vw;
+    height: 13vh;
+    top: 0%;
+    z-index: 100;
+}
+#colliderbottom{
+    position: absolute;
+    width: 100vw;
+    height: 10vh;
+    bottom: 0%;
+    z-index: 100;
+}
+#collider01{
+    position: absolute;
+    width: 15vw;
+    height: 0.75vh;
+    top: 34vh;
+    left: 30vw;
+    z-index: 100;
+}
+#collider02{
+    position: absolute;
+    width: 3.5vw;
+    height: 0.75vh;
+    top: 34vh;
+    left: 48vw;
+    z-index: 100;
+}
+#collider03{
+    position: absolute;
+    width: 11vw;
+    height: 0.75vh;
+    top: 34vh;
+    left: 55vw;
+    z-index: 100;
+}
+#collider04{
+    position: absolute;
+    width: 7vw;
+    height: 2.5vh;
+    top: 32vh;
+    left: 59vw;
+    z-index: 100;
+}
+#collider05{
+    position: absolute;
+    width: 6vw;
+    height: .75vh;
+    top: 32vh;
+    left: 68vw;
+    z-index: 100;
+}
+#collider06{
+    position: absolute;
+    width: 1.5vw;
+    height: 4.5vh;
+    top: 32vh;
+    left: 68vw;
+    z-index: 100;
+}
+#collider07{
+    position: absolute;
+    width: 4.5vw;
+    height: 13vh;
+    top: 12vh;
+    left: 42vw;
+    z-index: 100;
+}

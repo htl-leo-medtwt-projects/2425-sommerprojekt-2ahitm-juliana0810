@@ -1,6 +1,15 @@
 let infoOpen = false;
 let profileImageSrc = ""; 
 let username = "";
+let counter = 0;
+let choosenCharacter = "";
+
+let images = [
+    'img/character1-option.png',
+    'img/character2-option.png',
+    'img/character3-option.png',
+    'img/character4-option.png' 
+]
 
 function openInfo(index){
     if(!infoOpen){
@@ -71,14 +80,38 @@ function switchToCharacter(){
         document.getElementById("storyTelling").innerHTML = 
         `<div id="characterChoosing">
             <div id="container-character">
-                <img class="arrows-character" src="img/arrow-left.png">
-                <div id="characterBox"></div>
-                <img class="arrows-character" src="img/arrow-right.png">
+                <img onclick="goLeft()" class="arrows-character" src="img/arrow-left.png">
+                <div id="characterBox">
+                    <img class=characters id="choosenChar${counter}" src="${images[counter]}">
+                </div>
+                <img onclick="goRight()" class="arrows-character" src="img/arrow-right.png">
             </div>
             <p id="select" onclick="switchToGame()">select</p>
         </div>`
     }
     
+}
+function goRight(){
+    if(counter >= 3){
+        counter = 0;
+    }
+    else{
+        counter++;
+    }
+
+    document.getElementById("characterBox").innerHTML = `<img class=characters id="choosenChar${counter}" src="${images[counter]}">`
+
+}
+function goLeft(){
+    if(counter <= 0){
+        counter = 3;
+    }
+    else{
+        counter--;
+    }
+
+    document.getElementById("characterBox").innerHTML = `<img class=characters id="choosenChar${counter}" src="${images[counter]}">`
+
 }
 function switchToGame(){
     document.getElementById("storyTelling").style.display = "none";
