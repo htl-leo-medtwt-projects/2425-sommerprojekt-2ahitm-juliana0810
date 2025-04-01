@@ -1,0 +1,432 @@
+/************* collisions level 1 **********************/
+.collider{
+    background-color: rgba(255, 0, 0, 0.607);
+}
+#colliderright{
+    position: absolute;
+    width: 26.2vw;
+    height: 100vh;
+    right: 0%;
+    z-index: 100;
+}
+#colliderleft{
+    position: absolute;
+    width: 30.5vw;
+    height: 100vh;
+    left: 0%;
+    z-index: 100;
+}
+#collidertop{
+    position: absolute;
+    width: 100vw;
+    height: 13vh;
+    top: 0%;
+    z-index: 100;
+}
+#colliderbottom{
+    position: absolute;
+    width: 100vw;
+    height: 10vh;
+    bottom: 0%;
+    z-index: 100;
+}
+#collider01{
+    position: absolute;
+    width: 15vw;
+    height: 0.75vh;
+    top: 34vh;
+    left: 30vw;
+    z-index: 100;
+}
+#collider02{
+    position: absolute;
+    width: 3.5vw;
+    height: 0.75vh;
+    top: 34vh;
+    left: 48vw;
+    z-index: 100;
+}
+#collider03{
+    position: absolute;
+    width: 11vw;
+    height: 0.75vh;
+    top: 34vh;
+    left: 55vw;
+    z-index: 100;
+}
+#collider04{
+    position: absolute;
+    width: 7vw;
+    height: 2.5vh;
+    top: 32vh;
+    left: 59vw;
+    z-index: 100;
+}
+#collider05{
+    position: absolute;
+    width: 6vw;
+    height: .75vh;
+    top: 32vh;
+    left: 68vw;
+    z-index: 100;
+}
+#collider06{
+    position: absolute;
+    width: 1.5vw;
+    height: 4.5vh;
+    top: 32vh;
+    left: 68vw;
+    z-index: 100;
+}
+#collider07{
+    position: absolute;
+    width: 4.75vw;
+    height: 17vh;
+    top: 12vh;
+    left: 42.5vw;
+    z-index: 100;
+}
+#collider08{
+    position: absolute;
+    width: 14.8vw;
+    height: 7vh;
+    top: 12vh;
+    left: 47vw;
+    z-index: 100;
+}
+#collider09{
+    position: absolute;
+    width: 0.33vw;
+    height: 11vh;
+    top: 18.1vh;
+    left: 61.5vw;
+    z-index: 100;
+}
+#collider10{
+    position: absolute;
+    width: 1.5vw;
+    height: 4.1vh;
+    top: 19vh;
+    left: 55.8vw;
+    z-index: 100;
+}
+#collider11{
+    position: absolute;
+    width: 2.7vw;
+    height: 2.5vh;
+    top: 26.2vh;
+    left: 59vw;
+    z-index: 100;
+}
+#collider12{
+    position: absolute;
+    width: 0.33vw;
+    height: 6.5vh;
+    top: 34vh;
+    left: 54.7vw;
+    z-index: 100;
+}
+#collider13{
+    position: absolute;
+    width: 0.33vw;
+    height: 6.5vh;
+    top: 34vh;
+    left: 51.3vw;
+    z-index: 100;
+}
+#collider14{
+    position: absolute;
+    width: 3.3vw;
+    height: 0.75vh;
+    top: 40vh;
+    left: 48vw;
+    z-index: 100;
+}
+#collider15{
+    position: absolute;
+    width: 3.3vw;
+    height: 0.75vh;
+    top: 40vh;
+    left: 54.7vw;
+    z-index: 100;
+}
+#collider16{
+    position: absolute;
+    width: 0.33vw;
+    height: 2vh;
+    top: 38.5vh;
+    left: 48vw;
+    z-index: 100;
+}
+#collider17{
+    position: absolute;
+    width: 0.33vw;
+    height: 2vh;
+    top: 38.7vh;
+    left: 58.1vw;
+    z-index: 100;
+}
+#collider18{
+    position: absolute;
+    width: 4.5vw;
+    height: 0.75vh;
+    top: 38vh;
+    left: 58.2vw;
+    z-index: 100;
+}
+#collider19{
+    position: absolute;
+    width: 1.65vw;
+    height: 15vh;
+    top: 38vh;
+    left: 62.5vw;
+    z-index: 100;
+}
+#collider20{
+    position: absolute;
+    width: 0.33vw;
+    height: 14vh;
+    top: 52.5vh;
+    left: 63.7vw;
+    z-index: 100;
+}
+#collider21{
+    position: absolute;
+    width: 7vw;
+    height: 23vh;
+    top: 52vh;
+    left: 68.2vw;
+    z-index: 100;
+}
+#collider22{
+    position: absolute;
+    width: 8vw;
+    height: 6vh;
+    top: 69vh;
+    left: 61.5vw;
+    z-index: 100;
+}
+#collider23{
+    position: absolute;
+    width: 2.3vw;
+    height: 6.2vh;
+    top: 63vh;
+    left: 61.5vw;
+    z-index: 100;
+}
+#collider24{
+    position: absolute;
+    width: 5vw;
+    height: 2.65vh;
+    top: 75.5vh;
+    left: 58.2vw;
+    z-index: 100;
+}
+#collider25{
+    position: absolute;
+    width: 0.33vw;
+    height: 14vh;
+    top: 78vh;
+    left: 58.1vw;
+    z-index: 100;
+}
+#collider26{
+    position: absolute;
+    width: 11.3vw;
+    height: 20vh;
+    top: 71.7vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+#collider27{
+    position: absolute;
+    width: 2.4vw;
+    height: 3.7vh;
+    top: 68vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+#collider28{
+    position: absolute;
+    width: 3.3vw;
+    height: 2.7vh;
+    top: 42vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+#collider29{
+    position: absolute;
+    width: 3.35vw;
+    height: 0.5vh;
+    top: 54vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+#collider30{
+    position: absolute;
+    width: 0.4vw;
+    height: 24.2vh;
+    top: 44.5vh;
+    left: 39vw;
+    z-index: 100;
+}
+#collider31{
+    position: absolute;
+    width: 2.4vw;
+    height: 2.5vh;
+    top: 52.3vh;
+    left: 36.7vw;
+    z-index: 100;
+}
+#collider32{
+    position: absolute;
+    width: 3.5vw;
+    height: 0.5vh;
+    top: 44.2vh;
+    left: 35.8vw;
+    z-index: 100;
+}
+#collider33{
+    position: absolute;
+    width: 2.5vw;
+    height: 0.5vh;
+    top: 68.2vh;
+    left: 36.8vw;
+    z-index: 100;
+}
+#collider34{
+    position: absolute;
+    width: 0.35vw;
+    height: 4vh;
+    top: 68.2vh;
+    left: 36.8vw;
+    z-index: 100;
+}
+#collider35{
+    position: absolute;
+    width: 0.35vw;
+    height: 4vh;
+    top: 34.8vh;
+    left: 44.7vw;
+    z-index: 100;
+}
+#collider36{
+    position: absolute;
+    width: 0.35vw;
+    height: 10vh;
+    top: 38.8vh;
+    left: 42.4vw;
+    z-index: 100;
+}
+#collider37{
+    position: absolute;
+    width: 0.35vw;
+    height: 15vh;
+    top: 51.8vh;
+    left: 42.4vw;
+    z-index: 100;
+}
+#collider38{
+    position: absolute;
+    width: 0.33vw;
+    height: 10.8vh;
+    top: 65.9vh;
+    left: 46.8vw;
+    z-index: 100;
+}
+#collider39{
+    position: absolute;
+    width: 0.33vw;
+    height: 10.8vh;
+    top: 65.9vh;
+    left: 49.2vw;
+    z-index: 100;
+}
+#collider40{
+    position: absolute;
+    width: 3.7vw;
+    height: 0.7vh;
+    top: 75.9vh;
+    left: 43.5vw;
+    z-index: 100;
+}
+#collider41{
+    position: absolute;
+    width: 3.5vw;
+    height: 0.7vh;
+    top: 75.9vh;
+    left: 49.5vw;
+    z-index: 100;
+}
+#collider42{
+    position: absolute;
+    width: 4.2vw;
+    height: 0.7vh;
+    top: 65.85vh;
+    left: 42.7vw;
+    z-index: 100;
+}
+#collider43{
+    position: absolute;
+    width: 9.8vw;
+    height: 0.7vh;
+    top: 65.85vh;
+    left: 49.5vw;
+    z-index: 100;
+}
+#collider44{
+    position: absolute;
+    width: 1.7vw;
+    height: 9vh;
+    top: 63.8vh;
+    left: 53.5vw;
+    z-index: 100;
+}
+#collider45{
+    position: absolute;
+    width: 2.3vw;
+    height: 0.7vh;
+    top: 48vh;
+    left: 42.6vw;
+    z-index: 100;
+}
+#collider46{
+    position: absolute;
+    width: 2.3vw;
+    height: 2.8vh;
+    top: 52vh;
+    left: 42.6vw;
+    z-index: 100;
+}
+#collider47{
+    position: absolute;
+    width: 2.3vw;
+    height: 0.7vh;
+    top: 38vh;
+    left: 42.6vw;
+    z-index: 100;
+}
+#collider48{
+    position: absolute;
+    width: 2.4vw;
+    height: 0.7vh;
+    top: 46vh;
+    left: 46.8vw;
+    z-index: 100;
+}
+#collider49{
+    position: absolute;
+    width: 2.4vw;
+    height: 0.7vh;
+    top: 52vh;
+    left: 46.8vw;
+    z-index: 100;
+}
+#collider50{
+    position: absolute;
+    width: 0.35vw;
+    height: 6vh;
+    top: 46.4vh;
+    left: 49.2vw;
+    z-index: 100;
+}

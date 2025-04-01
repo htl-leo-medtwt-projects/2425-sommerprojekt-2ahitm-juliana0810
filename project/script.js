@@ -124,6 +124,8 @@ function switchToGame(){
         document.getElementById("level1-profilimg").src = "img/profil-placeholder.png";
     }
     document.querySelector(".username").innerHTML = username;
+
+    startGame();
 }
 
 function openScroll(){
