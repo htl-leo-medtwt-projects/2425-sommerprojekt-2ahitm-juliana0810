@@ -518,9 +518,129 @@ body{
 }
 #collider07{
     position: absolute;
-    width: 4.5vw;
-    height: 13vh;
+    width: 4.75vw;
+    height: 17vh;
     top: 12vh;
-    left: 42vw;
+    left: 42.5vw;
+    z-index: 100;
+}
+#collider08{
+    position: absolute;
+    width: 14.8vw;
+    height: 7vh;
+    top: 12vh;
+    left: 47vw;
+    z-index: 100;
+}
+#collider09{
+    position: absolute;
+    width: 0.33vw;
+    height: 11vh;
+    top: 18.1vh;
+    left: 61.5vw;
+    z-index: 100;
+}
+#collider10{
+    position: absolute;
+    width: 1.5vw;
+    height: 4.1vh;
+    top: 19vh;
+    left: 55.8vw;
+    z-index: 100;
+}
+#collider11{
+    position: absolute;
+    width: 2.7vw;
+    height: 2.5vh;
+    top: 26.2vh;
+    left: 59vw;
+    z-index: 100;
+}
+#collider12{
+    position: absolute;
+    width: 0.33vw;
+    height: 6.5vh;
+    top: 34vh;
+    left: 54.7vw;
+    z-index: 100;
+}
+#collider13{
+    position: absolute;
+    width: 0.33vw;
+    height: 6.5vh;
+    top: 34vh;
+    left: 51.3vw;
+    z-index: 100;
+}
+#collider14{
+    position: absolute;
+    width: 3.3vw;
+    height: 0.75vh;
+    top: 40vh;
+    left: 48vw;
+    z-index: 100;
+}
+#collider15{
+    position: absolute;
+    width: 3.3vw;
+    height: 0.75vh;
+    top: 40vh;
+    left: 54.7vw;
+    z-index: 100;
+}
+#collider16{
+    position: absolute;
+    width: 0.33vw;
+    height: 2vh;
+    top: 38.5vh;
+    left: 48vw;
+    z-index: 100;
+}
+#collider17{
+    position: absolute;
+    width: 0.33vw;
+    height: 2vh;
+    top: 38.7vh;
+    left: 58.1vw;
+    z-index: 100;
+}
+#collider18{
+    position: absolute;
+    width: 4.5vw;
+    height: 0.75vh;
+    top: 38vh;
+    left: 58.2vw;
+    z-index: 100;
+}
+#collider19{
+    position: absolute;
+    width: 1.65vw;
+    height: 15vh;
+    top: 38vh;
+    left: 62.5vw;
+    z-index: 100;
+}
+#collider20{
+    position: absolute;
+    width: 0.33vw;
+    height: 14vh;
+    top: 52.5vh;
+    left: 63.7vw;
+    z-index: 100;
+}
+#collider21{
+    position: absolute;
+    width: 7vw;
+    height: 23vh;
+    top: 52vh;
+    left: 68.2vw;
+    z-index: 100;
+}
+#collider22{
+    position: absolute;
+    width: 8vw;
+    height: 5vh;
+    top: 58vh;
+    left: 56vw;
     z-index: 100;
 }
