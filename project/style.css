@@ -394,14 +394,12 @@ body{
 #gameBoard{
     background-image: url(img/game-board-level1.png);
     background-size: cover;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    background-position: center;
     position: absolute;
     width: 45vw;
     height: 80vh;
-    margin-left: 23.5em;
-    margin-top: 5em;
+    margin-left: 29.6vw;
+    margin-top: 11.2vh;
 }
 #surface{
     position: relative;
@@ -639,8 +637,79 @@ body{
 #collider22{
     position: absolute;
     width: 8vw;
-    height: 5vh;
-    top: 58vh;
-    left: 56vw;
+    height: 6vh;
+    top: 69vh;
+    left: 61.5vw;
     z-index: 100;
+}
+#collider23{
+    position: absolute;
+    width: 2.3vw;
+    height: 6.2vh;
+    top: 63vh;
+    left: 61.5vw;
+    z-index: 100;
+}
+#collider24{
+    position: absolute;
+    width: 5vw;
+    height: 2.65vh;
+    top: 75.5vh;
+    left: 58.2vw;
+    z-index: 100;
+}
+#collider25{
+    position: absolute;
+    width: 0.33vw;
+    height: 14vh;
+    top: 78vh;
+    left: 58.1vw;
+    z-index: 100;
+}
+#collider26{
+    position: absolute;
+    width: 11.3vw;
+    height: 20vh;
+    top: 71.7vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+#collider27{
+    position: absolute;
+    width: 2.4vw;
+    height: 3.7vh;
+    top: 68vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+#collider28{
+    position: absolute;
+    width: 3.3vw;
+    height: 2.7vh;
+    top: 42vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+#collider29{
+    position: absolute;
+    width: 3.35vw;
+    height: 0.5vh;
+    top: 54vh;
+    left: 30.4vw;
+    z-index: 100;
+}
+
+
+/** PLAYER **/
+#spriteImg {
+    height: 60px;
+    position: relative;
+}
+#player {
+    position: absolute;
+    z-index: 5;
+    width: 40px; 
+    height: 60px; 
+    overflow: hidden;
+    opacity: 0; 
 }
