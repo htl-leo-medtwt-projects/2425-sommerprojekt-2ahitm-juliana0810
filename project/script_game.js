@@ -22,10 +22,10 @@ let GAME_CONFIG = {
  * START GAME
  * **********************************/
 function startGame() {
-    PLAYER.box.style.left = '55vw'; 
-    PLAYER.box.style.top = '83vh'; 
+    PLAYER.box.style.left = '700px'; 
+    PLAYER.box.style.top = '600px'; 
     PLAYER.box.style.opacity = '1';
-    PLAYER.spriteImg.style.right = '0px';  
+    document.getElementById("spriteImg").style.right = '0px';  
     gameLoop();
 }
 
@@ -36,23 +36,22 @@ function startGame() {
  * GAME LOOP
  * **********************************/
 function gameLoop() {
-    if(!gameEnded){
-        if (KEY_EVENTS.leftArrow) {
-            movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
-            animatePlayer();
-        }
-        if (KEY_EVENTS.rightArrow) {
-            movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
-            animatePlayer();
-        }
-        if (KEY_EVENTS.upArrow) {
-            movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
-            animatePlayer();
-        }
-        if (KEY_EVENTS.downArrow) {
-            movePlayer(0, GAME_CONFIG.characterSpeed, 0);
-            animatePlayer();
-        }
-        setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
+    /*if(!gameEnded){*/
+    if (KEY_EVENTS.leftArrow) {
+        movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
+        animatePlayer();
     }
+    if (KEY_EVENTS.rightArrow) {
+        movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
+        animatePlayer();
+    }
+    if (KEY_EVENTS.upArrow) {
+        movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
+        animatePlayer();
+    }
+    if (KEY_EVENTS.downArrow) {
+        movePlayer(0, GAME_CONFIG.characterSpeed, 0);
+        animatePlayer();
+    }
+    setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
 }

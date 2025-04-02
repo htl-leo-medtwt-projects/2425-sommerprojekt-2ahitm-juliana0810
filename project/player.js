@@ -3,7 +3,6 @@
  ***********************************/
 let PLAYER = {
     box: document.getElementById('player'),
-    spriteImg: document.getElementById('spriteImg'),
     spriteImgNumber: 0, 
     spriteDirection: 1,
     score: 0
@@ -45,15 +44,16 @@ function movePlayer(dx, dy, dr) {
     
 }
 
+
 /** animate player */
 function animatePlayer() {
-    if (PLAYER.spriteImgNumber < 5) { 
+    if (PLAYER.spriteImgNumber < 8) { 
         PLAYER.spriteImgNumber++;
-        let x = parseFloat(PLAYER.spriteImg.style.right);
-        x += 42.0; 
-        PLAYER.spriteImg.style.right = x + "px";
+        let x = parseFloat(document.getElementById("spriteImg").style.right);
+        x += 30.5; 
+        document.getElementById("spriteImg").style.right = x + "px";
     } else { 
-        PLAYER.spriteImg.style.right = "0px";
+        document.getElementById("spriteImg").style.right = "0px";
         PLAYER.spriteImgNumber = 0;
     }
 }

@@ -436,14 +436,14 @@ body{
 
 /** PLAYER **/
 #spriteImg {
-    height: 5vh;
+    height: 20vh;
     position: relative;
 }
 #player {
     position: absolute;
     z-index: 5;
-    width: 5vw; 
-    height: 9vh; 
+    width: 1.2vw; 
+    height: 3.7vh; 
     overflow: hidden;
     opacity: 0; 
 }
