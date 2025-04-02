@@ -3,12 +3,20 @@ let profileImageSrc = "";
 let username = "";
 let counter = 0;
 let choosenCharacter = "";
+let playerImage = "";
 
 let images = [
     'img/character1-option.png',
     'img/character2-option.png',
     'img/character3-option.png',
     'img/character4-option.png' 
+]
+
+let players = [
+    'img/character1.png',
+    'img/character2.png',
+    'img/character3.png',
+    'img/character4.png' 
 ]
 
 function openInfo(index){
@@ -114,6 +122,8 @@ function goLeft(){
 
 }
 function switchToGame(){
+    playerImage = `<img id="spriteImg" src="${players[counter]}">`;
+    document.getElementById("player").innerHTML = playerImage;
     document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
 
