@@ -448,3 +448,89 @@ body{
     overflow: hidden;
     opacity: 0; 
 }
+
+/* statistiken */
+#statistiken{
+    position: absolute;
+    right: 5vw;
+    top: 7.5vh;
+    display: flex;
+    flex-direction: column;
+}
+#statistiken div{
+    margin: 0.5em;
+    display: flex;
+    flex-direction: row;
+}
+.statistiken-box{
+    background-color: #dabb8d99;
+    border-radius: 1em;
+    width: 5em;
+    height: 4vh;
+}
+.statistiken-box p{
+    color: #592a1d;
+    font-family: basicFont;
+    text-align: center;
+    margin-top: 0.5em;
+}
+#sanduhr-box{
+   display: flex;
+   justify-content: center;
+}
+#coins-box{
+    margin-left: 0.6em;
+}
+#coins-img, #sanduhr-img{
+    height: 5vh;
+    width: auto;
+    margin-top: 0.33em;
+}
+#sanduhr-img{
+    margin-right: 0.75em;
+}
+
+
+/* level anzeige */
+#levelbox{
+    position: absolute;
+    top: 2vh;
+    left: 42vw;
+    display: flex;
+    flex-direction: row;
+}
+#level{
+    background-color: #9e8769;
+    border-radius: 10em;
+    width: 3em;
+    height: 7vh;
+    margin-right: 0.5em;
+    box-shadow: 1px 1px 1px #210b05;
+}
+#level p{
+    color: #592a1d;
+    font-family: basicFont;
+    text-align: center;
+    font-size: 1.7em;
+    text-shadow: 1px 1px 1px #210b05;
+    margin-top: 0.5em;
+}
+#levelbar-container{
+    background-color: #dabb8d99;
+    border-radius: 0.5em;
+    width: 12em;
+    height: 4vh;
+    margin-top: 0.75em;
+}
+
+/*item -coin*/
+#coinBox{
+    position: absolute;
+    width: 0.45em;
+    z-index: 6;
+    top: 300px;
+    left: 700px;
+}
+#coin{
+    width: 0.45em;
+}

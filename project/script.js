@@ -5,6 +5,7 @@ let counter = 0;
 let choosenCharacter = "";
 let playerImage = "";
 let value = 0;
+let levelCount = 0;
 
 let images = [
     'img/character1-option.png',
@@ -123,11 +124,15 @@ function goLeft(){
 
 }
 function switchToGame(){
+    value = counter;
+    levelCount++;
+
     playerImage = `<img id="spriteImg" src="${players[counter]}">`;
     document.getElementById("player").innerHTML = playerImage;
-    value = counter;
+    
     document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
+    document.getElementById("level").innerHTML = `<p>${levelCount}</p>`
 
     if (profileImageSrc) {
         document.getElementById("level1-profilimg").src = profileImageSrc;
