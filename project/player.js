@@ -7,7 +7,14 @@ let PLAYER = {
     spriteDirection: 1,
     score: 0
 }
+let VALUES = [
+    30.5,
+    31,
+    30,
+    30.5,
+]
 
+let yValue = 0;
 
 /** move player */
 /** 
@@ -50,8 +57,9 @@ function animatePlayer() {
     if (PLAYER.spriteImgNumber < 8) { 
         PLAYER.spriteImgNumber++;
         let x = parseFloat(document.getElementById("spriteImg").style.right);
-        x += 30.5; 
+        x += VALUES[value]; 
         document.getElementById("spriteImg").style.right = x + "px";
+        document.getElementById("spriteImg").style.top = yValue + "px";
     } else { 
         document.getElementById("spriteImg").style.right = "0px";
         PLAYER.spriteImgNumber = 0;

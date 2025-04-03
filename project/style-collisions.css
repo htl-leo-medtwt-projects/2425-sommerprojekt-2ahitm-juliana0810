@@ -1,6 +1,6 @@
 /************* collisions level 1 **********************/
 .collider{
-    background-color: rgba(255, 0, 0, 0.607);
+    background-color: transparent;
 }
 #colliderright{
     position: absolute;
@@ -57,8 +57,8 @@
 #collider04{
     position: absolute;
     width: 7vw;
-    height: 2.5vh;
-    top: 32vh;
+    height: 2vh;
+    top: 33vh;
     left: 59vw;
     z-index: 100;
 }
@@ -97,8 +97,8 @@
 #collider09{
     position: absolute;
     width: 0.33vw;
-    height: 11vh;
-    top: 18.1vh;
+    height: 10vh;
+    top: 17vh;
     left: 61.5vw;
     z-index: 100;
 }
@@ -113,7 +113,7 @@
 #collider11{
     position: absolute;
     width: 2.7vw;
-    height: 2.5vh;
+    height: 2vh;
     top: 26.2vh;
     left: 59vw;
     z-index: 100;
@@ -321,8 +321,8 @@
 #collider37{
     position: absolute;
     width: 0.35vw;
-    height: 15vh;
-    top: 51.8vh;
+    height: 13.5vh;
+    top: 53.2vh;
     left: 42.4vw;
     z-index: 100;
 }
@@ -344,10 +344,10 @@
 }
 #collider40{
     position: absolute;
-    width: 3.7vw;
+    width: 2.8vw;
     height: 0.7vh;
     top: 75.9vh;
-    left: 43.5vw;
+    left: 44.5vw;
     z-index: 100;
 }
 #collider41{
@@ -377,7 +377,7 @@
 #collider44{
     position: absolute;
     width: 1.7vw;
-    height: 9vh;
+    height: 7.5vh;
     top: 63.8vh;
     left: 53.5vw;
     z-index: 100;
@@ -393,8 +393,8 @@
 #collider46{
     position: absolute;
     width: 2.3vw;
-    height: 2.8vh;
-    top: 52vh;
+    height: 2vh;
+    top: 53.2vh;
     left: 42.6vw;
     z-index: 100;
 }
@@ -497,20 +497,12 @@
 #collider59{
     position: absolute;
     width: 0.35vw;
-    height: 2.5vh;
+    height: 2.2vh;
     top: 50.6vh;
     left: 58vw;
     z-index: 100;
 }
 #collider60{
-    position: absolute;
-    width: 0.35vw;
-    height: 2.6vh;
-    top: 46vh;
-    left: 46.8vw;
-    z-index: 100;
-}
-#collider61{
     position: absolute;
     width: 3vw;
     height: 4.5vh;

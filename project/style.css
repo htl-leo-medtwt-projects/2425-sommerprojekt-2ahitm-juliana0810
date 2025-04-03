@@ -275,6 +275,7 @@ body{
     cursor: pointer;
     animation: enterText 1s infinite ease;
 }
+
 /*animation for "enter" text */
 @keyframes enterText {
     0%{transform: scale3d(1,1,1);}
@@ -442,7 +443,7 @@ body{
 #player {
     position: absolute;
     z-index: 5;
-    width: 1.2vw; 
+    width: 1.4vw; 
     height: 3.7vh; 
     overflow: hidden;
     opacity: 0; 

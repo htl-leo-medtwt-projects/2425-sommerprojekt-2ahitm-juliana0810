@@ -4,6 +4,7 @@ let username = "";
 let counter = 0;
 let choosenCharacter = "";
 let playerImage = "";
+let value = 0;
 
 let images = [
     'img/character1-option.png',
@@ -124,6 +125,7 @@ function goLeft(){
 function switchToGame(){
     playerImage = `<img id="spriteImg" src="${players[counter]}">`;
     document.getElementById("player").innerHTML = playerImage;
+    value = counter;
     document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
 
