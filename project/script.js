@@ -142,7 +142,7 @@ function switchToGame(){
     }
     document.querySelector(".username").innerHTML = username;
 
-    startGame();
+    setTimeout(() => writeText(0), 2000);
 }
 
 function openScroll(){

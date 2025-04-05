@@ -474,7 +474,7 @@ body{
     text-align: center;
     margin-top: 0.5em;
 }
-#sanduhr-box{
+.statistiken-box{
    display: flex;
    justify-content: center;
 }
@@ -526,11 +526,68 @@ body{
 /*item -coin*/
 #coinBox{
     position: absolute;
-    width: 0.45em;
+    width: 0.6em;
     z-index: 6;
     top: 300px;
     left: 700px;
 }
 #coin{
-    width: 0.45em;
+    width: 0.6em;
+}
+ /*text -hints*/
+
+/*** Fremdcode ***/
+#text-container-level1 {
+    text-align: center; 
+    font-size: 100%;
+    margin: 0 auto;
+    width: 55%; 
+    position: absolute;
+    top: 35vh;
+    left: 25vw;
+    font-family: message;
+    font-weight: bold;
+    background-color: #080200be;
+    box-shadow: 2px 2px 2px #fcf3cf;
+    z-index: 10;
+    display: none;
+    padding: 1em 2em;
+}
+
+.typewriter-lvl1 {
+    overflow: hidden; 
+    border-right: 2px solid #fcf3cf; 
+    white-space: nowrap; 
+    margin: 10px auto; 
+    letter-spacing: .15em; 
+    color: #fcf3cf;
+    max-width: 0;  
+    animation: 
+      typing 5s steps(40, end) forwards,  
+      blink-caret .75s step-end infinite;
+    visibility: hidden; 
+}
+
+/* Animations*/
+@keyframes typing {
+    from { max-width: 0; visibility: visible; }  
+    to { max-width: 100%; visibility: visible; } 
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #fcf3cf; }
+}
+/*************/
+#text-cont-close{
+    font-family: basicFont;
+    color: #fcf3cf;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+}
+#pergament{
+    width: 20vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

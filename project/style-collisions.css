@@ -38,14 +38,6 @@
     left: 30vw;
     z-index: 100;
 }
-#collider02{
-    position: absolute;
-    width: 3.5vw;
-    height: 0.75vh;
-    top: 34vh;
-    left: 48vw;
-    z-index: 100;
-}
 #collider03{
     position: absolute;
     width: 11vw;
@@ -134,14 +126,6 @@
     left: 51.3vw;
     z-index: 100;
 }
-#collider14{
-    position: absolute;
-    width: 3.3vw;
-    height: 0.75vh;
-    top: 40vh;
-    left: 48vw;
-    z-index: 100;
-}
 #collider15{
     position: absolute;
     width: 3.3vw;
@@ -152,10 +136,10 @@
 }
 #collider16{
     position: absolute;
-    width: 0.33vw;
-    height: 2vh;
-    top: 38.5vh;
-    left: 48vw;
+    width: 2vw;
+    height: 4.5vh;
+    top: 34.5vh;
+    left: 49.5vw;
     z-index: 100;
 }
 #collider17{
@@ -480,8 +464,8 @@
 }
 #collider57{
     position: absolute;
-    width: 1.5vw;
-    height: 0.6vh;
+    width: 0vw;
+    height: 0vh;
     top: 38.2vh;
     left: 46.8vw;
     z-index: 100;

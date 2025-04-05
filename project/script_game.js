@@ -26,6 +26,20 @@ let GAME_CONFIG = {
     characterSpeed: 7 
 }
 
+let TEXTSNIPPETS = [
+    [
+        'Die Tuer bleibt versiegelt, solange der Schluessel des Pharaos ruht.', 
+        'Kein Schloss oeffnet sich ohne Wissen - suche die verborgenen Zeichen, ',
+        'denn nur wer die Hinweise entschluesselt, wird ihn finden'
+
+    ],
+    [
+        'In der Ecke des Raumes wirbelt ein leichter Luftzug den Sand auf', 
+        '- als haette sich gerade etwas bewegt', 
+        'Aus einer versteckten Ecke ragt eine vergilbte Ecke Pergament hervor…', 
+    ]
+];
+
 
 /*******  TIMER *********** */
 function startTimer() {
@@ -55,7 +69,68 @@ function startGame() {
     document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
     startTimer(); 
     gameLoop();
-    
+}
+
+/***********************************
+ * TEXT ANIMATION
+ * **********************************/
+let finishedFirstText = false;
+
+function writeText(index) {
+    const textContainer = document.getElementById("text-container-level1");
+    textContainer.style.display = 'block';
+    textContainer.innerHTML = "";
+
+    let textArray = TEXTSNIPPETS[index];
+    let delay = 0;
+
+    textArray.forEach((sentence, i) => {
+        setTimeout(() => {
+            let p = document.createElement('p');
+            p.classList.add("typewriter-lvl1");
+            p.innerText = sentence;
+            textContainer.appendChild(p);
+        }, delay);
+
+        delay += 4000;
+    });
+
+    setTimeout(() => {
+        let closeHint = document.createElement('p');
+        closeHint.id = 'text-cont-close';
+        closeHint.innerText = 'close hint';
+        closeHint.style.cursor = 'pointer';
+        closeHint.onclick = () => {
+            textContainer.style.display = 'none';
+            if (index === 0) {
+                writeText(1);
+            }
+            else if(index === 1){
+                startGame();
+            }
+        };
+        textContainer.appendChild(closeHint);
+    }, delay); 
+
+}
+/***********************************
+ * FINDING KEY - HINTS
+ * **********************************/
+function isCollidingWith(id) {
+    const playerRect = PLAYER.box.getBoundingClientRect();
+    const colliderRect = document.getElementById(id).getBoundingClientRect();
+
+    return !(
+        playerRect.right < colliderRect.left ||
+        playerRect.left > colliderRect.right ||
+        playerRect.bottom < colliderRect.top ||
+        playerRect.top > colliderRect.bottom
+    );
+}
+
+function showPergament(){
+    document.getElementById("text-container-level1").innerHTML = 
+        `<img id="pergament" src="img/pergament.png">`
 }
 
 
@@ -65,22 +140,42 @@ function startGame() {
 
 function respawnCoin() {
     const surface = GAME_SCREEN.surface.getBoundingClientRect();
-    const colliderTop = document.getElementById('collidertop').getBoundingClientRect();
-    const colliderBottom = document.getElementById('colliderbottom').getBoundingClientRect();
-    const colliderRight = document.getElementById('colliderright').getBoundingClientRect();
-    const colliderLeft = document.getElementById('colliderleft').getBoundingClientRect();
+    const colliders = document.querySelectorAll('.collider');
+    
+    const colliderRects = Array.from(colliders).map(collider => collider.getBoundingClientRect());
 
-    const safeLeft = colliderLeft.right - surface.left;
-    const safeRight = colliderRight.left - surface.left;
-    const safeTop = colliderTop.bottom - surface.top;
-    const safeBottom = colliderBottom.top - surface.top;
+    const safeLeft = surface.left;
+    const safeRight = surface.right - GAME_SCREEN.coinbox.offsetWidth;
+    const safeTop = surface.top;
+    const safeBottom = surface.bottom - GAME_SCREEN.coinbox.offsetHeight;
 
-    const randomX = Math.floor(Math.random() * (safeRight - safeLeft - GAME_SCREEN.coinbox.offsetWidth)) + safeLeft;
-    const randomY = Math.floor(Math.random() * (safeBottom - safeTop - GAME_SCREEN.coinbox.offsetHeight)) + safeTop;
+    let randomX, randomY, isColliding;
 
-    GAME_SCREEN.coinbox.style.left = `${randomX}px`;
-    GAME_SCREEN.coinbox.style.top = `${randomY}px`;
+    do {
+        randomX = Math.floor(Math.random() * (safeRight - safeLeft)) + safeLeft;
+        randomY = Math.floor(Math.random() * (safeBottom - safeTop)) + safeTop;
+        
+        const coinRect = {
+            left: randomX,
+            right: randomX + GAME_SCREEN.coinbox.offsetWidth,
+            top: randomY,
+            bottom: randomY + GAME_SCREEN.coinbox.offsetHeight
+        };
+
+
+        isColliding = colliderRects.some(collider => 
+            !(coinRect.right < collider.left || 
+              coinRect.left > collider.right || 
+              coinRect.bottom < collider.top || 
+              coinRect.top > collider.bottom)
+        );
+        
+    } while (isColliding); 
+
+    GAME_SCREEN.coinbox.style.left = `${randomX - surface.left}px`;
+    GAME_SCREEN.coinbox.style.top = `${randomY - surface.top}px`;
 }
+
 
 function handleCollision() {
     if (isColliding(PLAYER.box, GAME_SCREEN.coinbox)) {
@@ -114,5 +209,14 @@ function gameLoop() {
     }
 
     handleCollision();
+
+    if (isCollidingWith("collider16")) {
+        if (!PLAYER.triggeredCollider16) {
+            PLAYER.triggeredCollider16 = true;
+            console.log("collider16")
+            showPergament();
+        }
+    }
+
     setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
 }

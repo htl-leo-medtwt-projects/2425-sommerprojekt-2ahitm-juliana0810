@@ -5,7 +5,8 @@ let PLAYER = {
     box: document.getElementById('player'),
     spriteImgNumber: 0, 
     spriteDirection: 1,
-    coins: 0
+    coins: 0,
+    triggeredCollider16: false
 }
 let VALUES = [
     30.5,
