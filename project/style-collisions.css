@@ -136,10 +136,10 @@
 }
 #collider16{
     position: absolute;
-    width: 2vw;
-    height: 4.5vh;
+    width: 2.2vw;
+    height: 5vh;
     top: 34.5vh;
-    left: 49.5vw;
+    left: 49vw;
     z-index: 100;
 }
 #collider17{

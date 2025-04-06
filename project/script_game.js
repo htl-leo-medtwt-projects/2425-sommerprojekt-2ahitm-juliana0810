@@ -28,17 +28,18 @@ let GAME_CONFIG = {
 
 let TEXTSNIPPETS = [
     [
-        'Die Tuer bleibt versiegelt, solange der Schluessel des Pharaos ruht.', 
-        'Kein Schloss oeffnet sich ohne Wissen - suche die verborgenen Zeichen, ',
-        'denn nur wer die Hinweise entschluesselt, wird ihn finden'
-
+        'The door remains sealed as long as the Pharaoh\'s key lies uncovered.',
+        'No lock opens without knowledge – seek the hidden signs,',
+        'for only those who decipher the clues shall find it.'
     ],
     [
-        'In der Ecke des Raumes wirbelt ein leichter Luftzug den Sand auf', 
-        '- als haette sich gerade etwas bewegt', 
-        'Aus einer versteckten Ecke ragt eine vergilbte Ecke Pergament hervor…', 
+        'In the corner of the room, a gentle breeze stirs the sand,',
+        '– as if something had just moved.',
+        'From a hidden corner, a parchment peeks out…',
+        'Not finding the relic shall be your final demise, so search well'
     ]
 ];
+
 
 
 /*******  TIMER *********** */
@@ -117,21 +118,36 @@ function writeText(index) {
  * FINDING KEY - HINTS
  * **********************************/
 function isCollidingWith(id) {
-    const playerRect = PLAYER.box.getBoundingClientRect();
-    const colliderRect = document.getElementById(id).getBoundingClientRect();
+    const player = PLAYER.box;
+    const collider = document.getElementById(id);
+
+    const pLeft = player.offsetLeft;
+    const pTop = player.offsetTop;
+    const pRight = pLeft + player.offsetWidth;
+    const pBottom = pTop + player.offsetHeight;
+
+    const cLeft = collider.offsetLeft;
+    const cTop = collider.offsetTop;
+    const cRight = cLeft + collider.offsetWidth;
+    const cBottom = cTop + collider.offsetHeight;
 
     return !(
-        playerRect.right < colliderRect.left ||
-        playerRect.left > colliderRect.right ||
-        playerRect.bottom < colliderRect.top ||
-        playerRect.top > colliderRect.bottom
+        pRight <= cLeft ||
+        pLeft >= cRight ||
+        pBottom <= cTop ||
+        pTop >= cBottom
     );
 }
 
-function showPergament(){
-    document.getElementById("text-container-level1").innerHTML = 
-        `<img id="pergament" src="img/pergament.png">`
+
+function showPergament() {
+    const container = document.getElementById("pergament-box");
+    container.style.display = 'block'; 
+    container.innerHTML = `<img id="pergament" src="img/pergament.png">`;
+
+    PLAYER.triggeredCollider16 = true;
 }
+
 
 
 /***********************************
@@ -212,11 +228,11 @@ function gameLoop() {
 
     if (isCollidingWith("collider16")) {
         if (!PLAYER.triggeredCollider16) {
-            PLAYER.triggeredCollider16 = true;
             console.log("collider16")
             showPergament();
         }
     }
+
 
     setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
 }

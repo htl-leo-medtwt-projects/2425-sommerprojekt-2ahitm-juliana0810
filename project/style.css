@@ -586,8 +586,24 @@ body{
     cursor: pointer;
 }
 #pergament{
-    width: 20vw;
+    width: 50vw;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    animation: showPaper 1.5s 1 ease;
+}
+@keyframes showPaper {
+    0%{opacity: 0;}
+    25%{opacity: 0;}
+    50%{opacity: 0;}
+    75%{opacity: 0;}
+    100%{opacity: 1;}
+}
+#pergament-box{
+    position: absolute;
+    z-index: 10;
+    display: none;
+    top: 28vh;
+    left: 6vw;
+    width: 100%;
 }
