@@ -29,14 +29,7 @@ let GAME_CONFIG = {
 /***********************************
  * ENEMY
  ***********************************/
-let ENEMY = {
-    box: document.getElementById('enemy'),
-    spriteImgNumber: 0, 
-    spriteDirection: 1,
-    speed: 2,
-    spriteImg: document.getElementById('enemy-skeleton')  
-};
-let yValueEnemy = 0;
+
 
 let TEXTSNIPPETS = [
     [
@@ -167,9 +160,22 @@ function showPergament() {
 }
 function closePergament(){
     document.getElementById("pergament-box").style.display = "none";
+    document.getElementById("pergament-close").style.display = "none";
+
+    openMapRooms();
 }
 
-
+function openMapRooms(){
+    writeText(2);
+    document.getElementById("text-container-level1").innerHTML += 
+        `<img src="img/map-rooms.png" id="map-rooms" alt="map-rooms">
+         <div>
+            <p>Room 1</p>
+            <p>Room 2</p>
+            <p></p>
+            <p></p>
+         </div>`
+}
 /***********************************
  * COIN
  * **********************************/
@@ -224,82 +230,77 @@ function handleCollision() {
 /***********************************
  * ENEMY - MOVE TOWARD PLAYER
  ***********************************/
-function moveEnemyTowardPlayer() {
-    const playerX = parseFloat(PLAYER.box.style.left);
-    const playerY = parseFloat(PLAYER.box.style.top);  
-    let enemyX = parseFloat(ENEMY.box.style.left);    
-    let enemyY = parseFloat(ENEMY.box.style.top);      
-
-    const dx = playerX - enemyX;  
-    const dy = playerY - enemyY;  
-
-    const distance = Math.sqrt(dx * dx + dy * dy);
-
- 
-    if (distance > 1) {
-        const speed = ENEMY.speed; 
-
-        const moveX = (dx / distance) * speed;
-        const moveY = (dy / distance) * speed;
-
-    
-        ENEMY.box.style.left = (enemyX + moveX) + 'px';
-        ENEMY.box.style.top = (enemyY + moveY) + 'px';
-
-        
-        if (Math.abs(dx) > Math.abs(dy)) {  
-            if (dx > 0) {
-                ENEMY.spriteDirection = 1; 
-            } else {
-                ENEMY.spriteDirection = -1; 
-            }
-        } else { 
-            if (dy > 0) {
-                ENEMY.spriteDirection = 2; 
-            } else {
-                ENEMY.spriteDirection = 3; 
-            }
-        }
-
-        animateEnemy();
-    }
+let ENEMY = {
+    box: document.getElementById('enemy'),
+    sprite: document.getElementById('enemy-skeleton'),
+    spriteImgNumber: 0,
+    direction: 'down', 
+    yOffset: 0, 
+    speed: 1.5,
 }
-
-/***********************************
- * ENEMY - ANIMATION
- ***********************************/
+ENEMY.currentFrame = 0;
+ENEMY.totalFrames = 8; 
+ENEMY.frameWidth = 1.5; 
 
 function animateEnemy() {
     if (ENEMY.spriteImgNumber < 8) { 
         ENEMY.spriteImgNumber++;
-
-        ENEMY.spriteImgNumber++;
-        let x = parseFloat(document.getElementById("enemy-skeleton").style.left);
-        x += 30; 
-        document.getElementById("enemy-skeleton").style.left = x + "px"; 
-        let yValueEnemy = 0; 
-        if (ENEMY.spriteDirection === 1 || ENEMY.spriteDirection === -1) {
-
-            yValueEnemy = -90;
-        } else if (ENEMY.spriteDirection === 2) {
-          
-            yValueEnemy = -60; 
-        } else if (ENEMY.spriteDirection === 3) {
-           
-            yValueEnemy = 0; 
-        }
-
-       
-        document.getElementById("enemy-skeleton").style.top = yValueEnemy + "px";
-    } else { 
-        document.getElementById("enemy-skeleton").style.left = "0px"; 
-        ENEMY.spriteImgNumber = 0; 
+        let x = parseFloat(ENEMY.sprite.style.right) || 0;
+        x += 31; 
+        ENEMY.sprite.style.right = x + "px";
+        ENEMY.sprite.style.top = ENEMY.yOffset + "px";
+    } else {
+        ENEMY.sprite.style.right = "0px";
+        ENEMY.spriteImgNumber = 0;
     }
 }
 
 
+function moveEnemy() {
+    let playerRect = PLAYER.box.getBoundingClientRect();
+    let enemyRect = ENEMY.box.getBoundingClientRect();
+    let surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
 
+    let dx = playerRect.left - enemyRect.left;
+    let dy = playerRect.top - enemyRect.top;
+    let distance = Math.sqrt(dx * dx + dy * dy);
 
+    if (distance > 0) {
+        dx /= distance;
+        dy /= distance;
+
+        let newX = enemyRect.left + dx * ENEMY.speed;
+        let newY = enemyRect.top + dy * ENEMY.speed;
+
+        if (
+            newX >= surfaceRect.left &&
+            newX + enemyRect.width <= surfaceRect.right &&
+            newY >= surfaceRect.top &&
+            newY + enemyRect.height <= surfaceRect.bottom
+        ) {
+            ENEMY.box.style.left = `${newX}px`;
+            ENEMY.box.style.top = `${newY}px`;
+        }
+    }
+    if (Math.abs(dx) > Math.abs(dy)) {
+        ENEMY.direction = dx > 0 ? 'right' : 'left';
+    } else {
+        ENEMY.direction = dy > 0 ? 'down' : 'up';
+    }
+    
+    switch (ENEMY.direction) {
+        case 'up': ENEMY.yOffset = 0; break;
+        case 'down': ENEMY.yOffset = -75; break;
+        case 'left': ENEMY.yOffset = -110; break;
+        case 'right': ENEMY.yOffset = -110; break;
+    }
+    if (ENEMY.direction === 'left') {
+        ENEMY.box.style.transform = 'scaleX(-1)';
+    } else if (ENEMY.direction === 'right') {
+        ENEMY.box.style.transform = 'scaleX(1)';
+    }    
+    animateEnemy();
+}
 
 
 /***********************************
@@ -332,9 +333,7 @@ function gameLoop() {
             showPergament();
         }
     }
-    moveEnemyTowardPlayer();  
-    animateEnemy();   
-
+    moveEnemy();
 
     setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
 }
