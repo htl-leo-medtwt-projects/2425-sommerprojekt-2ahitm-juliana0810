@@ -26,6 +26,18 @@ let GAME_CONFIG = {
     characterSpeed: 7 
 }
 
+/***********************************
+ * ENEMY
+ ***********************************/
+let ENEMY = {
+    box: document.getElementById('enemy'),
+    spriteImgNumber: 0, 
+    spriteDirection: 1,
+    speed: 2,
+    spriteImg: document.getElementById('enemy-skeleton')  
+};
+let yValueEnemy = 0;
+
 let TEXTSNIPPETS = [
     [
         'The door remains sealed as long as the Pharaoh\'s key lies uncovered.',
@@ -65,8 +77,12 @@ function startTimer() {
 function startGame() {
     PLAYER.box.style.left = '700px'; 
     PLAYER.box.style.top = '600px'; 
+    ENEMY.box.style.left = '500px';
+    ENEMY.box.style.top = "400px";
+    ENEMY.box.style.opacity = '1';
     PLAYER.box.style.opacity = '1';
     document.getElementById("spriteImg").style.right = '0px'; 
+    document.getElementById("enemy-skeleton").style.right = '0px';
     document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
     startTimer(); 
     gameLoop();
@@ -143,11 +159,15 @@ function isCollidingWith(id) {
 function showPergament() {
     const container = document.getElementById("pergament-box");
     container.style.display = 'block'; 
-    container.innerHTML = `<img id="pergament" src="img/pergament.png">`;
+    container.innerHTML = `
+        <img id="pergament" src="img/pergament.png">`;
 
     PLAYER.triggeredCollider16 = true;
+    document.getElementById("pergament-close").style.display = "block";
 }
-
+function closePergament(){
+    document.getElementById("pergament-box").style.display = "none";
+}
 
 
 /***********************************
@@ -201,6 +221,86 @@ function handleCollision() {
     }
 }
 
+/***********************************
+ * ENEMY - MOVE TOWARD PLAYER
+ ***********************************/
+function moveEnemyTowardPlayer() {
+    const playerX = parseFloat(PLAYER.box.style.left);
+    const playerY = parseFloat(PLAYER.box.style.top);  
+    let enemyX = parseFloat(ENEMY.box.style.left);    
+    let enemyY = parseFloat(ENEMY.box.style.top);      
+
+    const dx = playerX - enemyX;  
+    const dy = playerY - enemyY;  
+
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+ 
+    if (distance > 1) {
+        const speed = ENEMY.speed; 
+
+        const moveX = (dx / distance) * speed;
+        const moveY = (dy / distance) * speed;
+
+    
+        ENEMY.box.style.left = (enemyX + moveX) + 'px';
+        ENEMY.box.style.top = (enemyY + moveY) + 'px';
+
+        
+        if (Math.abs(dx) > Math.abs(dy)) {  
+            if (dx > 0) {
+                ENEMY.spriteDirection = 1; 
+            } else {
+                ENEMY.spriteDirection = -1; 
+            }
+        } else { 
+            if (dy > 0) {
+                ENEMY.spriteDirection = 2; 
+            } else {
+                ENEMY.spriteDirection = 3; 
+            }
+        }
+
+        animateEnemy();
+    }
+}
+
+/***********************************
+ * ENEMY - ANIMATION
+ ***********************************/
+
+function animateEnemy() {
+    if (ENEMY.spriteImgNumber < 8) { 
+        ENEMY.spriteImgNumber++;
+
+        ENEMY.spriteImgNumber++;
+        let x = parseFloat(document.getElementById("enemy-skeleton").style.left);
+        x += 30; 
+        document.getElementById("enemy-skeleton").style.left = x + "px"; 
+        let yValueEnemy = 0; 
+        if (ENEMY.spriteDirection === 1 || ENEMY.spriteDirection === -1) {
+
+            yValueEnemy = -90;
+        } else if (ENEMY.spriteDirection === 2) {
+          
+            yValueEnemy = -60; 
+        } else if (ENEMY.spriteDirection === 3) {
+           
+            yValueEnemy = 0; 
+        }
+
+       
+        document.getElementById("enemy-skeleton").style.top = yValueEnemy + "px";
+    } else { 
+        document.getElementById("enemy-skeleton").style.left = "0px"; 
+        ENEMY.spriteImgNumber = 0; 
+    }
+}
+
+
+
+
+
 
 /***********************************
  * GAME LOOP
@@ -232,6 +332,8 @@ function gameLoop() {
             showPergament();
         }
     }
+    moveEnemyTowardPlayer();  
+    animateEnemy();   
 
 
     setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 

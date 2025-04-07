@@ -586,24 +586,50 @@ body{
     cursor: pointer;
 }
 #pergament{
-    width: 50vw;
+    width: 32vw;
+    margin-top: 2em;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    animation: showPaper 1.5s 1 ease;
+    animation: showPaper 2s 1 ease;
 }
 @keyframes showPaper {
     0%{opacity: 0;}
-    25%{opacity: 0;}
-    50%{opacity: 0;}
-    75%{opacity: 0;}
     100%{opacity: 1;}
 }
 #pergament-box{
     position: absolute;
     z-index: 10;
     display: none;
-    top: 28vh;
-    left: 6vw;
     width: 100%;
 }
+#pergament-close{
+    font-family: basicFont;
+    color: #fcf3cf;
+    text-shadow: 1px 1px 1px #592a1d;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    text-align: center;
+    z-index: 999;
+    pointer-events: auto;
+    display: none;
+}
+
+/* enemy */
+#enemy {
+    position: absolute;
+    z-index: 5;
+    width: 1.5vw; 
+    height: 4vh; 
+    overflow: hidden;
+    opacity: 0; 
+}
+
+#enemy-skeleton{
+    height: 20vh;
+    position: absolute;
+    top: 0;        
+    left: 0;      
+    width: auto;  
+}
+  
