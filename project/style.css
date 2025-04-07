@@ -502,7 +502,7 @@ body{
     width: 2.5vw;
     margin-left: 1.5em;
     border-radius: 1em;
-    width: 7.5em;
+    width: 8em;
     height: auto;
 }
 #key-statistics-img{
@@ -720,10 +720,33 @@ body{
 #door{
     position: absolute;
     width: 5vw;
-    height: 1.5vh;
+    height: 2vh;
     top: 11.5vh;
     left: 33.5vw;
     z-index: 100;
+}
+
+/*lifes */
+#lifes{
+    background-color: #dabb8d99;
+    border-radius: 1em;
+    width: 8em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 0.5em 0em;
+}
+#lifes img{
+    width: 1.25vw;
+}
+.invincible {
+    animation: blink 0.3s linear infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
 }
 
 /* Level 1 Quiz */
@@ -737,6 +760,11 @@ body{
     display: none;
     margin: 0;
     padding: 0;
+    animation: slowChange 1.5s ease;
+}
+@keyframes slowChange {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
 }
 #quiz-container{
     background-color: #dabb8d99;
@@ -744,13 +772,13 @@ body{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 30vw;
-    height: 40vh;
+    width: 40vw;
+    height: 60vh;
 }
 #quiz-headline{
     font-family: headline;
-    color: #fcf3cf;
+    color: #dabb8d99;
     text-shadow: 1px 1px 1px #7e7551;
     text-align: center;
-    margin: 0.5em;
+    margin: 1.5em;
 }

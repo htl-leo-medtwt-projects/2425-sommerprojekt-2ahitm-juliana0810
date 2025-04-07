@@ -15,6 +15,16 @@ let countdown;
 let hintsOpen = false;
 let openedPergamentStatistics = false;
 let collectedKey = false;
+let gameEnded = false;
+let isInvincible = false;
+
+
+let LIFES = {
+    life3: document.getElementById("life1"),
+    life2: document.getElementById("life2"),
+    life1: document.getElementById("life3"),
+    lifesCount: 3
+}
 
 let ITEM = {
     coinCounter: 0,
@@ -207,11 +217,11 @@ function showResultRooms(answer){
 
     if(answer == 2){
         document.getElementById(`room2`).style.backgroundColor = "rgba(9, 84, 9, 0.5)";
-        choseRight = true;
     }
     else{
         document.getElementById(`room${answer}`).style.backgroundColor = "rgba(94, 10, 10, 0.5)";
         document.getElementById("text-container-level1").innerHTML += `<p id="correctRoomText">The correct room is room 2.</p>`
+        removeLife();
     }
 
     for(let i = 0; i < 4; i++){
@@ -271,8 +281,11 @@ function checkDoorCollision() {
 }
 
 function doorEntered(){
-    document.getElementById("gameBody").style.display = "none";
-    document.getElementById("quiz-lvl1").style.display = "block";
+    if(collectedKey){
+        document.getElementById("gameBody").style.display = "none";
+        document.getElementById("quiz-lvl1").style.display = "block";
+    }
+
 }
 /***********************************
  * COIN
@@ -400,12 +413,42 @@ function moveEnemy() {
     animateEnemy();
 }
 
+function isColliding(player, enemy) {
+    const rect1 = player.getBoundingClientRect();
+    const rect2 = enemy.getBoundingClientRect();
+
+    return !(
+        rect1.right < rect2.left || 
+        rect1.left > rect2.right || 
+        rect1.bottom < rect2.top || 
+        rect1.top > rect2.bottom
+    );
+}
+/***********************************
+ * HANDEL LIFES
+ * **********************************/
+function removeLife(){
+    if(LIFES.lifesCount == 3){
+        LIFES.life3.style.opacity = '0';
+        LIFES.lifesCount--;
+    }
+    else if(LIFES.lifesCount == 2){
+        LIFES.life2.style.opacity = '0';
+        LIFES.lifesCount--;
+    }
+    else{
+        LIFES.life1.style.opacity = '0';
+        LIFES.lifesCount--;
+        gameOver();
+    }
+
+}
 
 /***********************************
  * GAME LOOP
  * **********************************/
 function gameLoop() {
-    if(!hintsOpen){
+    if(!hintsOpen && !gameEnded){
         if (KEY_EVENTS.leftArrow) {
             movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
             animatePlayer();
@@ -433,8 +476,25 @@ function gameLoop() {
                 showPergament();
             }
         }
+        if (isColliding(PLAYER.box, ENEMY.box) && !isInvincible) {
+            removeLife();
+            isInvincible = true;
+            PLAYER.box.classList.add('invincible'); 
+        
+            setTimeout(() => {
+                isInvincible = false;
+                PLAYER.box.classList.remove('invincible'); 
+            }, 2000); 
+        }
+        
         moveEnemy();
     
         setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
     }
+}
+/***********************************
+ * GAME OVER
+ * **********************************/
+function gameOver(){
+    gameEnded = true;
 }
