@@ -170,23 +170,23 @@ body{
     text-shadow: 2px 2px 2px #592a1d;
 }
 #scroll-opened{
-    width: 45em;
+    width: 55em;
     height: auto;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 6em;
+    margin-top: 2em;
 }
 
 /*** Fremdcode ***/
 .text-container {
     text-align: center; 
-    font-size: 85%;
+    font-size: 100%;
     margin: 0 auto;
-    width: 35%; 
+    width: 45%; 
     position: absolute;
-    top: 23vh;
-    left: 33vw;
+    top: 18vh;
+    left: 28vw;
     font-family: message;
     font-weight: bold;
 }
@@ -194,6 +194,7 @@ body{
 .typewriter {
     overflow: hidden; 
     border-right: 2px solid #592a1d; 
+    text-shadow: 1px 1px 1px #9e8769;
     white-space: nowrap; 
     margin: 10px auto; 
     letter-spacing: .15em; 
@@ -299,6 +300,7 @@ body{
 /*log in*/
 #name-input{
     background-color: rgba(252, 243, 207, 0.7);
+    box-shadow: 10px 10px 15px #210b05;
     padding: 2em;
     border-radius: 2em;
     display: block;
@@ -336,9 +338,14 @@ body{
     font-size: 1.2em;
     text-transform: uppercase;
 }
+#username{
+    color: #592a1d;
+    background-color: #fcf3cfa7;
+}
 /*character choosing*/
 #characterChoosing{
     background-color: rgba(252, 243, 207, 0.7);
+    box-shadow: 10px 10px 15px #210b05;
     padding: 2em;
     border-radius: 2em;
     display: block;
@@ -433,6 +440,7 @@ body{
     top: 3vh;
     left: 6vw;
     border-radius: .5em;
+
 }
 
 /** PLAYER **/
@@ -489,8 +497,20 @@ body{
 #sanduhr-img{
     margin-right: 0.75em;
 }
-
-
+#key-statistics{
+    background-color: #dabb8d99;
+    width: 2.5vw;
+    margin-left: 1.5em;
+    border-radius: 1em;
+    width: 7.5em;
+    height: auto;
+}
+#key-statistics-img{
+    width: 3vw;
+    display: none;
+    margin-left: auto;
+    margin-right: auto;
+}
 /* level anzeige */
 #levelbox{
     position: absolute;
@@ -539,15 +559,16 @@ body{
 /*** Fremdcode ***/
 #text-container-level1 {
     text-align: center; 
-    font-size: 100%;
+    font-size: 125%;
     margin: 0 auto;
-    width: 55%; 
+    width: 70%; 
     position: absolute;
-    top: 35vh;
-    left: 25vw;
+    top: 30vh;
+    left: 15vw;
     font-family: message;
     font-weight: bold;
     background-color: #080200be;
+    text-shadow: 1px 1px 1px #9e8769;
     box-shadow: 2px 2px 2px #fcf3cf;
     z-index: 10;
     display: none;
@@ -659,4 +680,77 @@ body{
     box-shadow: 1px 1px 1px #fcf3cf;
     letter-spacing: 0.15em;
     font-family: message;
+}
+#correctRoomText{
+    font-family: basicFont;
+    color: #fcf3cf;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+#hint-pergament p{
+    text-align: center;
+    font-family: basicFont;
+    color: #210b05;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    margin-top: 2em;
+    z-index: 999;
+    position: relative;
+}
+#hint-pergament{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    left: 32vw;
+}
+/*key*/
+#key-placeholder{
+    display: none;
+    position: absolute;
+    left: 70vw;
+    top: 80vh;
+    width: 2vw;
+}
+#key{
+    width: 2vw;
+    transform: rotate(30deg);
+}
+/*door*/
+#door{
+    position: absolute;
+    width: 5vw;
+    height: 1.5vh;
+    top: 11.5vh;
+    left: 33.5vw;
+    z-index: 100;
+}
+
+/* Level 1 Quiz */
+#quiz-lvl1{
+    background-image: url(img/dark-background.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+#quiz-container{
+    background-color: #dabb8d99;
+    border-radius: 1em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30vw;
+    height: 40vh;
+}
+#quiz-headline{
+    font-family: headline;
+    color: #fcf3cf;
+    text-shadow: 1px 1px 1px #7e7551;
+    text-align: center;
+    margin: 0.5em;
 }

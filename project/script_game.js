@@ -12,6 +12,9 @@ surface.style.transform = `scale(${parseFloat(GAME_SCREEN.surfaceScale)/100 * (w
 
 /*var*/
 let countdown;
+let hintsOpen = false;
+let openedPergamentStatistics = false;
+let collectedKey = false;
 
 let ITEM = {
     coinCounter: 0,
@@ -23,7 +26,7 @@ let ITEM = {
  ***********************************/
 let GAME_CONFIG = {
     gameSpeed: 24,
-    characterSpeed: 7 
+    characterSpeed: 5
 }
 
 /***********************************
@@ -33,20 +36,19 @@ let GAME_CONFIG = {
 
 let TEXTSNIPPETS = [
     [
-        'The door remains sealed as long as the Pharaoh\'s key lies uncovered.',
-        'No lock opens without knowledge – seek the hidden signs,',
-        'for only those who decipher the clues shall find it.'
+        'The door remains closed as long as the Pharaoh\'s key lies uncovered.',
+        'No lock opens without knowledge – search for the hidden signs!',
+        'Careful, the ancient spirits are determined to prevent you from escaping...'
     ],
     [
-        'In the corner of the room, a gentle breeze stirs the sand,',
-        '– as if something had just moved.',
-        'From a hidden corner, a parchment peeks out…',
-        'Not finding the relic shall be your final demise, so search well'
+        'In the corner of a room, a gentle breeze uncovers something in the sand,',
+        'Almost too obvious, a yellowed pergament lies on the ground, waiting to be discovered.',
+        'Find it, pick it up, and uncover the truth that holds the solution to your escape',
     ],
     [
         'In a secret room, there is a key that unlocks the way forward.',
         'But this key remains hidden unless the puzzle is solved.',
-        'The parchment holds the clue to finding the room where the key is hidden.',
+        'The pergament holds the clue to finding the room where the key is hidden.',
         'The key opens the door to the next adventure, choose the right answer to continue...'
     ]
 ];
@@ -108,30 +110,13 @@ function writeText(index) {
             textContainer.appendChild(p);
         }, delay);
 
-        delay += 4000;
+        delay += 400;
     });
-
-    setTimeout(() =>{
-        if(index == 2){
-        
-            textContainer.innerHTML += 
-            `<img src="img/map-rooms.png" id="map-rooms" alt="map-rooms">
-                 <div id="rooms-container">
-                    <p id="room1" onclick="showResultRooms(1)">Room 1</p>
-                    <p id="room2" onclick="showResultRooms(2)">Room 2</p>
-                    <p id="room3" onclick="showResultRooms(3)">Room 3</p>
-                    <p id="room4" onclick="showResultRooms(4)">Room 4</p>
-                 </div>`
-        }
-    }, 16000)
-
-    
-    
 
     setTimeout(() => {
         let closeHint = document.createElement('p');
         closeHint.id = 'text-cont-close';
-        closeHint.innerText = 'close hint';
+        closeHint.innerText = 'continue';
         closeHint.style.cursor = 'pointer';
         closeHint.onclick = () => {
             textContainer.style.display = 'none';
@@ -141,12 +126,28 @@ function writeText(index) {
             else if(index === 1){
                 startGame();
             }
-            else{
-                document.getElementById("text-container-level1").style.display = "none";
+            else if(index === 2){
+                showMap();
             }
         };
         textContainer.appendChild(closeHint);
     }, delay); 
+
+}
+function showMap(){
+    document.getElementById("text-container-level1").style.top = "15vh";
+    document.getElementById("text-container-level1").style.display = "block";
+    document.getElementById("text-container-level1").innerHTML = 
+            `<img src="img/map-rooms.png" id="map-rooms" alt="map-rooms">
+                 <div id="rooms-container">
+                    <p id="room1" onclick="showResultRooms(1)">Room 1</p>
+                    <p id="room2" onclick="showResultRooms(2)">Room 2</p>
+                    <p id="room3" onclick="showResultRooms(3)">Room 3</p>
+                    <p id="room4" onclick="showResultRooms(4)">Room 4</p>
+                 </div>
+            <div id="hint-pergament"><p>show pergament</p></div>`
+            
+    document.getElementById("hint-pergament").addEventListener('click', openPergamentStatistiken);
 
 }
 /***********************************
@@ -176,6 +177,7 @@ function isCollidingWith(id) {
 
 
 function showPergament() {
+    hintsOpen = true;
     const container = document.getElementById("pergament-box");
     container.style.display = 'block'; 
     container.innerHTML = `
@@ -188,22 +190,28 @@ function closePergament(){
     document.getElementById("pergament-box").style.display = "none";
     document.getElementById("pergament-close").style.display = "none";
 
-    openMapRooms();
+    if(openedPergamentStatistics){
+        hintsOpen = false;
+    }
+    else{
+        openMapRooms();
+    }
+    
 }
 
 function openMapRooms(){
-    document.getElementById("text-container-level1").style.top = "10vh";
     writeText(2);
-
 }
 
 function showResultRooms(answer){
 
     if(answer == 2){
         document.getElementById(`room2`).style.backgroundColor = "rgba(9, 84, 9, 0.5)";
+        choseRight = true;
     }
     else{
         document.getElementById(`room${answer}`).style.backgroundColor = "rgba(94, 10, 10, 0.5)";
+        document.getElementById("text-container-level1").innerHTML += `<p id="correctRoomText">The correct room is room 2.</p>`
     }
 
     for(let i = 0; i < 4; i++){
@@ -211,6 +219,60 @@ function showResultRooms(answer){
             document.getElementById(`room${i + 1}`).style.opacity = '0';
         }
     }
+    setTimeout(() =>{
+        document.getElementById("text-container-level1").style.display = "none";
+        placeKey();
+    }, 2000)
+}
+
+function placeKey(){
+    hintsOpen = false;
+    document.getElementById("key-placeholder").style.display = "block";
+    document.getElementById("collider25").style.display = "none";
+
+    setTimeout(() =>{
+        gameLoop();
+    },1000)
+    
+}
+
+function openPergamentStatistiken(){
+    hintsOpen = true;
+    openedPergamentStatistics = true;
+    const container = document.getElementById("pergament-box");
+    container.style.display = 'block'; 
+    container.innerHTML = `
+        <img id="pergament" src="img/pergament.png">`;
+    document.getElementById("pergament-close").style.display = "block";
+}
+
+/***********************************
+ * ESCAPE ROOM
+ * **********************************/
+
+/* KEY */
+function checkKeyCollision() {
+    const key = document.getElementById("key-placeholder");
+    if (key.style.display !== "none" && isCollidingWith("key-placeholder")) {
+        key.style.display = "none"; 
+        collectedKey = true;
+        onKeyCollected(); 
+    }
+}
+function onKeyCollected(){
+    document.getElementById("key-statistics-img").style.display = "block";
+}
+/* DOOR*/
+function checkDoorCollision() {
+    const door = document.getElementById("door");
+    if (door && isCollidingWith("door")) {
+        doorEntered(); 
+    }
+}
+
+function doorEntered(){
+    document.getElementById("gameBody").style.display = "none";
+    document.getElementById("quiz-lvl1").style.display = "block";
 }
 /***********************************
  * COIN
@@ -272,7 +334,7 @@ let ENEMY = {
     spriteImgNumber: 0,
     direction: 'down', 
     yOffset: 0, 
-    speed: 1.5,
+    speed: 1,
 }
 ENEMY.currentFrame = 0;
 ENEMY.totalFrames = 8; 
@@ -343,33 +405,36 @@ function moveEnemy() {
  * GAME LOOP
  * **********************************/
 function gameLoop() {
-    /*if(!gameEnded){*/
-    if (KEY_EVENTS.leftArrow) {
-        movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
-        animatePlayer();
-    }
-    if (KEY_EVENTS.rightArrow) {
-        movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
-        animatePlayer();
-    }
-    if (KEY_EVENTS.upArrow) {
-        movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
-        animatePlayer();
-    }
-    if (KEY_EVENTS.downArrow) {
-        movePlayer(0, GAME_CONFIG.characterSpeed, 0);
-        animatePlayer();
-    }
-
-    handleCollision();
-
-    if (isCollidingWith("collider16")) {
-        if (!PLAYER.triggeredCollider16) {
-            console.log("collider16")
-            showPergament();
+    if(!hintsOpen){
+        if (KEY_EVENTS.leftArrow) {
+            movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
+            animatePlayer();
         }
+        if (KEY_EVENTS.rightArrow) {
+            movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
+            animatePlayer();
+        }
+        if (KEY_EVENTS.upArrow) {
+            movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
+            animatePlayer();
+        }
+        if (KEY_EVENTS.downArrow) {
+            movePlayer(0, GAME_CONFIG.characterSpeed, 0);
+            animatePlayer();
+        }
+    
+        handleCollision();
+        checkKeyCollision();
+        checkDoorCollision();
+    
+        if (isCollidingWith("collider16")) {
+            if (!PLAYER.triggeredCollider16) {
+                console.log("collider16")
+                showPergament();
+            }
+        }
+        moveEnemy();
+    
+        setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
     }
-    moveEnemy();
-
-    setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
 }
