@@ -42,6 +42,12 @@ let TEXTSNIPPETS = [
         '– as if something had just moved.',
         'From a hidden corner, a parchment peeks out…',
         'Not finding the relic shall be your final demise, so search well'
+    ],
+    [
+        'In a secret room, there is a key that unlocks the way forward.',
+        'But this key remains hidden unless the puzzle is solved.',
+        'The parchment holds the clue to finding the room where the key is hidden.',
+        'The key opens the door to the next adventure, choose the right answer to continue...'
     ]
 ];
 
@@ -105,6 +111,23 @@ function writeText(index) {
         delay += 4000;
     });
 
+    setTimeout(() =>{
+        if(index == 2){
+        
+            textContainer.innerHTML += 
+            `<img src="img/map-rooms.png" id="map-rooms" alt="map-rooms">
+                 <div id="rooms-container">
+                    <p id="room1" onclick="showResultRooms(1)">Room 1</p>
+                    <p id="room2" onclick="showResultRooms(2)">Room 2</p>
+                    <p id="room3" onclick="showResultRooms(3)">Room 3</p>
+                    <p id="room4" onclick="showResultRooms(4)">Room 4</p>
+                 </div>`
+        }
+    }, 16000)
+
+    
+    
+
     setTimeout(() => {
         let closeHint = document.createElement('p');
         closeHint.id = 'text-cont-close';
@@ -117,6 +140,9 @@ function writeText(index) {
             }
             else if(index === 1){
                 startGame();
+            }
+            else{
+                document.getElementById("text-container-level1").style.display = "none";
             }
         };
         textContainer.appendChild(closeHint);
@@ -166,15 +192,25 @@ function closePergament(){
 }
 
 function openMapRooms(){
+    document.getElementById("text-container-level1").style.top = "10vh";
     writeText(2);
-    document.getElementById("text-container-level1").innerHTML += 
-        `<img src="img/map-rooms.png" id="map-rooms" alt="map-rooms">
-         <div>
-            <p>Room 1</p>
-            <p>Room 2</p>
-            <p></p>
-            <p></p>
-         </div>`
+
+}
+
+function showResultRooms(answer){
+
+    if(answer == 2){
+        document.getElementById(`room2`).style.backgroundColor = "rgba(9, 84, 9, 0.5)";
+    }
+    else{
+        document.getElementById(`room${answer}`).style.backgroundColor = "rgba(94, 10, 10, 0.5)";
+    }
+
+    for(let i = 0; i < 4; i++){
+        if((i + 1) != answer){
+            document.getElementById(`room${i + 1}`).style.opacity = '0';
+        }
+    }
 }
 /***********************************
  * COIN

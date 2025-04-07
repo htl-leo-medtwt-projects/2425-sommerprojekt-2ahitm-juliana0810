@@ -638,3 +638,25 @@ body{
     width: auto;  
 }
 
+/*hint - map*/
+#map-rooms{
+    width: 25vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+}
+#rooms-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#rooms-container p{
+    background-color: #fcf3cf5f;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    color: #210b05;
+    box-shadow: 1px 1px 1px #fcf3cf;
+    letter-spacing: 0.15em;
+    font-family: message;
+}
