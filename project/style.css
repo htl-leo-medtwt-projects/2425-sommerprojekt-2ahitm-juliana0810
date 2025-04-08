@@ -385,8 +385,11 @@ body{
     cursor: pointer;
 }
 
-/******************* GAME *****************/
-/* Level 1 */
+/******************* 
+******* GAME *******
+********************/
+
+/*********************************************************************** Level 1 ****************************************************************************/
 
 #gameBody{
     background-image: url(img/dark-background.png);
@@ -671,8 +674,11 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    z-index: 200;
 }
 #rooms-container p{
+    position: relative; 
+    z-index: 200;
     background-color: #fcf3cf5f;
     cursor: pointer;
     padding: 0.5em 1em;
@@ -749,7 +755,7 @@ body{
     100% { opacity: 1; }
 }
 
-/* Level 1 Quiz */
+/*********** Level 1 Quiz **************/
 #quiz-lvl1{
     background-image: url(img/dark-background.png);
     background-size: cover;
@@ -773,7 +779,13 @@ body{
     margin-left: auto;
     margin-right: auto;
     width: 40vw;
-    height: 60vh;
+    padding: 2em;
+}
+#quiz-container p{
+    text-align: center;
+    margin-top: 1em;
+    color: #592a1d;
+    font-family: basicFont;
 }
 #quiz-headline{
     font-family: headline;
@@ -781,4 +793,87 @@ body{
     text-shadow: 1px 1px 1px #7e7551;
     text-align: center;
     margin: 1.5em;
+}
+#mystery-choices{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 2em;
+}
+#mystery-choices img{
+    cursor: pointer;
+    width: 5vw;
+}
+#mystery-one-select{
+    cursor: pointer;
+    text-transform: uppercase;
+}
+/************ GAME OVER **************/
+#game-over{
+    background-image: url(img/story-background-text.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    display: none;
+    margin: 0;
+    padding: 0;
+    animation: slowChange 1.5s ease;
+}
+#game-over-box{
+    background-color: #dabb8d99;
+    border-radius: 2em;
+    box-shadow: 10px 10px 15px #210b05;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3em 2em;
+    margin-top: 7.5em;
+    width: 70vw;
+}
+#game-over-box h1{
+    color: #592a1d;
+    text-shadow: 2px 2px 2px #fcf3cf;
+    letter-spacing: 0.1em;
+    font-family: headline;
+    text-align: center;
+    font-size: 4em;
+
+}
+#game-over-box p{
+    color: #592a1d;
+    text-align: center;
+    font-family: basicFont;
+    margin: 2em;
+}
+#game-over-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 70vw;
+    margin-top: 7.5em;
+    justify-self: center;
+}
+#game-over-buttons div{
+    background-color: #dabb8d99;
+    padding: 0em 1em;
+    cursor: pointer;
+    color: #592a1d;
+    font-family: basicFont;
+    text-align: center;
+    border-radius: 1.5em;
+    width: 15vw;
+    box-shadow: 5px 5px 10px #210b05;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+#game-over-buttons div p{
+    margin-top: 1em;
+}
+#game-over-buttons div img{
+    height: 6vh;
+    width: auto;
+    margin: 0.5em 0em;
 }

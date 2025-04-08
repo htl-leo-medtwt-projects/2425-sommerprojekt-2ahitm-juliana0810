@@ -1,6 +1,7 @@
 /************* collisions level 1 **********************/
 .collider{
     background-color: transparent;
+    pointer-events: none;
 }
 #colliderright{
     position: absolute;

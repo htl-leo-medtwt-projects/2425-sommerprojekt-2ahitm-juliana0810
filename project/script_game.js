@@ -78,6 +78,7 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(countdown)
             document.getElementById("sanduhr-box").innerHTML = "";
+            gameOver();
         }
     }, 1000)
 }
@@ -120,7 +121,7 @@ function writeText(index) {
             textContainer.appendChild(p);
         }, delay);
 
-        delay += 400;
+        delay += 4000;
     });
 
     setTimeout(() => {
@@ -497,4 +498,6 @@ function gameLoop() {
  * **********************************/
 function gameOver(){
     gameEnded = true;
+    document.getElementById("gameBody").style.display = "none";
+    document.getElementById("game-over").style.display = "block";
 }
