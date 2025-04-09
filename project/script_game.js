@@ -444,7 +444,31 @@ function removeLife(){
     }
 
 }
+/***********************************
+ * MYSTERY 1
+ ***********************************/
+let selectedRightAnswer = false;
 
+function selectAnswerMysteryOne(id){
+    document.getElementById(`${id}`).style.border = "1px solid #30211c";
+    document.getElementById(`${id}`).style.borderRadius = "1em";
+
+    if(id === "mystery-img3"){
+        selectedRightAnswer = true;
+    }
+
+}
+function selectedAnswer(){
+    if(selectedRightAnswer){
+        document.getElementById("quiz-container").innerHTML = `<p class="mystery1-result">Congraulations! You've choosen the right answer!</p>`
+    }
+    else{
+        document.getElementById("quiz-container").innerHTML = `<p class="mystery1-result">I'm sorry, but that was the wrong answer!</p>`
+        setTimeout(() =>{
+            gameOver(); 
+        })
+    }
+}
 /***********************************
  * GAME LOOP
  * **********************************/

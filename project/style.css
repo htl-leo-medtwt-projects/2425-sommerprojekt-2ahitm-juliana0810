@@ -789,7 +789,8 @@ body{
 }
 #quiz-headline{
     font-family: headline;
-    color: #dabb8d99;
+    color: #fcf3cf;
+    font-size: 3em;
     text-shadow: 1px 1px 1px #7e7551;
     text-align: center;
     margin: 1.5em;
@@ -798,15 +799,21 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    margin: 2em;
+    margin: 3em;
 }
 #mystery-choices img{
     cursor: pointer;
-    width: 5vw;
+    width: 8vw;
 }
 #mystery-one-select{
     cursor: pointer;
     text-transform: uppercase;
+}
+#mystery1-result{
+    text-align: center;
+    padding: 2em;
+    color: #592a1d;
+    font-family: headline;
 }
 /************ GAME OVER **************/
 #game-over{
