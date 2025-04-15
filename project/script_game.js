@@ -63,12 +63,12 @@ let TEXTSNIPPETS = [
     ]
 ];
 
-
+let timeLeft;
 
 /*******  TIMER *********** */
 function startTimer() {
     clearInterval(countdown)
-    let timeLeft = 200;
+    timeLeft = 200;
     document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
     
     countdown = setInterval(() => {
@@ -121,7 +121,7 @@ function writeText(index) {
             textContainer.appendChild(p);
         }, delay);
 
-        delay += 4000;
+        delay += 40;
     });
 
     setTimeout(() => {
@@ -277,6 +277,7 @@ function onKeyCollected(){
 function checkDoorCollision() {
     const door = document.getElementById("door");
     if (door && isCollidingWith("door")) {
+        gameEnded = true;
         doorEntered(); 
     }
 }
@@ -285,6 +286,19 @@ function doorEntered(){
     if(collectedKey){
         document.getElementById("gameBody").style.display = "none";
         document.getElementById("quiz-lvl1").style.display = "block";
+        document.getElementById("quiz-lvl1").innerHTML = 
+        `<h1 id="quiz-headline">mystery one</h1>
+        <div id="quiz-container">
+            <p>Among these statues, only one is Anubis - the guardian who watched as you took the key from its resting place.</p>
+            <div id="mystery-choices">
+                <img id="mystery-img1" src="img/mystery-img1.png" alt="mystery-img1">
+                <img id="mystery-img2" src="img/mystery-img2.png" alt="mystery-img2">
+                <img id="mystery-img3" src="img/mystery-img3.png" alt="mystery-img3">
+            </div>
+            <p onclick="selectedAnswer()" id="mystery-one-select">select</p>
+        </div>`
+
+        setupMysterySelection();
     }
 
 }
@@ -447,28 +461,40 @@ function removeLife(){
 /***********************************
  * MYSTERY 1
  ***********************************/
-let selectedRightAnswer = false;
+let selectedMysteryId = null;
 
-function selectAnswerMysteryOne(id){
-    document.getElementById(`${id}`).style.border = "1px solid #30211c";
-    document.getElementById(`${id}`).style.borderRadius = "1em";
+function setupMysterySelection() {
+    const mysteryContainer = document.getElementById("mystery-choices");
 
-    if(id === "mystery-img3"){
-        selectedRightAnswer = true;
-    }
+    mysteryContainer.addEventListener("click", function (e) {
+        if (e.target.tagName.toLowerCase() === "img") {
+            const images = mysteryContainer.querySelectorAll("img");
+            images.forEach(img => {
+                img.style.border = "none";
+                img.style.borderRadius = "0";
+            });
+            e.target.style.border = "2px solid #592a1d";
+            e.target.style.borderRadius = "1em";
 
+            selectedMysteryId = e.target.id;
+        }
+    });
 }
-function selectedAnswer(){
-    if(selectedRightAnswer){
-        document.getElementById("quiz-container").innerHTML = `<p class="mystery1-result">Congraulations! You've choosen the right answer!</p>`
-    }
-    else{
-        document.getElementById("quiz-container").innerHTML = `<p class="mystery1-result">I'm sorry, but that was the wrong answer!</p>`
-        setTimeout(() =>{
-            gameOver(); 
-        })
+
+function selectedAnswer() {
+    if (selectedMysteryId === "mystery-img3") {
+        document.getElementById("quiz-container").innerHTML =
+            `<p class="mystery1-result">Congratulations! You've chosen the right answer!</p>`;
+            switchToLevelTwo();
+    } else {
+        document.getElementById("quiz-container").innerHTML =
+            `<p class="mystery1-result">I'm sorry, but that was the wrong answer!</p>`;
+        setTimeout(() => {
+            gameOver();
+        }, 2000);
     }
 }
+
 /***********************************
  * GAME LOOP
  * **********************************/
@@ -517,11 +543,42 @@ function gameLoop() {
         setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
     }
 }
+
+
+
+/***********************************
+ *  LEVEL TWO
+ * **********************************/
+
+function switchToLevelTwo(){
+    document.getElementById("storyTelling").style.display = "none";
+
+    document.getElementById("quiz-lvl1").style.display = "none";
+    document.getElementById("gameBody").style.display = "block";
+    document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level2.png')";
+    resetLevel();
+}
+function resetLevel(){
+    levelCount++;
+    document.getElementById("level").innerHTML = `<p>${levelCount}</p>`
+    PLAYER.coins = 0;
+    document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
+    timeLeft = 200;
+    LIFES.life1.style.opacity = "1";
+    LIFES.life2.style.opacity = "1";
+    LIFES.life3.style.opacity = "1";
+    lifesCount = 3;
+    document.getElementById("key-statistics").style.display = "none";
+}
+
+
+
 /***********************************
  * GAME OVER
  * **********************************/
 function gameOver(){
     gameEnded = true;
     document.getElementById("gameBody").style.display = "none";
+    document.getElementById("quiz-lvl1").style.display = "none";
     document.getElementById("game-over").style.display = "block";
 }
