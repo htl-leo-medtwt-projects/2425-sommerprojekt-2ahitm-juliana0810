@@ -1,6 +1,6 @@
 /************* collisions level 1 **********************/
 .collider{
-    background-color: transparent;
+    background-color: rgba(255, 0, 0, 0.642);
     pointer-events: none;
 }
 #colliderright{
@@ -494,4 +494,69 @@
     top: 62vh;
     left: 56.2vw;
     z-index: 100;
+}
+
+
+/************************************/
+/*        COLLIDER LEVEL 2          */
+/************************************/
+
+.collider-lvl2{
+    background-color: rgba(255, 0, 0, 0.589);
+    position: absolute;
+    z-index: 100;
+}
+#collider61{
+    width: 0.33vw;
+    height: 21vh;
+    top: 70vh;
+    left: 58.5vw;
+}
+#collider62{
+    width: 0.33vw;
+    height: 18vh;
+    top: 73vh;
+    left: 52.5vw;
+}
+#collider63{
+    width: 0.33vw;
+    height: 13vh;
+    top: 79.5vh;
+    left: 46.5vw;
+}
+#collider64{
+    width: 7.5vw;
+    height: 8vh;
+    top: 82vh;
+    left: 58.5vw;
+}
+#collider65{
+    width: 5.5vw;
+    height: 5vh;
+    top: 79vh;
+    left: 64vw;
+}
+#collider66{
+    width: 2vw;
+    height: 11vh;
+    top: 62.5vh;
+    left: 67.5vw;
+}
+#collider67{
+    width: 4vw;
+    height: 0.65vh;
+    top: 69vh;
+    left: 58.5vw;
+}
+#collider68{
+    width: 4.75vw;
+    height: 0.6vh;
+    top: 73vh;
+    left: 47.75vw;
+}
+#collider68{
+    width: 4.75vw;
+    height: 0.6vh;
+    top: 73vh;
+    left: 47.75vw;
 }

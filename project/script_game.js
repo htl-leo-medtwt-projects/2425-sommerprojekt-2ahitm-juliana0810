@@ -550,14 +550,35 @@ function gameLoop() {
  *  LEVEL TWO
  * **********************************/
 
-function switchToLevelTwo(){
+function switchToLevelTwo() {
     document.getElementById("storyTelling").style.display = "none";
-
     document.getElementById("quiz-lvl1").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
+
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level2.png')";
+
+    const colliders = document.querySelectorAll('.collider');
+    colliders.forEach(collider => {
+        collider.style.display = "none";
+    });
+
+    document.getElementById("collidertop").style.display = "block";
+    document.getElementById("colliderleft").style.display = "block";
+    document.getElementById("colliderright").style.display = "block";
+    document.getElementById("colliderbottom").style.display = "block";
+
+    PLAYER.coins = 0;
+    document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
+    collectedKey = false;
+    gameEnded = false;
+    hintsOpen = false;
+
     resetLevel();
+    /*startTimer();
+    startGame();
+    gameLoop();*/
 }
+
 function resetLevel(){
     levelCount++;
     document.getElementById("level").innerHTML = `<p>${levelCount}</p>`
@@ -567,7 +588,7 @@ function resetLevel(){
     LIFES.life1.style.opacity = "1";
     LIFES.life2.style.opacity = "1";
     LIFES.life3.style.opacity = "1";
-    lifesCount = 3;
+    LIFES.lifesCount = 3;
     document.getElementById("key-statistics").style.display = "none";
 }
 
