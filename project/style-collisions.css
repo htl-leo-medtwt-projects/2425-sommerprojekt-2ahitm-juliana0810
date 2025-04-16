@@ -579,8 +579,26 @@
     left: 30.5vw;
 }
 #collider73{
-    width: 5.5vw;
+    width: 0.33vw;
+    height: 15vh;
+    top: 63vh;
+    left: 36vw;
+}
+#collider74{
+    width: 0.33vw;
+    height: 4vh;
+    top: 79.5vh;
+    left: 40.5vw;
+}
+#collider75{
+    width: 6vw;
     height: 0.6vh;
-    top: 77.25vh;
-    left: 30.5vw;
+    top: 62.5vh;
+    left: 36vw;
+}
+#collider76{
+    width: 7.5vw;
+    height: 0.6vh;
+    top: 41.5vh;
+    left: 38.5vw;
 }
