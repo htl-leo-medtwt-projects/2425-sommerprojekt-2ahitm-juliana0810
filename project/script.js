@@ -155,15 +155,11 @@ function openScroll(){
             <p class="typewriter delay-4">where forgotten secrets whisper in the dark.</p>
             <p class="typewriter delay-5">But beware... your curiosity has stirred the ancient sands, </p>
             <p class="typewriter delay-6">awakening a curse long forgotten.</p>
-            <p class="typewriter delay-7">The walls tremble, the air thickens, </p>
-            <p class="typewriter delay-8">and the sands hunger for your fate.</p>
-            <p class="typewriter delay-9">Run. Solve the riddles.</p>
-            <p class="typewriter delay-10">Escape before the last grain of time slips away.</p>
-            <p class="typewriter delay-11">This is your final expedition.</p>
-            <p class="typewriter delay-12">Make it count.</p>
+            <p class="typewriter delay-7">Run. Solve the riddles.</p>
+            <p class="typewriter delay-8">This is your final expedition. Make it count.</p>
         </div>`;
 
-    setTimeout(readyButton,32000);
+    setTimeout(readyButton,20000);
 }
 function readyButton(){
     document.getElementById("ready").innerHTML = "ready";

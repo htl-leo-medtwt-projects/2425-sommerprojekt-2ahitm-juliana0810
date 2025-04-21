@@ -43,22 +43,28 @@ let GAME_CONFIG = {
 
 let TEXTSNIPPETS = [
     [
-        'The door remains closed as long as the Pharaoh\'s key lies uncovered.',
-        'No lock opens without knowledge – search for the hidden signs!',
-        'Careful, the ancient spirits are determined to prevent you from escaping...'
+        'The door stays closed while the Pharaoh’s key is hidden.',
+        'No lock opens without knowledge – find the signs!',
+        'Ancient spirits try to stop your escape...'
     ],
     [
-        'In the corner of a room, a gentle breeze uncovers something in the sand,',
-        'Almost too obvious, a yellowed pergament lies on the ground, waiting to be discovered.',
-        'Find it, pick it up, and uncover the truth that holds the solution to your escape',
+        'A breeze reveals something in the sand.',
+        'A yellowed parchment lies in plain sight.',
+        'Find it – it holds the key to escape.'
     ],
     [
-        'In a secret room, there is a key that unlocks the way forward.',
-        'But this key remains hidden unless the puzzle is solved.',
-        'The pergament holds the clue to finding the room where the key is hidden.',
-        'The key opens the door to the next adventure, choose the right answer to continue...'
+        'A secret room holds the key forward.',
+        'But it stays hidden without solving the puzzle.',
+        'The parchment reveals the key’s location.',
+        'Choose the right answer to move on...'
+    ],
+    [
+        'You’ve mastered Level 2 – impressive...',
+        'But Anubis is casting shadows on your path.',
+        'The trial isn’t over. He won’t let you escape so easily...'
     ]
 ];
+
 
 let timeLeft;
 
@@ -366,10 +372,15 @@ ENEMY.totalFrames = 8;
 ENEMY.frameWidth = 1.5; 
 
 let ENEMY2 = {
-    box: document.getElementById("enemy2"),
-    sprite: document.getElementById("enemy2-sprite"),
-    speed: 2
-};
+    box: document.getElementById("random-enemy"),
+    sprite: document.getElementById("random-enemy-img"),
+    speed: 1.2,
+    spriteImgNumber: 0,
+    direction: 'down',
+    yOffset: 0,
+    targetX: 0,
+    targetY: 0
+  };
 
 
 function animateEnemy() {
@@ -443,6 +454,89 @@ function isColliding(player, enemy) {
         rect1.top > rect2.bottom
     );
 }
+
+function animateEnemy2() {
+    if (ENEMY2.spriteImgNumber < 8) {
+        ENEMY2.spriteImgNumber++;
+        let x = parseFloat(ENEMY2.sprite.style.right) || 0;
+        x += 31;
+        ENEMY2.sprite.style.right = x + "px";
+        ENEMY2.sprite.style.top= ENEMY2.yOffset + "px";
+    } else {
+        ENEMY2.sprite.style.right= "0px";
+        ENEMY2.spriteImgNumber = 0;
+    }
+}
+  
+function pickRandomTargetForEnemy2() {
+    const surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
+    const topR    = document.getElementById('collidertop').getBoundingClientRect();
+    const bottomR = document.getElementById('colliderbottom').getBoundingClientRect();
+    const leftR   = document.getElementById('colliderleft').getBoundingClientRect();
+    const rightR  = document.getElementById('colliderright').getBoundingClientRect();
+  
+  
+    const minX = leftR.right   - surfaceRect.left;
+    const maxX = rightR.left   - surfaceRect.left - ENEMY2.box.offsetWidth;
+    const minY = topR.bottom   - surfaceRect.top;
+    const maxY = bottomR.top   - surfaceRect.top - ENEMY2.box.offsetHeight;
+  
+    ENEMY2.targetX = Math.random() * (maxX - minX) + minX;
+    ENEMY2.targetY = Math.random() * (maxY - minY) + minY;
+}
+  
+
+setInterval(() => {
+    if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy2();
+}, 4000);
+  
+
+function moveEnemy2Randomly() {
+    const enemyRect   = ENEMY2.box.getBoundingClientRect();
+    const surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
+  
+    const currX = enemyRect.left - surfaceRect.left;
+    const currY = enemyRect.top  - surfaceRect.top;
+  
+   
+    let dx = ENEMY2.targetX - currX;
+    let dy = ENEMY2.targetY - currY;
+    const dist = Math.hypot(dx, dy);
+    if (dist > 0) {
+      dx /= dist;
+      dy /= dist;
+      
+      const stepX = dx * ENEMY2.speed;
+      const stepY = dy * ENEMY2.speed;
+      const newX = currX + stepX;
+      const newY = currY + stepY;
+      ENEMY2.box.style.left = `${newX}px`;
+      ENEMY2.box.style.top  = `${newY}px`;
+    }
+  
+    if (Math.abs(dx) > Math.abs(dy)) {
+      ENEMY2.direction = dx > 0 ? 'right' : 'left';
+    } else {
+      ENEMY2.direction = dy > 0 ? 'down' : 'up';
+    }
+    switch (ENEMY2.direction) {
+      case 'up':    ENEMY2.yOffset = 0;    break;
+      case 'down':  ENEMY2.yOffset = -75;  break;
+      case 'left':  ENEMY2.yOffset = -110; break;
+      case 'right': ENEMY2.yOffset = -110; break;
+    }
+    
+
+    if (ENEMY2.direction === 'left') {
+        ENEMY2.box.style.transform = 'scaleX(-1)';
+    } else if (ENEMY2.direction === 'right') {
+        ENEMY2.box.style.transform = 'scaleX(1)';
+    }    
+  
+    animateEnemy2();
+}
+
+
 /***********************************
  * HANDEL LIFES
  * **********************************/
@@ -524,6 +618,7 @@ function gameLoop() {
         handleCollision();
         checkKeyCollision();
         checkDoorCollision();
+
     
         if (isCollidingWith("collider16")) {
             if (!PLAYER.triggeredCollider16) {
@@ -531,18 +626,30 @@ function gameLoop() {
                 showPergament();
             }
         }
-        if (isColliding(PLAYER.box, ENEMY.box) && !isInvincible) {
+        if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {
             removeLife();
             isInvincible = true;
-            PLAYER.box.classList.add('invincible'); 
+            PLAYER.box.classList.add('invincible');
         
             setTimeout(() => {
                 isInvincible = false;
-                PLAYER.box.classList.remove('invincible'); 
-            }, 2000); 
-        }
+                PLAYER.box.classList.remove('invincible');
+            }, 2000);
+        }        
+        if (isColliding(PLAYER.box, ENEMY.box) && !isInvincible) {
+            removeLife();
+            isInvincible = true;
+            PLAYER.box.classList.add('invincible');
+        
+            setTimeout(() => {
+                isInvincible = false;
+                PLAYER.box.classList.remove('invincible');
+            }, 2000);
+        }    
         
         moveEnemy();
+        moveEnemy2Randomly();
+       
     
         setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
     }
@@ -563,6 +670,7 @@ function switchToLevelTwo() {
 
     //change enemy
     document.getElementById("enemy-skeleton").src = "img/enemy-level2.png";
+    document.getElementById("enemy").style.width = "2.75vw";
 
     //change background
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level2.png')";
@@ -585,6 +693,7 @@ function switchToLevelTwo() {
     hintsOpen = false;
 
     resetLevel();
+    setTimeout(() => writeText(3), 2000);
     startTimer();
     gameLoop();
 }
@@ -617,12 +726,18 @@ function resetLevel(){
     document.querySelector(".username").innerHTML = username;
     //***** */
 
+    //set players & enemys start positions
+
     PLAYER.box.style.left = '700px'; 
     PLAYER.box.style.top = '600px'; 
     ENEMY.box.style.left = '500px';
     ENEMY.box.style.top = "400px";
     ENEMY.box.style.opacity = '1';
     PLAYER.box.style.opacity = '1';
+    ENEMY2.box.style.left = "500px";
+    ENEMY2.box.style.top = "300px";
+    ENEMY2.box.style.opacity = "1";
+
     document.getElementById("spriteImg").style.right = '0px'; 
     document.getElementById("enemy-skeleton").style.right = '0px';
 }

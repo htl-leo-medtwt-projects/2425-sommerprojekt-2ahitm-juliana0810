@@ -181,7 +181,7 @@ body{
 /*** Fremdcode ***/
 .text-container {
     text-align: center; 
-    font-size: 100%;
+    font-size: 125%;
     margin: 0 auto;
     width: 45%; 
     position: absolute;
@@ -227,10 +227,6 @@ body{
 .delay-6 { animation-delay: 15s; }
 .delay-7 { animation-delay: 18s; }
 .delay-8 { animation-delay: 21s; }
-.delay-9 { animation-delay: 24s; }
-.delay-10 { animation-delay: 27s; }
-.delay-11 { animation-delay: 30s; }
-.delay-12 { animation-delay: 33s; }
 
 #styling-line1{
     font-family: basicText;
