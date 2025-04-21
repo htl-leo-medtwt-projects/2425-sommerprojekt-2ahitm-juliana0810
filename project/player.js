@@ -23,7 +23,7 @@ let yValue = 0;
  * @param {number} dy 
  * @param {number} dr 
  */
-let colliders = document.querySelectorAll(".collider");
+let colliders = document.querySelectorAll(".collider, .collider-lvl2");
 function movePlayer(dx, dy, dr) {
     let originalX = parseFloat(PLAYER.box.style.left);
     let originalY = parseFloat(PLAYER.box.style.top);

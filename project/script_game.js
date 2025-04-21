@@ -39,9 +39,6 @@ let GAME_CONFIG = {
     characterSpeed: 5
 }
 
-/***********************************
- * ENEMY
- ***********************************/
 
 
 let TEXTSNIPPETS = [
@@ -121,7 +118,7 @@ function writeText(index) {
             textContainer.appendChild(p);
         }, delay);
 
-        delay += 40;
+        delay += 4000;
     });
 
     setTimeout(() => {
@@ -368,6 +365,13 @@ ENEMY.currentFrame = 0;
 ENEMY.totalFrames = 8; 
 ENEMY.frameWidth = 1.5; 
 
+let ENEMY2 = {
+    box: document.getElementById("enemy2"),
+    sprite: document.getElementById("enemy2-sprite"),
+    speed: 2
+};
+
+
 function animateEnemy() {
     if (ENEMY.spriteImgNumber < 8) { 
         ENEMY.spriteImgNumber++;
@@ -551,35 +555,42 @@ function gameLoop() {
  * **********************************/
 
 function switchToLevelTwo() {
+
+    //switch to right board
     document.getElementById("storyTelling").style.display = "none";
     document.getElementById("quiz-lvl1").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
 
+    //change enemy
+    document.getElementById("enemy-skeleton").src = "img/enemy-level2.png";
+
+    //change background
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level2.png')";
 
+    //set colliders display none
     const colliders = document.querySelectorAll('.collider');
     colliders.forEach(collider => {
         collider.style.display = "none";
     });
 
+    document.getElementById("collider16").style.display = "none";
     document.getElementById("collidertop").style.display = "block";
     document.getElementById("colliderleft").style.display = "block";
     document.getElementById("colliderright").style.display = "block";
     document.getElementById("colliderbottom").style.display = "block";
 
-    PLAYER.coins = 0;
-    document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
+    //reset booleans
     collectedKey = false;
     gameEnded = false;
     hintsOpen = false;
 
     resetLevel();
-    /*startTimer();
-    startGame();
-    gameLoop();*/
+    startTimer();
+    gameLoop();
 }
 
 function resetLevel(){
+    //reset stats
     levelCount++;
     document.getElementById("level").innerHTML = `<p>${levelCount}</p>`
     PLAYER.coins = 0;
@@ -590,6 +601,30 @@ function resetLevel(){
     LIFES.life3.style.opacity = "1";
     LIFES.lifesCount = 3;
     document.getElementById("key-statistics").style.display = "none";
+
+    //dont know if i need it later but for now...
+    value = counter;
+
+    playerImage = `<img id="spriteImg" src="${players[counter]}">`;
+    document.getElementById("player").innerHTML = playerImage;
+    
+    if (profileImageSrc) {
+        document.getElementById("level1-profilimg").src = profileImageSrc;
+    }
+    else{
+        document.getElementById("level1-profilimg").src = "img/profil-placeholder.png";
+    }
+    document.querySelector(".username").innerHTML = username;
+    //***** */
+
+    PLAYER.box.style.left = '700px'; 
+    PLAYER.box.style.top = '600px'; 
+    ENEMY.box.style.left = '500px';
+    ENEMY.box.style.top = "400px";
+    ENEMY.box.style.opacity = '1';
+    PLAYER.box.style.opacity = '1';
+    document.getElementById("spriteImg").style.right = '0px'; 
+    document.getElementById("enemy-skeleton").style.right = '0px';
 }
 
 
