@@ -6,7 +6,8 @@ let PLAYER = {
     spriteImgNumber: 0, 
     spriteDirection: 1,
     coins: 0,
-    triggeredCollider16: false
+    triggeredCollider16: false,
+    triggeredVase: false
 }
 let VALUES = [
     30.5,

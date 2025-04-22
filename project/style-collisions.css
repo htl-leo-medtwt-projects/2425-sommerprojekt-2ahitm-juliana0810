@@ -758,3 +758,11 @@
     top: 13vh;
     left: 72vw;
 }
+#vase{
+    width: 1.5vw;
+    height: 3vh;
+    top: 23.5vh;
+    left: 34vw;
+    position: absolute;
+    z-index: 100;
+}

@@ -62,9 +62,13 @@ let TEXTSNIPPETS = [
         'You’ve mastered Level 1 – impressive...',
         'But Anubis is casting shadows on your path.',
         'The trial isn’t over. He won’t let you escape so easily...'
+    ],
+    [
+        'In a corner where light barely touches, ',
+        'gold shimmers in the sun.',
+        'Find the ancient vase, shaped by time and old curses...'
     ]
 ];
-
 
 let timeLeft;
 
@@ -144,6 +148,10 @@ function writeText(index) {
                 showMap();
             }
             else if(index == 3){
+                writeText(4);
+            
+            }
+            else if(index == 4){
                 startTimer();
                 gameLoop();
             }
@@ -623,6 +631,13 @@ function gameLoop() {
         checkKeyCollision();
         checkDoorCollision();
 
+        if (isCollidingWith("vase")) {
+            if (!PLAYER.triggeredVase) {
+                console.log("vase")
+                showVase();
+     
+            }
+        }
     
         if (isCollidingWith("collider16")) {
             if (!PLAYER.triggeredCollider16) {
@@ -698,6 +713,7 @@ function switchToLevelTwo() {
 
     resetLevel();
     setTimeout(() => writeText(3), 2000);
+
 }
 
 function resetLevel(){
@@ -745,6 +761,26 @@ function resetLevel(){
 }
 
 
+/***********************************
+ * HINTS LVL 2
+ * **********************************/
+
+function showVase(){
+    console.log("vase opened")
+    PLAYER.triggeredVase = true;
+    hintsOpen = true;
+    const container = document.getElementById("vase-box");
+    container.style.display = 'block'; 
+    container.innerHTML = `
+        <img id="vase" src="img/vase.png">`;
+
+    document.getElementById("vase-close").style.display = "block";
+
+}
+function closeVase(){
+    document.getElementById("vase-box").style.display = "none";
+    document.getElementById("vase-close").style.display = "none";
+}
 
 /***********************************
  * GAME OVER

@@ -1,4 +1,5 @@
 
+/*random enemy*/
 #random-enemy{
     position: absolute;
     z-index: 5;
@@ -13,4 +14,41 @@
     top: 0;        
     left: 0;      
     width: auto;  
+}
+
+/* hint - vase*/
+#vase{
+    height: 50vh;
+    width: auto;
+    margin-top: 4.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    animation: showVase 2s 1 ease;
+}
+@keyframes showVase {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+#vase-close{
+    z-index: 999;
+    pointer-events: auto;
+    display: none;
+    position: absolute;
+    left: 47.5vw;
+    top: 90vh;
+}
+#vase-close p{
+    font-family: basicFont;
+    color: #fcf3cf;
+    text-shadow: 1px 1px 1px #592a1d;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    text-align: center;
+}
+#vase-box{
+    position: absolute;
+    z-index: 10;
+    display: none;
+    width: 100%;
 }
