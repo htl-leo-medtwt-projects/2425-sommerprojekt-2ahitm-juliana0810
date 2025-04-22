@@ -59,7 +59,7 @@ let TEXTSNIPPETS = [
         'Choose the right answer to move on...'
     ],
     [
-        'You’ve mastered Level 2 – impressive...',
+        'You’ve mastered Level 1 – impressive...',
         'But Anubis is casting shadows on your path.',
         'The trial isn’t over. He won’t let you escape so easily...'
     ]
@@ -142,6 +142,10 @@ function writeText(index) {
             }
             else if(index === 2){
                 showMap();
+            }
+            else if(index == 3){
+                startTimer();
+                gameLoop();
             }
         };
         textContainer.appendChild(closeHint);
@@ -694,8 +698,6 @@ function switchToLevelTwo() {
 
     resetLevel();
     setTimeout(() => writeText(3), 2000);
-    startTimer();
-    gameLoop();
 }
 
 function resetLevel(){
