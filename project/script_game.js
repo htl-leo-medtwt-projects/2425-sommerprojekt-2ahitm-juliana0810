@@ -128,7 +128,7 @@ function writeText(index) {
             textContainer.appendChild(p);
         }, delay);
 
-        delay += 4000;
+        delay += 3000;
     });
 
     setTimeout(() => {
@@ -632,6 +632,7 @@ function gameLoop() {
         checkDoorCollision();
 
         if (isCollidingWith("vase")) {
+            console.log("vase")
             if (!PLAYER.triggeredVase) {
                 console.log("vase")
                 showVase();
@@ -772,7 +773,7 @@ function showVase(){
     const container = document.getElementById("vase-box");
     container.style.display = 'block'; 
     container.innerHTML = `
-        <img id="vase" src="img/vase.png">`;
+        <img id="vase-img" src="img/vase.png">`;
 
     document.getElementById("vase-close").style.display = "block";
 
@@ -780,6 +781,9 @@ function showVase(){
 function closeVase(){
     document.getElementById("vase-box").style.display = "none";
     document.getElementById("vase-close").style.display = "none";
+    hintsOpen = false;
+    document.getElementById("collider63").style.display = "none";
+    gameLoop();
 }
 
 /***********************************

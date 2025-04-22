@@ -766,3 +766,11 @@
     position: absolute;
     z-index: 100;
 }
+#bench{
+    width: 2.33vw;
+    height: 1.5vh;
+    top: 88vh;
+    left: 39vw;
+    position: absolute;
+    z-index: 100;
+}

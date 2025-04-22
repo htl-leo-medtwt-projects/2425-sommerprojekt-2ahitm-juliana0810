@@ -220,13 +220,13 @@ body{
 
 /* delay for every line */
 .delay-1 { animation-delay: 0s; }
-.delay-2 { animation-delay: 3s; }
-.delay-3 { animation-delay: 6s; }
-.delay-4 { animation-delay: 9s; }
-.delay-5 { animation-delay: 12s; }
-.delay-6 { animation-delay: 15s; }
-.delay-7 { animation-delay: 18s; }
-.delay-8 { animation-delay: 21s; }
+.delay-2 { animation-delay: 2.5s; }
+.delay-3 { animation-delay: 5s; }
+.delay-4 { animation-delay: 7.5s; }
+.delay-5 { animation-delay: 10s; }
+.delay-6 { animation-delay: 12.5s; }
+.delay-7 { animation-delay: 15s; }
+.delay-8 { animation-delay: 17.5s; }
 
 #styling-line1{
     font-family: basicText;
