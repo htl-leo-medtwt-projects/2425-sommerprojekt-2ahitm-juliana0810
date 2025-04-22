@@ -20,7 +20,7 @@
 #collidertop{
     position: absolute;
     width: 100vw;
-    height: 13vh;
+    height: 12vh;
     top: 0%;
     z-index: 100;
 }
@@ -771,6 +771,14 @@
     height: 1.5vh;
     top: 88vh;
     left: 39vw;
+    position: absolute;
+    z-index: 100;
+}
+#door-lvl2{
+    width: 5vw;
+    height: 1.5vh;
+    top: 11.5vh;
+    left: 67.5vw;
     position: absolute;
     z-index: 100;
 }

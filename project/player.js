@@ -7,7 +7,8 @@ let PLAYER = {
     spriteDirection: 1,
     coins: 0,
     triggeredCollider16: false,
-    triggeredVase: false
+    triggeredVase: false,
+    triggeredBench:false,
 }
 let VALUES = [
     30.5,

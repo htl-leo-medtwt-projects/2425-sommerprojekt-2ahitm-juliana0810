@@ -35,7 +35,7 @@
     pointer-events: auto;
     display: none;
     position: absolute;
-    left: 45.5vw;
+    left: 46.5vw;
     top: 90vh;
 }
 #vase-close p{
@@ -51,4 +51,43 @@
     z-index: 10;
     display: none;
     width: 100%;
+}
+#stone-box{
+    position: absolute;
+    z-index: 10;
+    display: none;
+    width: 100%;
+}
+#stone-img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 60vh;
+    width: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+#stone-close{
+    z-index: 999;
+    pointer-events: auto;
+    display: none;
+    position: absolute;
+    left: 45.5vw;
+    top: 60.5vh;
+}
+#stone-close p{
+    font-family: basicFont;
+    color: #fcf3cf;
+    text-shadow: 1px 1px 1px #592a1d;
+    letter-spacing: 0.2em;
+    cursor: pointer;
+    text-align: center;
+}
+.options{
+    height: 15vh;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 1em;
 }

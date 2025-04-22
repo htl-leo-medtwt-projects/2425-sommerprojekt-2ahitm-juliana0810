@@ -67,6 +67,16 @@ let TEXTSNIPPETS = [
         'In a corner where light barely touches, ',
         'gold shimmers in the sun.',
         'Find the ancient vase, shaped by time and old curses...'
+    ],
+    [
+        'Look for stone steps half-buried in weeds',
+        '- the door waits at the top.',
+        'One last test remains to win your freedom.'
+    ],
+    [
+        'The sun’s light reveals the truth,',
+        'the falcon guards the key of the afterlife,',
+        'but only the eye of Horus can unlock the way...'
     ]
 ];
 
@@ -128,7 +138,7 @@ function writeText(index) {
             textContainer.appendChild(p);
         }, delay);
 
-        delay += 3000;
+        delay += 300;
     });
 
     setTimeout(() => {
@@ -152,7 +162,13 @@ function writeText(index) {
             
             }
             else if(index == 4){
+                hintsOpen = false;
                 startTimer();
+                gameLoop();
+            }
+            else if(index == 5){
+                hintsOpen = false;
+                document.getElementById("collider87").style.display = "none";
                 gameLoop();
             }
         };
@@ -626,20 +642,30 @@ function gameLoop() {
             movePlayer(0, GAME_CONFIG.characterSpeed, 0);
             animatePlayer();
         }
+
+        /****** CHECKING COLLISIONS ****** */
     
         handleCollision();
         checkKeyCollision();
         checkDoorCollision();
 
         if (isCollidingWith("vase")) {
-            console.log("vase")
             if (!PLAYER.triggeredVase) {
-                console.log("vase")
                 showVase();
-     
             }
         }
-    
+        if (isCollidingWith("bench")) {
+            if (!PLAYER.triggeredBench) {
+                hintsOpen = true; 
+                writeText(5);
+                PLAYER.triggeredBench = true;
+
+            }
+        }
+        if (isCollidingWith("door-lvl2")) {
+            hintsOpen = true; 
+            showStone();
+        }
         if (isCollidingWith("collider16")) {
             if (!PLAYER.triggeredCollider16) {
                 console.log("collider16")
@@ -767,7 +793,6 @@ function resetLevel(){
  * **********************************/
 
 function showVase(){
-    console.log("vase opened")
     PLAYER.triggeredVase = true;
     hintsOpen = true;
     const container = document.getElementById("vase-box");
@@ -784,6 +809,21 @@ function closeVase(){
     hintsOpen = false;
     document.getElementById("collider63").style.display = "none";
     gameLoop();
+}
+function showStone(){
+    document.getElementById("stone-box").style.display = "block";
+    document.getElementById("stone-close").style.display = "block";
+    document.getElementById("stone-box").innerHTML = '<img id="stone-img" src="img/ringOfLife.png">';
+    document.getElementById("text-container-level1").style.top = "65vh";
+    writeText(6);
+}
+function showOptionsStone(){
+    document.getElementById("stone-box").innerHTML = 
+        `<div>
+            <img class="options" id="option1" src="img/option1-ring.png">
+            <img class="options" id="option2" src="img/option2-ring.png">
+            <img class="options" id="option3" src="img/option3-ring.png">
+        </div>`
 }
 
 /***********************************
