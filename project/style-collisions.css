@@ -524,6 +524,17 @@
     top: 79.5vh;
     left: 46.5vw;
 }
+#collider63-transparent{
+    width: 0.33vw;
+    height: 11vh;
+    top: 79.5vh;
+    left: 46.5vw;
+    background-color: #bc9473;
+    box-shadow: 2px 2px 2px #f6c355;
+    display: none;
+    position: absolute;
+    z-index: 4;
+}
 #collider64{
     width: 7.5vw;
     height: 8vh;
@@ -667,6 +678,17 @@
     height: 0.6vh;
     top: 31vh;
     left: 61vw;
+}
+#collider87-transparent{
+    width: 8.5vw;
+    height: 0.6vh;
+    top: 31vh;
+    left: 61vw;
+    background-color: #bc9473;
+    box-shadow: 2px 2px 2px #f6c355;
+    display: none;
+    position: absolute;
+    z-index: 4;
 }
 #collider88{
     width: 0.33vw;

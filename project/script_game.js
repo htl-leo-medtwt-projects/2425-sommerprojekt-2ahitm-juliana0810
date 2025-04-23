@@ -169,6 +169,7 @@ function writeText(index) {
             else if(index == 5){
                 hintsOpen = false;
                 document.getElementById("collider87").style.display = "none";
+                document.getElementById("collider87-transparent").style.display = "block";
                 gameLoop();
             }
         };
@@ -808,9 +809,11 @@ function closeVase(){
     document.getElementById("vase-close").style.display = "none";
     hintsOpen = false;
     document.getElementById("collider63").style.display = "none";
+    document.getElementById("collider63-transparent").style.display = "block";
     gameLoop();
 }
 function showStone(){
+    document.getElementById("transparent-box").style.display = "block";
     document.getElementById("stone-box").style.display = "block";
     document.getElementById("stone-close").style.display = "block";
     document.getElementById("stone-box").innerHTML = '<img id="stone-img" src="img/ringOfLife.png">';
@@ -819,13 +822,34 @@ function showStone(){
 }
 function showOptionsStone(){
     document.getElementById("stone-box").innerHTML = 
-        `<div>
-            <img class="options" id="option1" src="img/option1-ring.png">
-            <img class="options" id="option2" src="img/option2-ring.png">
-            <img class="options" id="option3" src="img/option3-ring.png">
+        `<div id="stone-choices">
+            <img class="options" onclick="optionChosen(this.id)" id="option1" src="img/option1-ring.png">
+            <img class="options" onclick="optionChosen(this.id)" id="option2" src="img/option2-ring.png">
+            <img class="options" onclick="optionChosen(this.id)" id="option3" src="img/option3-ring.png">
         </div>`
 }
+let chosenOptionsStone = "";
+function optionChosen(option){
+    chosenOptionsStone = option;
+    document.getElementById(`${option}`)
 
+}
+function setupMysterySelection() {
+    const optionsContainer = document.getElementById("stone-choices");
+
+    optionsContainer.addEventListener("click", function (e) {
+        if (e.target.tagName.toLowerCase() === "img") {
+            const images = optionsContainer.querySelectorAll("img");
+            images.forEach(img => {
+                img.style.border = "none";
+                img.style.borderRadius = "0";
+            });
+            e.target.style.border = "3px solid #87817c";
+
+            chosenOptionsStone = e.target.id;
+        }
+    });
+}
 /***********************************
  * GAME OVER
  * **********************************/
