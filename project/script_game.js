@@ -823,18 +823,18 @@ function showStone(){
 function showOptionsStone(){
     document.getElementById("stone-box").innerHTML = 
         `<div id="stone-choices">
-            <img class="options" onclick="optionChosen(this.id)" id="option1" src="img/option1-ring.png">
-            <img class="options" onclick="optionChosen(this.id)" id="option2" src="img/option2-ring.png">
-            <img class="options" onclick="optionChosen(this.id)" id="option3" src="img/option3-ring.png">
+            <img class="options" onclick="setupOptions()" id="option1" src="img/option1-ring.png">
+            <img class="options" onclick="setupOptions()" id="option2" src="img/option2-ring.png">
+            <img class="options" onclick="setupOptions()" id="option3" src="img/option3-ring.png">
         </div>`
+
+    document.getElementById("select-option").style.display = "block";
+    document.getElementById("stone-close").style.display = "none";
+    
 }
 let chosenOptionsStone = "";
-function optionChosen(option){
-    chosenOptionsStone = option;
-    document.getElementById(`${option}`)
 
-}
-function setupMysterySelection() {
+function setupOptions() {
     const optionsContainer = document.getElementById("stone-choices");
 
     optionsContainer.addEventListener("click", function (e) {
@@ -850,6 +850,60 @@ function setupMysterySelection() {
         }
     });
 }
+function selectOptionStone(){
+    if(chosenOptionsStone == "option3"){
+        document.getElementById("stone-box").innerHTML = `<p id="answer-mystery-stone">Very wise choice, you may continue your expedition...</p>`
+        setTimeout(() => switchToMystery2(), 3000);
+    }
+    else{
+        document.getElementById("stone-box").innerHTML = `<p id="answer-mystery-stone">Sadly that wasn't the correct answer, your expedition ends here...</p>`
+        setTimeout(() => gameOver(), 3000);
+    }
+}
+function switchToMystery2(){
+    document.getElementById("gameBody").style.display = "none";
+    document.getElementById("quiz-lvl2").style.display = "block";
+    document.getElementById("quiz-lvl2").innerHTML = 
+        `<h1 id="quiz-headline-lvl2">mystery two</h1>
+        <img id="scale" src="img/scale.png">
+        <div id="quiz-container-lvl2">
+            <p>Choose wisely, seeker—only truth can balance the scale of eternity. Will your soul be light as wisdom, heavy as sin, or cursed as greed?</p>
+            <div id="mystery-choices-lvl2">
+                <img id="mystery2-img1" onclick="setupMysteryTwo()" src="img/scroll-mystery2.png" alt="scroll-mystery2">
+                <img id="mystery2-img2" onclick="setupMysteryTwo()" src="img/sword.png" alt="sword">
+                <img id="mystery2-img3" onclick="setupMysteryTwo()" src="img/gold.png" alt="gold">
+            </div>
+            <p onclick="selectedAnswerMysteryTwo()" id="mystery-two-select">select</p>
+        </div>`
+}
+let chosenOptionsMysteryTwo = "";
+function setupMysteryTwo() {
+    const optionsContainer = document.getElementById("mystery-choices-lvl2");
+
+    optionsContainer.addEventListener("click", function (e) {
+        if (e.target.tagName.toLowerCase() === "img") {
+            const images = optionsContainer.querySelectorAll("img");
+            images.forEach(img => {
+                img.style.border = "none";
+                img.style.borderRadius = "0";
+            });
+            e.target.style.border = "1.5px solid #592a1d";
+            e.target.style.borderRadius = "1em";
+
+            chosenOptionsMysteryTwo = e.target.id;
+        }
+    });
+}
+function selectedAnswerMysteryTwo(){
+    if(chosenOptionsMysteryTwo == "mystery2-img1"){
+        document.getElementById("quiz-container-lvl2").innerHTML = `<p>right</p>`
+        setTimeout(() => switchToLevelThree(), 3000);
+    }
+    else{
+        document.getElementById("quiz-container-lvl2").innerHTML = `<p>wrong</p>`
+        setTimeout(()=> gameOver(), 3000)
+    }
+}
 /***********************************
  * GAME OVER
  * **********************************/
@@ -857,5 +911,6 @@ function gameOver(){
     gameEnded = true;
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl1").style.display = "none";
+    document.getElementById("quiz-lvl2").style.display = "none";
     document.getElementById("game-over").style.display = "block";
 }

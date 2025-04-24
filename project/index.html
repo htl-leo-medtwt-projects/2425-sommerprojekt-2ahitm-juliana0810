@@ -157,6 +157,8 @@
             </div>          
             <div id="coinBox"><img id="coin" src="img/coin.png" alt="coin"></div>
             <div id="transparent-box"></div>
+
+            <!-- collider -->
             <div class="collider" id="collidertop"></div>
             <div class="collider" id="colliderright"></div>
             <div class="collider" id="colliderbottom"></div>
@@ -263,27 +265,37 @@
             <div class="collider-lvl2" id="collider101"></div>
             <div class="collider-lvl2" id="collider102"></div>
             <div class="collider-lvl2" id="collider103"></div>
+
+            <!-- hints elements -->
             <div id="collider63-transparent"></div>
             <div id="collider87-transparent"></div>
             <div id="vase"></div>
             <div id="bench"></div>
             <div id="door-lvl2"></div>
-            
             <div id="door"></div>
+
             <div id="gameBoard"></div>
+
+            <!-- text/hint boxes -->
             <div id="text-container-level1"></div>
             <div id="pergament-box"></div>
             <div id="pergament-close"><p onclick="closePergament()">close hint</p></div>
             <div id="vase-box"></div>
             <div id="vase-close"><p onclick="closeVase()">close hint</p></div>
             <div id="stone-box"></div>
-            <div id="stone-close"><p onclick="showOptionsStone()">show options</p></div>
+            <p onclick="showOptionsStone()" id="stone-close">show options</p>
+            <p onclick="selectOptionStone()" id="select-option">select</p>
             <div id="key-placeholder"><img id="key" src="img/key.png" alt="keep"></div>
         </div>
     </div>
-    <div id="quiz-lvl1">
-        
-    </div>
+
+    <!-- quiz level 1 -->
+    <div id="quiz-lvl1"></div>
+
+    <!-- quiz level 2 -->
+    <div id="quiz-lvl2"></div>
+
+    <!-- game over screen -->
     <div id="game-over">
         <div>
             <div id="game-over-box">
