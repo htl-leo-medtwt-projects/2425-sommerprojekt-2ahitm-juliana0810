@@ -505,6 +505,7 @@
     background-color: transparent;
     position: absolute;
     z-index: 100;
+    display: none;
 }
 #collider61{
     width: 0.33vw;
@@ -803,4 +804,255 @@
     left: 67.5vw;
     position: absolute;
     z-index: 100;
+}
+
+
+/************************************/
+/*        COLLIDER LEVEL 3          */
+/************************************/
+.collider-lvl3{
+    background-color: transparent;
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+#collider104{
+    width: 5vw;
+    height: 10vh;
+    top: 81vh;
+    left: 39.5vw;
+}
+#collider105{
+    width: 1.5vw;
+    height: 8vh;
+    top: 73vh;
+    left: 39.5vw;
+}
+#collider106{
+    width: 3.75vw;
+    height: 0.5vh;
+    top: 73vh;
+    left: 39.5vw;
+}
+#collider107{
+    width: 0.33vw;
+    height: 15vh;
+    top: 58vh;
+    left: 43vw;
+}
+#collider108{
+    width: 0.33vw;
+    height: 15vh;
+    top: 75vh;
+    left: 51.25vw;
+}
+#collider109{
+    width: 1.5vw;
+    height: 15vh;
+    top: 75vh;
+    left: 68vw;
+}
+#collider110{
+    width: 28vw;
+    height: 0.6vh;
+    top: 75vh;
+    left: 46.75vw;
+}
+#collider111{
+    width: 1.5vw;
+    height: 17vh;
+    top: 58.5vh;
+    left: 46.5vw;
+}
+#collider112{
+    width: 6.5vw;
+    height: 0.6vh;
+    top: 81.7vh;
+    left: 30vw;
+}
+#collider113{
+    width: 5vw;
+    height: 2.5vh;
+    top: 66.5vh;
+    left: 30vw;
+}
+#collider114{
+    width: 0.33vw;
+    height: 27vh;
+    top: 40vh;
+    left: 34.75vw;
+}
+#collider115{
+    width: 4.7vw;
+    height: 2.75vh;
+    top: 52vh;
+    left: 35vw;
+}
+#collider116{
+    width: 4.7vw;
+    height: 2.75vh;
+    top: 45.5vh;
+    left: 40vw;
+}
+#collider117{
+    width: 0.33vw;
+    height: 12vh;
+    top: 42vh;
+    left: 39.5vw;
+}
+#collider118{
+    width: 0.33vw;
+    height: 8vh;
+    top: 27vh;
+    left: 39.5vw;
+}
+#collider119{
+    width: 3vw;
+    height: 2.5vh;
+    top: 27vh;
+    left: 39.5vw;
+}
+#collider120{
+    width: 3vw;
+    height: 0.6vh;
+    top: 35vh;
+    left: 39.5vw;
+}
+#collider121{
+    width: 10vw;
+    height: 5.5vh;
+    top: 29vh;
+    left: 30vw;
+}
+#collider122{
+    width: 0.33vw;
+    height: 4vh;
+    top: 25vh;
+    left: 33.5vw;
+}
+#collider123{
+    width: 7vw;
+    height: 0.6vh;
+    top: 20.25vh;
+    left: 30vw;
+}
+#collider124{
+    width: 10vw;
+    height: 2.75vh;
+    top: 18vh;
+    left: 37vw;
+}
+#collider125{
+    width: 0.33vw;
+    height: 6vh;
+    top: 12vh;
+    left: 37vw;
+}
+#collider126{
+    width: 0.33vw;
+    height: 10vh;
+    top: 19vh;
+    left: 46.5vw;
+}
+#collider127{
+    width: 0.3vw;
+    height: 13vh;
+    top: 22.5vh;
+    left: 55vw;
+}
+#collider128{
+    width: 0.35vw;
+    height: 27vh;
+    top: 18.5vh;
+    left: 59.5vw;
+}
+#collider129{
+    width: 15.5vw;
+    height: 0.6vh;
+    top: 22.5vh;
+    left: 55vw;
+}
+#collider130{
+    width: 5vw;
+    height: 0.6vh;
+    top: 35.5vh;
+    left: 55vw;
+}
+#collider131{
+    width: 0.33vw;
+    height: 10vh;
+    top: 12vh;
+    left: 66.7vw;
+}
+#collider132{
+    width: 0.33vw;
+    height: 13vh;
+    top: 22.5vh;
+    left: 70.2vw;
+}
+#collider133{
+    width: 0.33vw;
+    height: 11vh;
+    top: 37vh;
+    left: 66.7vw;
+}
+#collider134{
+    width: 0.33vw;
+    height: 15vh;
+    top: 43.5vh;
+    left: 53.65vw;
+}
+#collider135{
+    width: 7.5vw;
+    height: 2.25vh;
+    top: 56.5vh;
+    left: 53.65vw;
+}
+#collider136{
+    width: 0.33vw;
+    height: 9vh;
+    top: 58.5vh;
+    left: 60.8vw;
+}
+#collider137{
+    width: 8vw;
+    height: 0.6vh;
+    top: 66.75vh;
+    left: 60.8vw;
+}
+#collider138{
+    width: 2.8vw;
+    height: 15vh;
+    top: 52vh;
+    left: 68vw;
+}
+#collider139{
+    width: 3.5vw;
+    height: 10.5vh;
+    top: 44vh;
+    left: 71vw;
+}
+#collider140{
+    width: 3.5vw;
+    height: 6vh;
+    top: 43.7vh;
+    left: 68.3vw;
+}
+#collider141{
+    width: 4vw;
+    height: 8vh;
+    top: 82.5vh;
+    left: 35.5vw;
+}
+#collider142{
+    width: 4.5vw;
+    height: 7.5vh;
+    top: 44.5vh;
+    left: 35vw;
+}
+#collider143{
+    width: 3.5vw;
+    height: 0.6vh;
+    top: 30.8vh;
+    left: 67vw;
 }

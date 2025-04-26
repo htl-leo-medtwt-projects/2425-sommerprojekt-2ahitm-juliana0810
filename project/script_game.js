@@ -712,6 +712,7 @@ function switchToLevelTwo() {
 
     //switch to right board
     document.getElementById("storyTelling").style.display = "none";
+
     document.getElementById("quiz-lvl1").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
 
@@ -733,6 +734,17 @@ function switchToLevelTwo() {
     document.getElementById("colliderleft").style.display = "block";
     document.getElementById("colliderright").style.display = "block";
     document.getElementById("colliderbottom").style.display = "block";
+
+    
+    PLAYER.box.style.left = '700px'; 
+    PLAYER.box.style.top = '600px'; 
+    ENEMY.box.style.left = '500px';
+    ENEMY.box.style.top = "400px";
+    ENEMY.box.style.opacity = '1';
+    PLAYER.box.style.opacity = '1';
+    ENEMY2.box.style.left = "500px";
+    ENEMY2.box.style.top = "300px";
+    ENEMY2.box.style.opacity = "1";
 
     //reset booleans
     collectedKey = false;
@@ -772,19 +784,7 @@ function resetLevel(){
     document.querySelector(".username").innerHTML = username;
     //***** */
 
-    //set players & enemys start positions
 
-    PLAYER.box.style.left = '700px'; 
-    PLAYER.box.style.top = '600px'; 
-    ENEMY.box.style.left = '500px';
-    ENEMY.box.style.top = "400px";
-    ENEMY.box.style.opacity = '1';
-    PLAYER.box.style.opacity = '1';
-    ENEMY2.box.style.left = "500px";
-    ENEMY2.box.style.top = "300px";
-    ENEMY2.box.style.opacity = "1";
-
-    document.getElementById("spriteImg").style.right = '0px'; 
     document.getElementById("enemy-skeleton").style.right = '0px';
 }
 
@@ -904,6 +904,72 @@ function selectedAnswerMysteryTwo(){
         setTimeout(()=> gameOver(), 3000)
     }
 }
+
+/***********************************
+ * LEVEL 3
+ * **********************************/
+function switchToLevelThree(){
+     //switch to right board
+     document.getElementById("storyTelling").style.display = "none";
+    
+     document.getElementById("quiz-lvl1").style.display = "none";
+     document.getElementById("gameBody").style.display = "block";
+ 
+     //change enemy
+     document.getElementById("enemy-skeleton").src = "img/enemy-level2.png";
+     document.getElementById("enemy").style.width = "2.75vw";
+ 
+     //change background
+     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level3.png')";
+ 
+     //set colliders display none
+     const colliders = document.querySelectorAll('.collider, .collider-lvl2');
+     colliders.forEach(collider => {
+         collider.style.display = "none";
+     });
+    
+ 
+     document.getElementById("collider16").style.display = "none";
+     document.getElementById("collidertop").style.display = "block";
+     document.getElementById("colliderleft").style.display = "block";
+     document.getElementById("colliderright").style.display = "block";
+     document.getElementById("colliderbottom").style.display = "block";
+
+     document.getElementById("transparent-box").style.display = "none";
+
+     const items = document.querySelectorAll('.lvl2-items, .lvl1-items');
+     items.forEach(collider => {
+         collider.style.display = "none";
+     });
+
+     //set colliders display none
+     const collidersLvl3 = document.querySelectorAll('.collider-lvl3');
+     collidersLvl3.forEach(collider => {
+         collider.style.display = "block";
+     });
+ 
+     //reset booleans
+     collectedKey = false;
+     gameEnded = false;
+     hintsOpen = false;
+ 
+     PLAYER.box.style.left = '580px'; 
+     PLAYER.box.style.top = '600px'; 
+     ENEMY.box.style.left = '500px';
+     ENEMY.box.style.top = "400px";
+     ENEMY.box.style.opacity = '1';
+     PLAYER.box.style.opacity = '1';
+     ENEMY2.box.style.left = "500px";
+     ENEMY2.box.style.top = "300px";
+     ENEMY2.box.style.opacity = "1";
+ 
+     document.getElementById("enemy-skeleton").style.right = '0px';
+ 
+     resetLevel();
+     startTimer();
+     gameLoop()
+}
+
 /***********************************
  * GAME OVER
  * **********************************/
