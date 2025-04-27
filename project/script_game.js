@@ -716,99 +716,6 @@ function selectedAnswer() {
 }
 
 /***********************************
- * GAME LOOP
- * **********************************/
-function gameLoop() {
-    if(!hintsOpen && !gameEnded){
-        if (KEY_EVENTS.leftArrow) {
-            movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
-            animatePlayer();
-        }
-        if (KEY_EVENTS.rightArrow) {
-            movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
-            animatePlayer();
-        }
-        if (KEY_EVENTS.upArrow) {
-            movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
-            animatePlayer();
-        }
-        if (KEY_EVENTS.downArrow) {
-            movePlayer(0, GAME_CONFIG.characterSpeed, 0);
-            animatePlayer();
-        }
-
-        /****** CHECKING COLLISIONS ****** */
-    
-        handleCollision();
-        checkKeyCollision();
-        checkDoorCollision();
-
-        if (isCollidingWith("vase")) {
-            if (!PLAYER.triggeredVase) {
-                showVase();
-            }
-        }
-        if (isCollidingWith("bench")) {
-            if (!PLAYER.triggeredBench) {
-                hintsOpen = true; 
-                writeText(5);
-                PLAYER.triggeredBench = true;
-
-            }
-        }
-        if (isCollidingWith("door-lvl2")) {
-            hintsOpen = true; 
-            showStone();
-        }
-        if (isCollidingWith("collider16")) {
-            if (!PLAYER.triggeredCollider16) {
-                console.log("collider16")
-                showPergament();
-            }
-        }
-        if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {
-            removeLife();
-            isInvincible = true;
-            PLAYER.box.classList.add('invincible');
-        
-            setTimeout(() => {
-                isInvincible = false;
-                PLAYER.box.classList.remove('invincible');
-            }, 2000);
-        }        
-        if (isColliding(PLAYER.box, ENEMY.box) && !isInvincible) {
-            removeLife();
-            isInvincible = true;
-            PLAYER.box.classList.add('invincible');
-        
-            setTimeout(() => {
-                isInvincible = false;
-                PLAYER.box.classList.remove('invincible');
-            }, 2000);
-        }    
-        if (isColliding(PLAYER.box, ENEMY3.box) && !isInvincible) {
-            removeLife();
-            isInvincible = true;
-            PLAYER.box.classList.add('invincible');
-        
-            setTimeout(() => {
-                isInvincible = false;
-                PLAYER.box.classList.remove('invincible');
-            }, 2000);
-        }
-        
-        moveEnemy();
-        moveEnemy2Randomly();
-        moveEnemy3Randomly();
-       
-    
-        setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
-    }
-}
-
-
-
-/***********************************
  *  LEVEL TWO
  * **********************************/
 
@@ -1092,6 +999,162 @@ function switchToLevelThree(){
      resetLevel();
      writeText(7);
 }
+
+/********* ROTATE IMAGE ***********/
+function enableImageRotation() {
+    const image = document.getElementById('rotatable-image');
+    let isDragging = false;
+    let startAngle = 0;
+    let currentRotation = 0;
+
+
+    image.style.display = 'block';
+
+    image.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = image.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        startAngle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI) - currentRotation;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const rect = image.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const angle = Math.atan2(e.clientY - centerY, e.clientX - centerX) * (180 / Math.PI);
+        currentRotation = angle - startAngle;
+        image.style.transform = `rotate(${currentRotation}deg)`;
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
+
+    image.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        const touch = e.touches[0];
+        const rect = image.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        startAngle = Math.atan2(touch.clientY - centerY, touch.clientX - centerX) * (180 / Math.PI) - currentRotation;
+    });
+    
+    document.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        const rect = image.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const angle = Math.atan2(touch.clientY - centerY, touch.clientX - centerX) * (180 / Math.PI);
+        
+        currentRotation = angle - startAngle;
+        image.style.transform = `rotate(${currentRotation}deg)`;
+    });
+    
+    document.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+}
+
+/***********************************
+ * GAME LOOP
+ * **********************************/
+function gameLoop() {
+    if(!hintsOpen && !gameEnded){
+        if (KEY_EVENTS.leftArrow) {
+            movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
+            animatePlayer();
+        }
+        if (KEY_EVENTS.rightArrow) {
+            movePlayer(GAME_CONFIG.characterSpeed, 0, 1);
+            animatePlayer();
+        }
+        if (KEY_EVENTS.upArrow) {
+            movePlayer(0, (-1) * GAME_CONFIG.characterSpeed, 0);
+            animatePlayer();
+        }
+        if (KEY_EVENTS.downArrow) {
+            movePlayer(0, GAME_CONFIG.characterSpeed, 0);
+            animatePlayer();
+        }
+
+        /****** CHECKING COLLISIONS ****** */
+    
+        handleCollision();
+        checkKeyCollision();
+        checkDoorCollision();
+
+        if (isCollidingWith("vase")) {
+            if (!PLAYER.triggeredVase) {
+                showVase();
+            }
+        }
+        if (isCollidingWith("bench")) {
+            if (!PLAYER.triggeredBench) {
+                hintsOpen = true; 
+                writeText(5);
+                PLAYER.triggeredBench = true;
+
+            }
+        }
+        if (isCollidingWith("door-lvl2")) {
+            hintsOpen = true; 
+            showStone();
+        }
+        if (isCollidingWith("collider16")) {
+            if (!PLAYER.triggeredCollider16) {
+                console.log("collider16")
+                showPergament();
+            }
+        }
+        if (isCollidingWith("scarab")) {
+            if (!PLAYER.triggeredScarab) {
+                hintsOpen = true;
+                enableImageRotation()
+            }
+        }
+        if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {
+            removeLife();
+            isInvincible = true;
+            PLAYER.box.classList.add('invincible');
+        
+            setTimeout(() => {
+                isInvincible = false;
+                PLAYER.box.classList.remove('invincible');
+            }, 2000);
+        }        
+        if (isColliding(PLAYER.box, ENEMY.box) && !isInvincible) {
+            removeLife();
+            isInvincible = true;
+            PLAYER.box.classList.add('invincible');
+        
+            setTimeout(() => {
+                isInvincible = false;
+                PLAYER.box.classList.remove('invincible');
+            }, 2000);
+        }    
+        if (isColliding(PLAYER.box, ENEMY3.box) && !isInvincible) {
+            removeLife();
+            isInvincible = true;
+            PLAYER.box.classList.add('invincible');
+        
+            setTimeout(() => {
+                isInvincible = false;
+                PLAYER.box.classList.remove('invincible');
+            }, 2000);
+        }
+        
+        moveEnemy();
+        moveEnemy2Randomly();
+        moveEnemy3Randomly();
+       
+    
+        setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
+    }
+}
+
 
 /***********************************
  * GAME OVER

@@ -726,3 +726,15 @@
     left: 0;      
     width: auto;  
 }
+
+#rotatable-image {
+    width: 40vw;
+    z-index: 20;
+    height: auto;
+    margin-left: 25vw;
+    margin-top: 3em;
+    cursor: grab;
+    position: absolute;
+    user-select: none; 
+    display: none;
+}

@@ -9,6 +9,7 @@ let PLAYER = {
     triggeredCollider16: false,
     triggeredVase: false,
     triggeredBench:false,
+    triggeredScarab:false
 }
 let VALUES = [
     30.5,
