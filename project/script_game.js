@@ -77,6 +77,10 @@ let TEXTSNIPPETS = [
         'The sun’s light reveals the truth,',
         'the falcon guards the key of the afterlife,',
         'but only the eye of Horus can unlock the way...'
+    ],
+    [
+        'Where the sun’s light fades, the scarab rests — ',
+        'a bug looking artifact of gold, a key to secrets untold'
     ]
 ];
 
@@ -171,6 +175,10 @@ function writeText(index) {
                 document.getElementById("collider87").style.display = "none";
                 document.getElementById("collider87-transparent").style.display = "block";
                 gameLoop();
+            }
+            else if(index == 7){
+                startTimer();
+                gameLoop()
             }
         };
         textContainer.appendChild(closeHint);
@@ -409,9 +417,18 @@ let ENEMY2 = {
     yOffset: 0,
     targetX: 0,
     targetY: 0
-  };
+};
 
-
+let ENEMY3 = {
+    box: document.getElementById("random-enemy2"),
+    sprite: document.getElementById("random-enemy2-img"),
+    speed: 1, 
+    spriteImgNumber: 0,
+    direction: 'down',
+    yOffset: 0,
+    targetX: 0,
+    targetY: 0
+};
 function animateEnemy() {
     if (ENEMY.spriteImgNumber < 8) { 
         ENEMY.spriteImgNumber++;
@@ -497,6 +514,19 @@ function animateEnemy2() {
     }
 }
   
+function animateEnemy3() {
+    if (ENEMY3.spriteImgNumber < 8) {
+        ENEMY3.spriteImgNumber++;
+        let x = parseFloat(ENEMY3.sprite.style.right) || 0;
+        x += 31;
+        ENEMY3.sprite.style.right = x + "px";
+        ENEMY3.sprite.style.top = ENEMY3.yOffset + "px";
+    } else {
+        ENEMY3.sprite.style.right = "0px";
+        ENEMY3.spriteImgNumber = 0;
+    }
+}
+
 function pickRandomTargetForEnemy2() {
     const surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
     const topR    = document.getElementById('collidertop').getBoundingClientRect();
@@ -513,12 +543,32 @@ function pickRandomTargetForEnemy2() {
     ENEMY2.targetX = Math.random() * (maxX - minX) + minX;
     ENEMY2.targetY = Math.random() * (maxY - minY) + minY;
 }
-  
 
 setInterval(() => {
     if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy2();
 }, 4000);
   
+
+
+function pickRandomTargetForEnemy3() {
+    const surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
+    const topR = document.getElementById('collidertop').getBoundingClientRect();
+    const bottomR = document.getElementById('colliderbottom').getBoundingClientRect();
+    const leftR = document.getElementById('colliderleft').getBoundingClientRect();
+    const rightR = document.getElementById('colliderright').getBoundingClientRect();
+
+    const minX = leftR.right - surfaceRect.left;
+    const maxX = rightR.left - surfaceRect.left - ENEMY3.box.offsetWidth;
+    const minY = topR.bottom - surfaceRect.top;
+    const maxY = bottomR.top - surfaceRect.top - ENEMY3.box.offsetHeight;
+
+    ENEMY3.targetX = Math.random() * (maxX - minX) + minX;
+    ENEMY3.targetY = Math.random() * (maxY - minY) + minY;
+}
+
+setInterval(() => {
+    if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy3();
+}, 2500);
 
 function moveEnemy2Randomly() {
     const enemyRect   = ENEMY2.box.getBoundingClientRect();
@@ -565,7 +615,50 @@ function moveEnemy2Randomly() {
     animateEnemy2();
 }
 
+function moveEnemy3Randomly() {
+    const enemyRect = ENEMY3.box.getBoundingClientRect();
+    const surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
 
+    const currX = enemyRect.left - surfaceRect.left;
+    const currY = enemyRect.top - surfaceRect.top;
+
+    let dx = ENEMY3.targetX - currX;
+    let dy = ENEMY3.targetY - currY;
+    const dist = Math.hypot(dx, dy);
+    
+    if (dist > 0) {
+        dx /= dist;
+        dy /= dist;
+        
+        const stepX = dx * ENEMY3.speed;
+        const stepY = dy * ENEMY3.speed;
+        const newX = currX + stepX;
+        const newY = currY + stepY;
+        ENEMY3.box.style.left = `${newX}px`;
+        ENEMY3.box.style.top = `${newY}px`;
+    }
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+        ENEMY3.direction = dx > 0 ? 'right' : 'left';
+    } else {
+        ENEMY3.direction = dy > 0 ? 'down' : 'up';
+    }
+    
+    switch (ENEMY3.direction) {
+        case 'up':    ENEMY3.yOffset = 0;    break;
+        case 'down':  ENEMY3.yOffset = -75;  break;
+        case 'left':  ENEMY3.yOffset = -110; break;
+        case 'right': ENEMY3.yOffset = -110; break;
+    }
+
+    if (ENEMY3.direction === 'left') {
+        ENEMY3.box.style.transform = 'scaleX(-1)';
+    } else if (ENEMY3.direction === 'right') {
+        ENEMY3.box.style.transform = 'scaleX(1)';
+    }
+
+    animateEnemy3();
+}
 /***********************************
  * HANDEL LIFES
  * **********************************/
@@ -693,9 +786,20 @@ function gameLoop() {
                 PLAYER.box.classList.remove('invincible');
             }, 2000);
         }    
+        if (isColliding(PLAYER.box, ENEMY3.box) && !isInvincible) {
+            removeLife();
+            isInvincible = true;
+            PLAYER.box.classList.add('invincible');
+        
+            setTimeout(() => {
+                isInvincible = false;
+                PLAYER.box.classList.remove('invincible');
+            }, 2000);
+        }
         
         moveEnemy();
         moveEnemy2Randomly();
+        moveEnemy3Randomly();
        
     
         setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 
@@ -719,6 +823,8 @@ function switchToLevelTwo() {
     //change enemy
     document.getElementById("enemy-skeleton").src = "img/enemy-level2.png";
     document.getElementById("enemy").style.width = "2.75vw";
+
+    document.getElementById("random-enemy-img").style.display = "block";
 
     //change background
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level2.png')";
@@ -916,8 +1022,11 @@ function switchToLevelThree(){
      document.getElementById("gameBody").style.display = "block";
  
      //change enemy
-     document.getElementById("enemy-skeleton").src = "img/enemy-level2.png";
+     document.getElementById("enemy-skeleton").src = "img/enemy1-lvl3.png";
      document.getElementById("enemy").style.width = "2.75vw";
+
+     document.getElementById("random-enemy-img").src = "img/enemy2-lvl3.png";
+     document.getElementById("random-enemy2-img").style.display = "block";
  
      //change background
      document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level3.png')";
@@ -942,7 +1051,12 @@ function switchToLevelThree(){
          collider.style.display = "none";
      });
 
-     //set colliders display none
+     const itemsLvl3 = document.querySelectorAll('.lvl3-items');
+     itemsLvl3.forEach(collider => {
+         collider.style.display = "block";
+     });
+
+     //set colliders display block
      const collidersLvl3 = document.querySelectorAll('.collider-lvl3');
      collidersLvl3.forEach(collider => {
          collider.style.display = "block";
@@ -953,21 +1067,30 @@ function switchToLevelThree(){
      gameEnded = false;
      hintsOpen = false;
  
+     //player position
      PLAYER.box.style.left = '580px'; 
      PLAYER.box.style.top = '600px'; 
-     ENEMY.box.style.left = '500px';
-     ENEMY.box.style.top = "400px";
-     ENEMY.box.style.opacity = '1';
      PLAYER.box.style.opacity = '1';
-     ENEMY2.box.style.left = "500px";
+
+     //enemy position
+     ENEMY.box.style.left = '500px';
+     ENEMY.box.style.top = "200px";
+     ENEMY.box.style.opacity = '1';
+     ENEMY2.box.style.left = "650px";
      ENEMY2.box.style.top = "300px";
      ENEMY2.box.style.opacity = "1";
+     ENEMY3.box.style.left = "700px";
+     ENEMY3.box.style.top = "400px";
+     ENEMY3.box.style.opacity = "1";
+
+     ENEMY.speed = 0.7;
  
      document.getElementById("enemy-skeleton").style.right = '0px';
+     document.getElementById("random-enemy-img").style.right = '0px';
+     document.getElementById("random-enemy2-img").style.right = '0px';
  
      resetLevel();
-     startTimer();
-     gameLoop()
+     writeText(7);
 }
 
 /***********************************

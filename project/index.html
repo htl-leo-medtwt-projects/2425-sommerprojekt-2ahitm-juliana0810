@@ -6,8 +6,7 @@
     <title>The Last Expedition</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="style-collisions.css" type="text/css">
-    <link rel="stylesheet" href="style-lvl1.css" type="text/css">
-    <link rel="stylesheet" href="style-lvl2.css" type="text/css">
+    <link rel="stylesheet" href="style-game.css" type="text/css">
     <script src="script.js" defer></script>
     <script src="keyevents.js" defer></script>
     <script src="player.js" defer></script>
@@ -154,7 +153,10 @@
             </div>  
             <div id="random-enemy">
                 <img id="random-enemy-img" src="img/enemy-random.png" alt="enemy-random">
-            </div>          
+            </div>      
+            <div id="random-enemy2">
+                <img id="random-enemy2-img" src="img/enemy3-lvl3.png" alt="enemy3-lvl3">
+            </div>      
             <div id="coinBox"><img id="coin" src="img/coin.png" alt="coin"></div>
             <div id="transparent-box"></div>
 
@@ -312,26 +314,33 @@
             
 
             <!-- hints elements -->
+
+             <!-- lvl 1 -->
+             <div class="lvl1-items" id="door"></div>
+             <div class="lvl1-items" id="pergament-box"></div>
+            <div class="lvl1-items" id="pergament-close"><p onclick="closePergament()">close hint</p></div>
+            <div class="lvl1-items" id="key-placeholder"><img id="key" src="img/key.png" alt="keep"></div>
+
+            <!-- lvl 2 -->
             <div class="lvl2-items" id="collider63-transparent"></div>
             <div class="lvl2-items" id="collider87-transparent"></div>
             <div class="lvl2-items" id="vase"></div>
             <div class="lvl2-items" id="bench"></div>
             <div class="lvl2-items" id="door-lvl2"></div>
-            <div class="lvl1-items" id="door"></div>
-
-            <div id="gameBoard"></div>
-
-            <!-- text/hint boxes -->
-            <div id="text-container-level1"></div>
-            <div class="lvl1-items" id="pergament-box"></div>
-            <div class="lvl1-items" id="pergament-close"><p onclick="closePergament()">close hint</p></div>
-
             <div class="lvl2-items" id="vase-box"></div>
             <div class="lvl2-items" id="vase-close"><p onclick="closeVase()">close hint</p></div>
             <div class="lvl2-items" id="stone-box"></div>
             <p class="lvl2-items" onclick="showOptionsStone()" id="stone-close">show options</p>
             <p class="lvl2-items" onclick="selectOptionStone()" id="select-option">select</p>
-            <div class="lvl1-items" id="key-placeholder"><img id="key" src="img/key.png" alt="keep"></div>
+
+             <!-- lvl 3 -->
+             <div class="lvl3-items" id="scarab"></div>
+
+            <div id="gameBoard"></div>
+
+            <!-- text boxes -->
+            <div id="text-container-level1"></div>
+    
         </div>
     </div>
 

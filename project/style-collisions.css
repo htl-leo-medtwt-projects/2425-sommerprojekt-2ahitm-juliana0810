@@ -1056,3 +1056,13 @@
     top: 30.8vh;
     left: 67vw;
 }
+
+
+/* hints lvl 3*/
+.lvl3-items{
+    display: none;
+}
+#scarab{
+    z-index: 100;
+    position: absolute;
+}
