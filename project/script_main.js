@@ -81,6 +81,10 @@ let TEXTSNIPPETS = [
     [
         'Where the sun’s light fades, the scarab rests — ',
         'a bug looking artifact of gold, a key to secrets untold'
+    ],
+    [
+        'Search for the mummified remains - ',
+        'every artifact tells a story, but this one holds your answer.'
     ]
 ];
 
@@ -179,6 +183,11 @@ function writeText(index) {
             else if(index == 7){
                 startTimer();
                 gameLoop()
+            }
+            else if(index == 8){
+                document.getElementById("mummy").style.display = "block";
+                hintsOpen = false;
+                gameLoop();
             }
         };
         textContainer.appendChild(closeHint);
@@ -321,6 +330,8 @@ function gameLoop() {
         checkKeyCollision();
         checkDoorCollision();
 
+
+        /*********** IS COLLIDING WITH *********** */
         if (isCollidingWith("vase")) {
             if (!PLAYER.triggeredVase) {
                 showVase();
@@ -352,6 +363,11 @@ function gameLoop() {
                 enableImageRotation()
             }
         }
+        if (isCollidingWith("mummy")) {
+            showPergament();
+        }
+
+
         if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {
             removeLife();
             isInvincible = true;

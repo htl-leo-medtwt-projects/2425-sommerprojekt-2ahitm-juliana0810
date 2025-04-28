@@ -1060,7 +1060,7 @@
 
 /* hints lvl 3*/
 .lvl3-items{
-    background-color: rgba(255, 0, 0, 0.454);
+    background-color: transparent;
     display: none;
 }
 #scarab{
@@ -1070,4 +1070,13 @@
     height: 2.5vh;
     top: 79vh;
     left: 34.25vw;
+}
+#mummy{
+    z-index: 100;
+    position: absolute;
+    width: 5vw;
+    height: 2vh;
+    top: 20vh;
+    left: 60.5vw;
+    display: none;
 }

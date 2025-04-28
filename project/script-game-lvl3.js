@@ -9,6 +9,15 @@ let ENEMY3 = {
     targetY: 0
 };
 
+
+const magnifier = new Magnifier(this, yourImage, { zoomLevel: 3, radius: 150 });
+canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    magnifier.updatePosition(e.clientX - rect.left, e.clientY - rect.top);
+});
+canvas.addEventListener('click', () => magnifier.toggle());
+
+
 function animateEnemy3() {
     if (ENEMY3.spriteImgNumber < 8) {
         ENEMY3.spriteImgNumber++;
@@ -167,11 +176,13 @@ function switchToLevelThree(){
 }
 
 /********* ROTATE IMAGE ***********/
+let currentRotation = 90;
 function enableImageRotation() {
+    document.getElementById("select-direction").style.display = "block";
+
    const image = document.getElementById('rotatable-image');
    let isDragging = false;
    let startAngle = 0;
-   let currentRotation = 0;
 
 
    image.style.display = 'block';
@@ -225,11 +236,25 @@ function enableImageRotation() {
 }
 
 function submitDirection(){
-    if(-20 <=  currentRotation && currentRotation <= 20){
+    document.getElementById("select-direction").style.display = "none";
+    document.getElementById("text-scarab-lvl3").style.display = "block";
+
+    if(-10 <=  currentRotation && currentRotation <= 10){
         document.getElementById("text-scarab-lvl3").innerHTML = `<p>You've chosen correctly, lucky for you the scarab is pointing to the North.</p>`
+        setTimeout(() => closeScarab(), 3000);
     }
     else{
         document.getElementById("text-scarab-lvl3").innerHTML = `<p>Oh no the scarab is not really pointing to North is it...</p>`
+        gameEnded = true;
+        setTimeout(() => gameOver(), 3000);
     }
-    document.getElementById("text-scarab-lvl3").style.display = "block";
+}
+function closeScarab(){
+    document.getElementById("text-scarab-lvl3").style.display = "none";
+    document.getElementById("kompass").style.display = "none";
+    document.getElementById("scarab").style.display = "none";
+    document.getElementById("rotatable-image").style.display = "none";
+    document.getElementById("transparent-box").style.display = "none";
+
+    writeText(8);
 }
