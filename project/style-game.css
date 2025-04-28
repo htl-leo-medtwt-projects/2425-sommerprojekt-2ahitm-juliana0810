@@ -731,10 +731,38 @@
     width: 40vw;
     z-index: 20;
     height: auto;
-    margin-left: 25vw;
+    margin-left: 32vw;
     margin-top: 3em;
     cursor: grab;
     position: absolute;
     user-select: none; 
     display: none;
+    transform: rotate(90deg);
+}
+#kompass{
+    display: none;
+    position: absolute;
+    left: 4vw;
+    top: 20vh;
+    width: 20vw;
+    z-index: 15;
+}
+#text-scarab-lvl3{
+    text-align: center; 
+    font-size: 125%;
+    margin: 0 auto;
+    width: 70%; 
+    position: absolute;
+    top: 70vh;
+    left: 15vw;
+    font-family: message;
+    font-weight: bold;
+    background-color: #080200be;
+    text-shadow: 1px 1px 1px #9e8769;
+    box-shadow: 2px 2px 2px #fcf3cf;
+    color: #fcf3cf;
+    font-family: message;
+    z-index: 10;
+    display: none;
+    padding: 1em 2em;
 }
