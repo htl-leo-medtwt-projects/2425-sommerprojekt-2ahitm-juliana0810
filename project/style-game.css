@@ -327,8 +327,10 @@
     left: 70vw;
     top: 80vh;
     width: 2vw;
+    z-index: 10;
 }
 #key{
+    z-index: 10;
     width: 2vw;
     transform: rotate(30deg);
 }
@@ -507,6 +509,7 @@
     height: 5vh; 
     overflow: hidden;
     opacity: 0;
+    display: none;
 }
 #random-enemy-img{
     height: 20vh;
@@ -718,6 +721,7 @@
     height: 5vh; 
     overflow: hidden;
     opacity: 0;
+    display: none;
 }
 #random-enemy2-img{
     height: 20vh;

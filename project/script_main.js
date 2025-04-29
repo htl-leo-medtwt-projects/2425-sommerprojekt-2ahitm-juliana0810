@@ -44,19 +44,16 @@ let GAME_CONFIG = {
 let TEXTSNIPPETS = [
     [
         'The door stays closed while the Pharaoh’s key is hidden.',
-        'No lock opens without knowledge – find the signs!',
-        'Ancient spirits try to stop your escape...'
+        'No lock opens without knowledge – find the signs and escape ancient spirits!',
     ],
     [
-        'A breeze reveals something in the sand.',
-        'A yellowed parchment lies in plain sight.',
+        'A breeze reveals a yellowed parchment - now lies in plain sight.',
         'Find it – it holds the key to escape.'
     ],
     [
         'A secret room holds the key forward.',
         'But it stays hidden without solving the puzzle.',
-        'The parchment reveals the key’s location.',
-        'Choose the right answer to move on...'
+        'The parchment reveals the key’s location - choose wise...',
     ],
     [
         'You’ve mastered Level 1 – impressive...',
@@ -107,6 +104,7 @@ function startTimer() {
         if (timeLeft <= 0) {
             clearInterval(countdown)
             document.getElementById("sanduhr-box").innerHTML = "";
+            console.log("time ran out");
             gameOver();
         }
     }, 1000)
@@ -171,9 +169,9 @@ function writeText(index) {
             }
             else if(index == 3){
                 writeText(4);
-            
             }
             else if(index == 4){
+                document.getElementById("door-lvl2").style.display = "block";
                 hintsOpen = false;
                 startTimer();
                 gameLoop();
@@ -205,7 +203,7 @@ function writeText(index) {
 
 function respawnCoin() {
     const surface = GAME_SCREEN.surface.getBoundingClientRect();
-    const colliders = document.querySelectorAll('.collider');
+    const colliders = document.querySelectorAll('.collider, .collider-lvl2, .collider-lvl3');
     
     const colliderRects = Array.from(colliders).map(collider => collider.getBoundingClientRect());
 
@@ -278,30 +276,12 @@ function resetLevel(){
     //reset stats
     levelCount++;
     document.getElementById("level").innerHTML = `<p>${levelCount}</p>`
-    PLAYER.coins = 0;
-    document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
     timeLeft = 200;
     LIFES.life1.style.opacity = "1";
     LIFES.life2.style.opacity = "1";
     LIFES.life3.style.opacity = "1";
     LIFES.lifesCount = 3;
     document.getElementById("key-statistics").style.display = "none";
-
-    //dont know if i need it later but for now...
-    value = counter;
-
-    playerImage = `<img id="spriteImg" src="${players[counter]}">`;
-    document.getElementById("player").innerHTML = playerImage;
-    
-    if (profileImageSrc) {
-        document.getElementById("level1-profilimg").src = profileImageSrc;
-    }
-    else{
-        document.getElementById("level1-profilimg").src = "img/profil-placeholder.png";
-    }
-    document.querySelector(".username").innerHTML = username;
-    //***** */
-
 
     document.getElementById("enemy-skeleton").style.right = '0px';
 }
@@ -380,6 +360,7 @@ function gameLoop() {
             showMapLvl3();
         }
         if (isCollidingWith("door-lvl3")) {
+            hintsOpen = true;
             switchToMystery3();
         }
 

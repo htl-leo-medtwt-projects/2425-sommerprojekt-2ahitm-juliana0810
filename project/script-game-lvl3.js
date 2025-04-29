@@ -1,7 +1,7 @@
 let ENEMY3 = {
     box: document.getElementById("random-enemy2"),
     sprite: document.getElementById("random-enemy2-img"),
-    speed: 1, 
+    speed: 0.8, 
     spriteImgNumber: 0,
     direction: 'down',
     yOffset: 0,
@@ -94,10 +94,12 @@ function moveEnemy3Randomly() {
  * LEVEL 3
  * **********************************/
 function switchToLevelThree(){
+    hintsOpen = false;
     //switch to right board
     document.getElementById("storyTelling").style.display = "none";
    
     document.getElementById("quiz-lvl1").style.display = "none";
+    document.getElementById("quiz-lvl2").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
 
     //change enemy
@@ -106,6 +108,7 @@ function switchToLevelThree(){
 
     document.getElementById("random-enemy-img").src = "img/enemy2-lvl3.png";
     document.getElementById("random-enemy2-img").style.display = "block";
+    document.getElementById("random-enemy2").style.display = "block";
 
     //change background
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level3.png')";
@@ -115,7 +118,7 @@ function switchToLevelThree(){
     colliders.forEach(collider => {
         collider.style.display = "none";
     });
-   
+    
     document.getElementById("scarab").style.display = "block";
 
     document.getElementById("collider16").style.display = "none";
@@ -139,8 +142,9 @@ function switchToLevelThree(){
 
     //reset booleans
     collectedKey = false;
-    gameEnded = false;
     hintsOpen = false;
+
+    document.getElementById("text-container-level1").style.top = "30vh";
 
     //player position
     PLAYER.box.style.left = '580px'; 
@@ -158,7 +162,7 @@ function switchToLevelThree(){
     ENEMY3.box.style.top = "400px";
     ENEMY3.box.style.opacity = "1";
 
-    ENEMY.speed = 0.7;
+    ENEMY.speed = 0.6;
 
     document.getElementById("enemy-skeleton").style.right = '0px';
     document.getElementById("random-enemy-img").style.right = '0px';
@@ -265,7 +269,7 @@ function showMummy() {
     
     if (!mummyMagnifier) {
         mummyMagnifier = new Magnifier(mummyImg, {
-            zoomLevel: 6,
+            zoomLevel: 7,
             radius: 120
         });
         
@@ -326,7 +330,10 @@ function closeSecretRoomMap(){
 /*************** MYSTERY ******************* */
 let countMistakes = 0;
 function switchToMystery3() {
-    document.getElementById("storyTelling").style.display = "none";
+    clearInterval(countdown);
+    hintsOpen = true;
+    gameEnded = false;
+    
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl3").style.display = "block";
     

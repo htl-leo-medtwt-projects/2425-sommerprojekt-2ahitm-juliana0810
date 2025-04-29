@@ -3,6 +3,7 @@
  * **********************************/
 
 function switchToLevelTwo() {
+    hintsOpen = false;
 
     //switch to right board
     document.getElementById("storyTelling").style.display = "none";
@@ -15,6 +16,7 @@ function switchToLevelTwo() {
     document.getElementById("enemy").style.width = "2.75vw";
 
     document.getElementById("random-enemy-img").style.display = "block";
+    document.getElementById("random-enemy").style.display = "block";
 
     //change background
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level2.png')";
@@ -24,6 +26,21 @@ function switchToLevelTwo() {
     colliders.forEach(collider => {
         collider.style.display = "none";
     });
+
+    const collidersLvl2 = document.querySelectorAll('.collider-lvl2');
+    collidersLvl2.forEach(collider => {
+        collider.style.display = "block";
+    });
+
+    const itemsLvl2 = document.querySelectorAll('.items-lvl2');
+    itemsLvl2.forEach(collider => {
+        collider.style.display = "none";
+    });
+
+    //items
+    document.getElementById("collider25-transparent").style.display = "none";
+    document.getElementById("vase").style.display = "block";
+    document.getElementById("text-container-level1").style.top = "30vh";
 
     document.getElementById("collider16").style.display = "none";
     document.getElementById("collidertop").style.display = "block";
@@ -44,7 +61,6 @@ function switchToLevelTwo() {
 
     //reset booleans
     collectedKey = false;
-    gameEnded = false;
     hintsOpen = false;
 
     resetLevel();
@@ -167,6 +183,7 @@ function closeVase(){
     hintsOpen = false;
     document.getElementById("collider63").style.display = "none";
     document.getElementById("collider63-transparent").style.display = "block";
+    document.getElementById("bench").style.display = "block";
     gameLoop();
 }
 function showStone(){
@@ -218,6 +235,7 @@ function selectOptionStone(){
     }
 }
 function switchToMystery2(){
+    hintsOpen = true;
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl2").style.display = "block";
     document.getElementById("quiz-lvl2").innerHTML = 
@@ -253,11 +271,11 @@ function setupMysteryTwo() {
 }
 function selectedAnswerMysteryTwo(){
     if(chosenOptionsMysteryTwo == "mystery2-img1"){
-        document.getElementById("quiz-container-lvl2").innerHTML = `<p>right</p>`
+        document.getElementById("quiz-container-lvl2").innerHTML = `<p>Very wise choice, good luck...</p>`
         setTimeout(() => switchToLevelThree(), 3000);
     }
     else{
-        document.getElementById("quiz-container-lvl2").innerHTML = `<p>wrong</p>`
+        document.getElementById("quiz-container-lvl2").innerHTML = `<p>That answer doesn't do the scale justice...</p>`
         setTimeout(()=> gameOver(), 3000)
     }
 }

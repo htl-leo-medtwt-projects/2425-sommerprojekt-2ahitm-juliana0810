@@ -134,26 +134,15 @@ function onKeyCollected(){
 function checkDoorCollision() {
     const door = document.getElementById("door");
     if (door && isCollidingWith("door")) {
-        gameEnded = true;
         doorEntered(); 
     }
 }
 
 function doorEntered(){
     if(collectedKey){
+        hintsOpen = true;
         document.getElementById("gameBody").style.display = "none";
         document.getElementById("quiz-lvl1").style.display = "block";
-        document.getElementById("quiz-lvl1").innerHTML = 
-        `<h1 id="quiz-headline">mystery one</h1>
-        <div id="quiz-container">
-            <p>Among these statues, only one is Anubis - the guardian who watched as you took the key from its resting place.</p>
-            <div id="mystery-choices">
-                <img id="mystery-img1" src="img/mystery-img1.png" alt="mystery-img1">
-                <img id="mystery-img2" src="img/mystery-img2.png" alt="mystery-img2">
-                <img id="mystery-img3" src="img/mystery-img3.png" alt="mystery-img3">
-            </div>
-            <p onclick="selectedAnswer()" id="mystery-one-select">select</p>
-        </div>`
 
         setupMysterySelection();
     }
@@ -170,7 +159,7 @@ let ENEMY = {
     spriteImgNumber: 0,
     direction: 'down', 
     yOffset: 0, 
-    speed: 1,
+    speed: 0.8
 }
 ENEMY.currentFrame = 0;
 ENEMY.totalFrames = 8; 
@@ -254,6 +243,10 @@ let selectedMysteryId = null;
 
 function setupMysterySelection() {
     const mysteryContainer = document.getElementById("mystery-choices");
+    if (!mysteryContainer) {
+        console.error("Element #mystery-choices nicht gefunden!");
+        return;
+    }
 
     mysteryContainer.addEventListener("click", function (e) {
         if (e.target.tagName.toLowerCase() === "img") {
@@ -269,6 +262,7 @@ function setupMysterySelection() {
         }
     });
 }
+
 
 function selectedAnswer() {
     if (selectedMysteryId === "mystery-img3") {
