@@ -251,8 +251,10 @@ function closeScarab(){
 
     writeText(8);
 }
-let mummyMagnifier = null;
 
+
+/*************** Mummy ******************* */
+let mummyMagnifier = null;
 
 function showMummy() {
     document.getElementById("transparent-box").style.display = "block";
@@ -276,26 +278,53 @@ function showMummy() {
     }
     
     mummyBox.style.display = "block";
+    document.getElementById("mummy-text").style.display = "block";
     
-    const closeHandler = function(e) {
-        if (!mummyBox.contains(e.target)) {
-            mummyBox.style.display = "none";
-            if (mummyMagnifier && mummyMagnifier.active) {
-                mummyMagnifier.toggle();
-                mummyBox.style.cursor = 'zoom-in';
-            }
-            document.removeEventListener('click', closeHandler);
-        }
-    };
-    
-    document.addEventListener('click', closeHandler);
+    document.getElementById("continue-map").addEventListener("click", continueMapSearch);
 }
-function continueMapSearch(){
+
+
+/*************** Map******************* */
+function continueMapSearch(e) {
+    if (e) e.stopPropagation(); 
+    
     document.getElementById("transparent-box").style.display = "none";
     document.getElementById("continue-map").style.display = "none";
     document.getElementById("mummy-box").style.display = "none";
     document.getElementById("mummy-text").style.display = "none";
+    document.getElementById("mummy").style.display = "none";
+    document.getElementById("map").style.display = "block";
+  
+    document.getElementById("continue-map").removeEventListener("click", continueMapSearch);
+    
+    hintsOpen = false;
+    gameLoop();
+}
+function showMap(){
+    document.getElementById("map-found").style.display = "block";
+    document.getElementById("transparent-box").style.display = "block";
+    document.getElementById("text-container-level1").style.top = "70vh";
+    writeText(9);
+}
+function showMapSecretRoom(){
+    document.getElementById("map-found").style.display = "none";
+    document.getElementById("close-map").style.display = "block";
+    document.getElementById("secret-door-map").style.display = "block";
+    document.getElementById("map").style.display = "none";
+}
+function closeSecretRoomMap(){
+    document.getElementById("transparent-box").style.display = "none";
+    document.getElementById("secret-door-map").style.display = "none";
+    document.getElementById("close-map").style.display = "none";
+    document.getElementById("text-container-level1").style.display = "none";
+    document.getElementById("door-lvl3").style.display = "block";
 
     hintsOpen = false;
     gameLoop();
+}
+
+/*************** MYSTERY ******************* */
+function switchToMystery3(){
+    document.getElementById("gameBody").style.display = "none";
+    document.getElementById("quiz-lvl3").style.display = "block";
 }

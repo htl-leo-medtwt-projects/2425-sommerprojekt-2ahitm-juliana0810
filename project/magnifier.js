@@ -1,3 +1,5 @@
+/*********** Fremdcode ************/
+
 class Magnifier {
     constructor(imageElement, options = {}) {
         this.imageElement = imageElement;

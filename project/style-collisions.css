@@ -926,8 +926,8 @@
 }
 #collider122{
     width: 0.33vw;
-    height: 4vh;
-    top: 25vh;
+    height: 3vh;
+    top: 26.5vh;
     left: 33.5vw;
 }
 #collider123{
@@ -1079,4 +1079,20 @@
     top: 20vh;
     left: 60.5vw;
     display: none;
+}
+#map{
+    z-index: 100;
+    position: absolute;
+    width: 1.7vw;
+    height: 4vh;
+    top: 22vh;
+    left: 30.75vw;
+}
+#door-lvl3{
+    z-index: 100;
+    position: absolute;
+    left: 73.5vw;
+    top: 21vh;
+    width: 0.5vw;
+    height: 8vh;
 }

@@ -85,6 +85,10 @@ let TEXTSNIPPETS = [
     [
         'Search for the mummified remains - ',
         'every artifact tells a story, but this one holds your answer.'
+    ],
+    [
+        'A trap ?! - the door on the left side was fake,',
+        'see the map to find the secret door to escape your fate'
     ]
 ];
 
@@ -332,6 +336,15 @@ function gameLoop() {
 
 
         /*********** IS COLLIDING WITH *********** */
+        /*********** level 1 *********** */
+        if (isCollidingWith("collider16")) {
+            if (!PLAYER.triggeredCollider16) {
+                console.log("collider16")
+                showPergament();
+            }
+        }
+
+        /*********** level 2 *********** */
         if (isCollidingWith("vase")) {
             if (!PLAYER.triggeredVase) {
                 showVase();
@@ -349,12 +362,8 @@ function gameLoop() {
             hintsOpen = true; 
             showStone();
         }
-        if (isCollidingWith("collider16")) {
-            if (!PLAYER.triggeredCollider16) {
-                console.log("collider16")
-                showPergament();
-            }
-        }
+
+        /*********** level 3 *********** */
         if (isCollidingWith("scarab")) {
             if (!PLAYER.triggeredScarab) {
                 hintsOpen = true;
@@ -366,8 +375,15 @@ function gameLoop() {
         if (isCollidingWith("mummy")) {
             showMummy();
         }
+        if (isCollidingWith("map")) {
+            hintsOpen = true;
+            showMap();
+        }
+        if (isCollidingWith("door-lvl3")) {
+            switchToMystery3();
+        }
 
-
+        /*********** ENEMYS *********** */
         if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {
             removeLife();
             isInvincible = true;

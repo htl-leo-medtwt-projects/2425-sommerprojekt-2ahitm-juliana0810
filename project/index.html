@@ -346,9 +346,16 @@
              <div class="lvl3-items" id="mummy"></div>
              <div id="mummy-box">
                 <img src="img/mummy.png" alt="Ancient Mummy">
-                <p id="mummy-text">Click on the image to zoom and search for the hint</p>
+                <p id="mummy-text">Click on the image to zoom</p>
+                <p id="mummy-text2"> and search for the hint</p>
             </div>
             <p class="lvl3-items" onclick="continueMapSearch()" id="continue-map">continue</p>
+            <div id="map" class="lvl3-items"></div>
+            <img onclick="showMapSecretRoom()" id="map-found" class="lvl3-items" src="img/map.png" alt="map">
+            <img id="secret-door-map" class="lvl3-items" src="img/secret-door-map.png" alt="secret-door-map">
+            <img onclick="closeSecretRoomMap()" id="close-map" class="lvl3-items" src="img/close-secret-map.png" alt="close-map">
+            <div class="lvl3-items" id="door-lvl3"></div>
+    
 
             <div id="gameBoard"></div>
 
@@ -363,6 +370,9 @@
 
     <!-- quiz level 2 -->
     <div id="quiz-lvl2"></div>
+
+    <!-- quiz level 3 -->
+    <div id="quiz-lvl3"></div>
 
     <!-- game over screen -->
     <div id="game-over">

@@ -813,13 +813,14 @@
     overflow: hidden;
     z-index: 1000;
 }
-#mummy-text{
+#mummy-text, #mummy-text2{
     font-family: message;
     color: #fcf3cf;
     text-align: center;
     font-size: 125%;
     margin: 1em;
 }
+
 #continue-map{
     z-index: 999;
     pointer-events: auto;
@@ -833,6 +834,42 @@
     box-shadow: 1px 1px 1px #c1bebb;
     letter-spacing: 0.2em;
     text-align: center;
-    top: 80vh;
+    top: 82vh;
     left: 45vw;
+}
+
+/* map secret door*/
+#map-found{
+    width: 30vw;
+    height: auto;
+    margin-top: 3em;
+    position: absolute;
+    left: 38vw;
+    cursor: pointer;
+    z-index: 100;
+    animation: movingMap 2.5s infinite ease;
+}
+@keyframes movingMap {
+    0%{transform: rotate(20deg);}
+    50%{transform: rotate(-10deg);}
+    100%{transform: rotate(20deg);}
+}
+#secret-door-map{
+    width: 35vw;
+    height: auto;
+    margin-top: 3em;
+    position: absolute;
+    left: 35vw;
+    z-index: 100;
+    display: none;
+}
+#close-map{
+    position: absolute;
+    left: 69.5vw;
+    top: 4vh;
+    width: 2em;
+    height: auto;
+    z-index: 100;
+    display: none;
+    cursor: pointer;
 }
