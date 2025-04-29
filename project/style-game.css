@@ -873,3 +873,74 @@
     display: none;
     cursor: pointer;
 }
+
+/*********** MYSTERY THREE ***********/
+#quiz-lvl3{
+    background-image: url(img/dark-background.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    display: none;
+    margin: 0;
+    padding: 0;
+    animation: slowChangeLvl3 1.5s ease;
+}
+@keyframes slowChangeLvl3 {
+    0%{opacity: 0;}
+    100%{opacity: 1;}
+}
+#quiz-headline-lvl3{
+    font-family: headline;
+    color: #fcf3cf;
+    font-size: 3em;
+    text-shadow: 1px 1px 1px #7e7551;
+    text-align: center;
+    margin: .5em;
+}
+.hint{
+    font-family: basicFont;
+    text-shadow: 1px 1px 1px #592a1d;
+    color: #fcf3cf;
+    text-align: center;
+}
+#puzzle-area {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+#sternbild-vorlage {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40vw;
+}
+#stars-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40vw;       
+    height: auto;     
+    pointer-events: all; 
+}
+#stars-pool {
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+    margin: 0.5em;
+}
+.star {
+    width: 2em;
+    height: auto;
+    cursor: grab;
+}
+#check-stars {
+    text-shadow: 1px 1px 1px #592a1d;
+    color: #fcf3cf;
+    border: none;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    font-family: basicFont;
+    
+}

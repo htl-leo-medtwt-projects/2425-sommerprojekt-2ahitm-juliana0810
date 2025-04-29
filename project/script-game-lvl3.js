@@ -324,7 +324,67 @@ function closeSecretRoomMap(){
 }
 
 /*************** MYSTERY ******************* */
-function switchToMystery3(){
+function switchToMystery3() {
+    document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl3").style.display = "block";
+    
+    const TARGET_POSITIONS = [
+        {x: 120, y: 50},
+        {x: 120, y: 100},
+        {x: 150, y: 100},
+        {x: 180, y: 100},
+        {x: 120, y: 150},
+        {x: 90, y: 180},
+        {x: 150, y: 180},
+        {x: 200, y: 30}
+      ];
+      
+      const starsOverlay = document.getElementById('stars-overlay');
+      const stars = document.querySelectorAll('.star');
+      let draggedStar = null;
+      
+      stars.forEach(star => {
+        star.addEventListener('dragstart', (e) => {
+          draggedStar = star;
+          e.dataTransfer.setData('text/plain', star.id);
+        });
+      });
+      
+      starsOverlay.addEventListener('dragover', (e) => e.preventDefault());
+      
+      starsOverlay.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (!draggedStar) return;
+        const rect = starsOverlay.getBoundingClientRect();
+        const x = e.clientX - rect.left - 15;
+        const y = e.clientY - rect.top - 15;
+        draggedStar.style.position = 'absolute';
+        draggedStar.style.left = `${x}px`;
+        draggedStar.style.top = `${y}px`;
+        starsOverlay.appendChild(draggedStar);
+      });
+      
+      document.getElementById('check-stars').addEventListener('click', () => {
+        const placedStars = starsOverlay.querySelectorAll('.star');
+        let correct = 0;
+        placedStars.forEach(star => {
+          const rect = star.getBoundingClientRect();
+          const overlayRect = starsOverlay.getBoundingClientRect();
+          const x = rect.left - overlayRect.left;
+          const y = rect.top - overlayRect.top;
+          for (const target of TARGET_POSITIONS) {
+            if (Math.abs(x - target.x) < 20 && Math.abs(y - target.y) < 20) {
+              correct++;
+              break;
+            }
+          }
+        });
+        if (correct >= 5) {
+          alert("Das Sternbild ist korrekt!");
+        } else {
+          alert("Versuche es erneut!");
+        }
+      });
+      
 }
