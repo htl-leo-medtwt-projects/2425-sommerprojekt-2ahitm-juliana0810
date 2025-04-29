@@ -300,7 +300,7 @@ function continueMapSearch(e) {
     hintsOpen = false;
     gameLoop();
 }
-function showMap(){
+function showMapLvl3(){
     document.getElementById("map-found").style.display = "block";
     document.getElementById("transparent-box").style.display = "block";
     document.getElementById("text-container-level1").style.top = "70vh";
@@ -324,37 +324,40 @@ function closeSecretRoomMap(){
 }
 
 /*************** MYSTERY ******************* */
+let countMistakes = 0;
 function switchToMystery3() {
     document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl3").style.display = "block";
     
     const TARGET_POSITIONS = [
-        {x: 170, y: 140},
-        {x: 228, y: 155},
-        {x: 140, y: 205},
-        {x: 240, y: 292},
-        {x: 255, y: 265},
-        {x: 265, y: 252},
-        {x: 267, y: 390},
-        {x: 380, y: 307},
-      ];
+        {x: 170, y: 78},
+        {x: 228, y: 92},
+        {x: 140, y: 135},
+        {x: 240, y: 217},
+        {x: 255, y: 190},
+        {x: 265, y: 174},
+        {x: 270, y: 305},
+        {x: 385, y: 230},
+    ];
 
-     
-      const starsOverlay = document.getElementById('stars-overlay');
-      const stars = document.querySelectorAll('.star');
-      let draggedStar = null;
-      
-      stars.forEach(star => {
+    const starsOverlay = document.getElementById('stars-overlay');
+    const stars = document.querySelectorAll('.star');
+    let draggedStar = null;
+
+    stars.forEach(star => {
         star.addEventListener('dragstart', (e) => {
-          draggedStar = star;
-          e.dataTransfer.setData('text/plain', star.id);
+            draggedStar = star;
+            e.dataTransfer.setData('text/plain', star.id);
         });
-      });
-      
-      starsOverlay.addEventListener('dragover', (e) => e.preventDefault());
-      
-      starsOverlay.addEventListener('drop', (e) => {
+
+        star.style.border = "none";
+    });
+
+    starsOverlay.addEventListener('dragover', (e) => e.preventDefault());
+
+    starsOverlay.addEventListener('drop', (e) => {
+        document.getElementById("text-stars").style.display= "none";
         e.preventDefault();
         if (!draggedStar) return;
         const rect = starsOverlay.getBoundingClientRect();
@@ -364,28 +367,63 @@ function switchToMystery3() {
         draggedStar.style.left = `${x}px`;
         draggedStar.style.top = `${y}px`;
         starsOverlay.appendChild(draggedStar);
-      });
-      
-      document.getElementById('check-stars').addEventListener('click', () => {
+    });
+
+    document.getElementById('check-stars').addEventListener('click', () => {
         const placedStars = starsOverlay.querySelectorAll('.star');
+        const usedTargets = [...TARGET_POSITIONS];
         let correct = 0;
+        const TOLERANCE = 20;
+
         placedStars.forEach(star => {
-          const rect = star.getBoundingClientRect();
-          const overlayRect = starsOverlay.getBoundingClientRect();
-          const x = rect.left - overlayRect.left;
-          const y = rect.top - overlayRect.top;
-          for (const target of TARGET_POSITIONS) {
-            if (Math.abs(x - target.x) < 50 && Math.abs(y - target.y) < 50){
-              correct++;
-              break;
-            }
-          }
+            star.style.border = "none";
         });
-        if (correct >= TARGET_POSITIONS.length) {
-          alert("Das Sternbild ist korrekt!");
+
+        placedStars.forEach(star => {
+            const x = parseFloat(star.style.left);
+            const y = parseFloat(star.style.top);
+
+            const matchIndex = usedTargets.findIndex(target =>
+                Math.abs(x - target.x) < TOLERANCE &&
+                Math.abs(y - target.y) < TOLERANCE
+            );
+
+            if (matchIndex !== -1) {
+                correct++;
+                usedTargets.splice(matchIndex, 1);
+            } else {
+                star.style.border = "2px solid red";
+            }
+        });
+
+        TARGET_POSITIONS.forEach(pos => {
+            const marker = document.createElement('div');
+            marker.style.position = 'absolute';
+            marker.style.width = `${TOLERANCE * 2}px`;
+            marker.style.height = `${TOLERANCE * 2}px`;
+            marker.style.left = `${pos.x - TOLERANCE}px`;
+            marker.style.top = `${pos.y - TOLERANCE}px`;
+            marker.style.pointerEvents = 'none';
+            marker.style.zIndex = '10';
+            starsOverlay.appendChild(marker);
+          });
+
+        if (correct === TARGET_POSITIONS.length) {
+            document.getElementById("check-stars").style.display = "none";
+            document.getElementById("text-stars").style.display= "block";
+            document.getElementById("text-stars").innerHTML = "You placed all stars correct, well done...";
         } else {
-          alert("Versuche es erneut!");
+            if(countMistakes <= 2){
+                countMistakes++;
+                document.getElementById("text-stars").style.display= "block";
+                document.getElementById("text-stars").innerHTML = `You placed ${correct}/${TARGET_POSITIONS.length} stars correct. Try again!`;
+            }
+            else{
+                countMistakes++;
+           document.getElementById("text-stars").style.display= "block";
+           document.getElementById("text-stars").innerHTML = `Unfortunately you didn't manage to fill Osiris’ constellation...`;
+           setTimeout(() => gameOver(), 2500);
+            }
         }
-      });
-      
+    });
 }

@@ -215,6 +215,17 @@
     left: 58.1vw;
     z-index: 100;
 }
+#collider25-transparent{
+    position: absolute;
+    width: 0.33vw;
+    height: 14vh;
+    top: 78vh;
+    left: 58.1vw;
+    z-index: 4;
+    background-color: #bc9473;
+    box-shadow: 2px 2px 2px #f6c355;
+    display: none;
+}
 #collider26{
     position: absolute;
     width: 11.3vw;
@@ -788,6 +799,7 @@
     left: 34vw;
     position: absolute;
     z-index: 100;
+    display: none;
 }
 #bench{
     width: 2.33vw;
@@ -796,6 +808,7 @@
     left: 39vw;
     position: absolute;
     z-index: 100;
+    display: none;
 }
 #door-lvl2{
     width: 5vw;
@@ -804,6 +817,7 @@
     left: 67.5vw;
     position: absolute;
     z-index: 100;
+    display: none;
 }
 
 
@@ -1070,6 +1084,7 @@
     height: 2.5vh;
     top: 79vh;
     left: 34.25vw;
+    display: none;
 }
 #mummy{
     z-index: 100;
@@ -1087,6 +1102,7 @@
     height: 4vh;
     top: 22vh;
     left: 30.75vw;
+    display: none;
 }
 #door-lvl3{
     z-index: 100;
@@ -1095,4 +1111,5 @@
     top: 21vh;
     width: 0.5vw;
     height: 8vh;
+    display: none;
 }

@@ -93,7 +93,10 @@ function showResultRooms(answer){
 function placeKey(){
     hintsOpen = false;
     document.getElementById("key-placeholder").style.display = "block";
+    document.getElementById("key").style.display = "block";
     document.getElementById("collider25").style.display = "none";
+    document.getElementById("collider25-transparent").style.display = "block";
+
 
     setTimeout(() =>{
         gameLoop();

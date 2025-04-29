@@ -377,7 +377,7 @@ function gameLoop() {
         }
         if (isCollidingWith("map")) {
             hintsOpen = true;
-            showMap();
+            showMapLvl3();
         }
         if (isCollidingWith("door-lvl3")) {
             switchToMystery3();
@@ -432,5 +432,6 @@ function gameOver(){
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl1").style.display = "none";
     document.getElementById("quiz-lvl2").style.display = "none";
+    document.getElementById("quiz-lvl3").style.display = "none";
     document.getElementById("game-over").style.display = "block";
 }
