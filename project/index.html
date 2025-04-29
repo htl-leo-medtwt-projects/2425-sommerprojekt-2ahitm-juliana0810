@@ -15,6 +15,7 @@
     <script src="script_game-lvl1.js" defer></script>
     <script src="script-game-lvl2.js" defer></script>
     <script src="script-game-lvl3.js" defer></script>
+    <script src="magnifier.js" defer></script>
 </head>
 <body>
     <div id="startpage">
@@ -343,6 +344,11 @@
              <p onclick="submitDirection()" id="select-direction">submit direction</p>
              <div class="lvl3-items" id="text-scarab-lvl3"></div>
              <div class="lvl3-items" id="mummy"></div>
+             <div id="mummy-box">
+                <img src="img/mummy.png" alt="Ancient Mummy">
+                <p id="mummy-text">Click on the image to zoom and search for the hint</p>
+            </div>
+            <p class="lvl3-items" onclick="continueMapSearch()" id="continue-map">continue</p>
 
             <div id="gameBoard"></div>
 

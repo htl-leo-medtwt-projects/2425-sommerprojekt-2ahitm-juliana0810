@@ -10,13 +10,6 @@ let ENEMY3 = {
 };
 
 
-const magnifier = new Magnifier(this, yourImage, { zoomLevel: 3, radius: 150 });
-canvas.addEventListener('mousemove', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    magnifier.updatePosition(e.clientX - rect.left, e.clientY - rect.top);
-});
-canvas.addEventListener('click', () => magnifier.toggle());
-
 
 function animateEnemy3() {
     if (ENEMY3.spriteImgNumber < 8) {
@@ -257,4 +250,52 @@ function closeScarab(){
     document.getElementById("transparent-box").style.display = "none";
 
     writeText(8);
+}
+let mummyMagnifier = null;
+
+
+function showMummy() {
+    document.getElementById("transparent-box").style.display = "block";
+    document.getElementById("continue-map").style.display = "block";
+    hintsOpen = true;
+    const mummyBox = document.getElementById("mummy-box");
+    const mummyImg = mummyBox.querySelector('img');
+    
+    if (!mummyMagnifier) {
+        mummyMagnifier = new Magnifier(mummyImg, {
+            zoomLevel: 6,
+            radius: 120
+        });
+        
+        mummyBox.style.cursor = 'zoom-in';
+        mummyBox.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isActive = mummyMagnifier.toggle();
+            this.style.cursor = isActive ? 'zoom-out' : 'zoom-in';
+        });
+    }
+    
+    mummyBox.style.display = "block";
+    
+    const closeHandler = function(e) {
+        if (!mummyBox.contains(e.target)) {
+            mummyBox.style.display = "none";
+            if (mummyMagnifier && mummyMagnifier.active) {
+                mummyMagnifier.toggle();
+                mummyBox.style.cursor = 'zoom-in';
+            }
+            document.removeEventListener('click', closeHandler);
+        }
+    };
+    
+    document.addEventListener('click', closeHandler);
+}
+function continueMapSearch(){
+    document.getElementById("transparent-box").style.display = "none";
+    document.getElementById("continue-map").style.display = "none";
+    document.getElementById("mummy-box").style.display = "none";
+    document.getElementById("mummy-text").style.display = "none";
+
+    hintsOpen = false;
+    gameLoop();
 }

@@ -364,7 +364,7 @@ function gameLoop() {
             }
         }
         if (isCollidingWith("mummy")) {
-            showPergament();
+            showMummy();
         }
 
 
