@@ -96,7 +96,7 @@ function switchToCharacter(){
                 </div>
                 <img onclick="goRight()" class="arrows-character" src="img/arrow-right.png">
             </div>
-            <p id="select" onclick="switchToLevelThree()">select</p>
+            <p id="select" onclick="switchToMystery3()">select</p>
         </div>`
     }
     

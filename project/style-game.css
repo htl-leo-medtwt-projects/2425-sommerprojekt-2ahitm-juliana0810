@@ -907,22 +907,31 @@
 }
 #puzzle-area {
     position: relative;
-    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;  
     margin: auto;
+    width: 40vw;
+    height: 50vh;
 }
 #sternbild-vorlage {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
     width: 40vw;
+    height: auto;
+    z-index: 5;
 }
 #stars-overlay {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 40vw;       
-    height: auto;     
-    pointer-events: all; 
+    left: 0;  
+    height: 50vh;
+    aspect-ratio: 1.5; 
+    z-index: 10;
+    pointer-events: auto; 
+    width: 40vw;
+    height: auto;
 }
 #stars-pool {
     display: flex;
@@ -931,16 +940,22 @@
     margin: 0.5em;
 }
 .star {
+    position: absolute; 
     width: 2em;
     height: auto;
     cursor: grab;
+    z-index: 20;
 }
+
 #check-stars {
     text-shadow: 1px 1px 1px #592a1d;
     color: #fcf3cf;
+    background-color: #000000b6;
+    box-shadow: 2px 2px 2px #fcf3cf;
     border: none;
     padding: 0.5em 1em;
     cursor: pointer;
     font-family: basicFont;
-    
+    margin-left: 48.5vw;
+    margin-top: 5em;
 }

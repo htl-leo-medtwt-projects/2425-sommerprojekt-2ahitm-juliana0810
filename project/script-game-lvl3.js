@@ -330,16 +330,17 @@ function switchToMystery3() {
     document.getElementById("quiz-lvl3").style.display = "block";
     
     const TARGET_POSITIONS = [
-        {x: 120, y: 50},
-        {x: 120, y: 100},
-        {x: 150, y: 100},
-        {x: 180, y: 100},
-        {x: 120, y: 150},
-        {x: 90, y: 180},
-        {x: 150, y: 180},
-        {x: 200, y: 30}
+        {x: 170, y: 140},
+        {x: 228, y: 155},
+        {x: 140, y: 205},
+        {x: 240, y: 292},
+        {x: 255, y: 265},
+        {x: 265, y: 252},
+        {x: 267, y: 390},
+        {x: 380, y: 307},
       ];
-      
+
+     
       const starsOverlay = document.getElementById('stars-overlay');
       const stars = document.querySelectorAll('.star');
       let draggedStar = null;
@@ -374,13 +375,13 @@ function switchToMystery3() {
           const x = rect.left - overlayRect.left;
           const y = rect.top - overlayRect.top;
           for (const target of TARGET_POSITIONS) {
-            if (Math.abs(x - target.x) < 20 && Math.abs(y - target.y) < 20) {
+            if (Math.abs(x - target.x) < 50 && Math.abs(y - target.y) < 50){
               correct++;
               break;
             }
           }
         });
-        if (correct >= 5) {
+        if (correct >= TARGET_POSITIONS.length) {
           alert("Das Sternbild ist korrekt!");
         } else {
           alert("Versuche es erneut!");
