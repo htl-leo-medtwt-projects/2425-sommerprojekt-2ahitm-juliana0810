@@ -148,7 +148,7 @@ function writeText(index) {
             textContainer.appendChild(p);
         }, delay);
 
-        delay += 300;
+        delay += 3000;
     });
 
     setTimeout(() => {
