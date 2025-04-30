@@ -109,6 +109,7 @@ function switchToLevelThree(){
     document.getElementById("random-enemy-img").src = "img/enemy2-lvl3.png";
     document.getElementById("random-enemy2-img").style.display = "block";
     document.getElementById("random-enemy2").style.display = "block";
+    document.getElementById("random-enemy").style.display = "block";
 
     //change background
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level3.png')";
@@ -167,6 +168,10 @@ function switchToLevelThree(){
     document.getElementById("enemy-skeleton").style.right = '0px';
     document.getElementById("random-enemy-img").style.right = '0px';
     document.getElementById("random-enemy2-img").style.right = '0px';
+
+    /*just for now*/
+    playerImage = `<img id="spriteImg" src="${players[counter]}">`;
+    document.getElementById("player").innerHTML = playerImage;
 
     resetLevel();
     writeText(7);
@@ -424,12 +429,13 @@ function switchToMystery3() {
                 countMistakes++;
                 document.getElementById("text-stars").style.display= "block";
                 document.getElementById("text-stars").innerHTML = `You placed ${correct}/${TARGET_POSITIONS.length} stars correct. Try again!`;
+                setTimeout(() => switchToLevelFour(), 2500);
             }
             else{
                 countMistakes++;
-           document.getElementById("text-stars").style.display= "block";
-           document.getElementById("text-stars").innerHTML = `Unfortunately you didn't manage to fill Osiris’ constellation...`;
-           setTimeout(() => gameOver(), 2500);
+                document.getElementById("text-stars").style.display= "block";
+                document.getElementById("text-stars").innerHTML = `Unfortunately you didn't manage to fill Osiris’ constellation...`;
+                setTimeout(() => gameOver(), 2500);
             }
         }
     });

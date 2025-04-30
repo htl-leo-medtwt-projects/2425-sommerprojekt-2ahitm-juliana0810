@@ -1,6 +1,6 @@
 /************* collisions level 1 **********************/
 .collider{
-    background-color: transparent;
+    background-color: rgba(102, 51, 153, 0.55);
     pointer-events: none;
 }
 #colliderright{
