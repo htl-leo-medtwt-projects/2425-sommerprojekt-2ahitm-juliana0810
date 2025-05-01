@@ -424,12 +424,12 @@ function switchToMystery3() {
             document.getElementById("check-stars").style.display = "none";
             document.getElementById("text-stars").style.display= "block";
             document.getElementById("text-stars").innerHTML = "You placed all stars correct, well done...";
+            setTimeout(() => switchToLevelFour(), 2500);
         } else {
             if(countMistakes <= 2){
                 countMistakes++;
                 document.getElementById("text-stars").style.display= "block";
                 document.getElementById("text-stars").innerHTML = `You placed ${correct}/${TARGET_POSITIONS.length} stars correct. Try again!`;
-                setTimeout(() => switchToLevelFour(), 2500);
             }
             else{
                 countMistakes++;

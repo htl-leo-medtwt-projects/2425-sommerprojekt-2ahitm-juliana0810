@@ -15,9 +15,9 @@ function switchToLevelFour(){
 
     document.getElementById("random-enemy-img").src = "img/enemy2-lvl4.png";
     document.getElementById("random-enemy").style.display = "block";
-    document.getElementById("random-enemy").style.width = "5vw";
-    document.getElementById("random-enemy").style.height = "10vw";
-    document.getElementById("random-enemy-img").style.height = "40vh";
+    document.getElementById("random-enemy").style.width = "8vw";
+    document.getElementById("random-enemy").style.height = "5vw";
+    document.getElementById("random-enemy-img").style.height = "60vh";
     document.getElementById("random-enemy2").style.display = "none";
     document.getElementById("random-enemy2-img").style.display = "none";
    

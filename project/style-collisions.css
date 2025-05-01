@@ -1,6 +1,6 @@
 /************* collisions level 1 **********************/
 .collider{
-    background-color: rgba(102, 51, 153, 0.55);
+    background-color: rgba(9, 45, 82, 0.564);
     pointer-events: none;
 }
 #colliderright{
@@ -1112,4 +1112,158 @@
     width: 0.5vw;
     height: 8vh;
     display: none;
+}
+
+/************************************/
+/*        COLLIDER LEVEL 4          */
+/************************************/
+.collider-lvl4{
+    background-color: rgba(158, 14, 89, 0.55);
+    position: absolute;
+    z-index: 100;
+    display: none;
+}
+#collider144{
+    width: 6vw;
+    height: 0.6vh;
+    top: 30.8vh;
+    left: 68vw;
+}
+#collider145{
+    width: 6vw;
+    height: 2.6vh;
+    top: 37.5vh;
+    left: 68vw;
+}
+#collider146{
+    width: 0.33vw;
+    height: 6vh;
+    top: 37.5vh;
+    left: 68vw;
+}
+#collider147{
+    width: 5.5vw;
+    height: 0.5vh;
+    top: 43.5vh;
+    left: 63vw;
+}
+#collider148{
+    width: 1.5vw;
+    height: 8vh;
+    top: 23vh;
+    left: 68vw;
+}
+#collider149{
+    width: 1.5vw;
+    height: 11vh;
+    top: 12vh;
+    left: 65.5vw;
+}
+#collider150{
+    width: 4vw;
+    height: 0.5vh;
+    top: 22.5vh;
+    left: 65.5vw;
+}
+#collider151{
+    width: 0.33vw;
+    height: 19vh;
+    top: 12vh;
+    left: 61vw;
+}
+#collider152{
+    width: 5.3vw;
+    height: 0.5vh;
+    top: 31vh;
+    left: 56vw;
+}
+#collider153{
+    width: 0.33vw;
+    height:3vh;
+    top: 28vh;
+    left: 56vw;
+}
+#collider154{
+    width: 2.25vw;
+    height:2.5vh;
+    top: 27vh;
+    left: 54vw;
+}
+#collider155{
+    width: 4vw;
+    height: 0.6vh;
+    top: 26.7vh;
+    left: 50vw;
+}
+#collider156{
+    width: 0.33vw;
+    height: 6vh;
+    top: 21vh;
+    left: 53.75vw;
+}
+#collider157{
+    width: 8vw;
+    height: 0.6vh;
+    top: 20.5vh;
+    left: 46vw;
+}
+#collider158{
+    width: 5vw;
+    height: 2.5vh;
+    top: 20.5vh;
+    left: 42vw;
+}
+#collider159{
+    width: 0.33vw;
+    height: 12vh;
+    top: 20.5vh;
+    left: 41.75vw;
+}
+#collider160{
+    width: 0.33vw;
+    height: 12vh;
+    top: 13vh;
+    left: 34.5vw;
+}
+#collider161{
+    width: 4vw;
+    height: 2.5vh;
+    top: 22.5vh;
+    left: 34.5vw;
+}
+#collider162{
+    width: 2.5vw;
+    height: 6vh;
+    top: 22.5vh;
+    left: 36vw;
+}
+#collider163{
+    width: 0.33vw;
+    height: 9vh;
+    top: 30vh;
+    left: 32.5vw;
+}
+#collider164{
+    width: 2.5vw;
+    height: 2.5vh;
+    top: 28.5vh;
+    left: 30vw;
+}
+#collider165{
+    width: 3.5vw;
+    height: 3vh;
+    top: 37vh;
+    left: 32.75vw;
+}
+#collider166{
+    width: 0.33vw;
+    height: 9vh;
+    top: 39vh;
+    left: 36vw;
+}
+#collider167{
+    width: 5vw;
+    height: 0.6vh;
+    top: 48vh;
+    left: 36vw;
 }
