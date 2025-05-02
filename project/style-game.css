@@ -503,6 +503,7 @@
 
 /*random enemy*/
 #random-enemy{
+    background-color: transparent;
     position: absolute;
     z-index: 5;
     width: 2.5vw; 
@@ -971,4 +972,23 @@
     margin-top: 0.5em;
     font-size: 120%;
     color: #fcf3cf;
+}
+
+/*random enemy 4*/
+#random-enemy3{
+    background-color: rgba(255, 0, 0, 0.384);
+    position: absolute;
+    z-index: 5;
+    width: 3vw; 
+    height: 7vh; 
+    overflow: hidden;
+    opacity: 0;
+    display: none;
+}
+#random-enemy3-img{
+    height: 60vh;
+    position: absolute;
+    top: 0;        
+    left: 0;      
+    width: auto;  
 }

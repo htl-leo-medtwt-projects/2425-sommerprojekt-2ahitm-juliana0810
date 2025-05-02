@@ -87,6 +87,11 @@ let TEXTSNIPPETS = [
         'A trap ?! - the door on the left side was fake,',
         'see the map to find the secret door to escape your fate'
     ]
+    ,
+    [
+        "I’ll admit, the previous levels were almost too easy...",
+        "But in this one, something unexpected waits in the shadows."
+    ]
 ];
 
 let timeLeft;
@@ -191,6 +196,9 @@ function writeText(index) {
                 hintsOpen = false;
                 gameLoop();
             }
+            else if(index == 10){
+                gameLoop();
+            }
         };
         textContainer.appendChild(closeHint);
     }, delay); 
@@ -203,7 +211,7 @@ function writeText(index) {
 
 function respawnCoin() {
     const surface = GAME_SCREEN.surface.getBoundingClientRect();
-    const colliders = document.querySelectorAll('.collider, .collider-lvl2, .collider-lvl3');
+    const colliders = document.querySelectorAll('.collider, .collider-lvl2, .collider-lvl3, .collider-lvl4');
     
     const colliderRects = Array.from(colliders).map(collider => collider.getBoundingClientRect());
 
