@@ -202,6 +202,7 @@ function writeText(index) {
             }
             else if(index == 10){
                 document.getElementById("special-box").style.display = "block";
+                startTimer();
                 gameLoop();
             }
         };
@@ -383,6 +384,10 @@ function gameLoop() {
             document.getElementById("symbolCanvas").style.display = "block";
             document.getElementById("text-container-level1").style.top = "60vh";
             startSymbolPuzzle();
+        }
+        if (isCollidingWith("special-box")) {
+            hintsOpen = true;
+            showItemsSpecialBox();
         }
 
         /*********** ENEMYS *********** */

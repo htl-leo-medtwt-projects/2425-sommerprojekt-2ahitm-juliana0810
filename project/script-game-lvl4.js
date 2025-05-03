@@ -159,15 +159,41 @@ function startSymbolPuzzle(){
                 mouseY >= imgY &&
                 mouseY <= imgY + 64
             ) {
-                if (sym.name === correctSymbol) {
-                    alert("✅ Du hast das richtige Symbol gewählt!");
-                    canvas.removeEventListener("click", handleClick);
+                canvas.removeEventListener("click", handleClick);
                     canvas.style.display = "none";
+                    document.getElementById("text-container-level1").style.display = "none";
+                    document.getElementById("transparent-box").style.display = "none";
+                    document.getElementById("textboxLake").style.display = "block";
+
+                if (sym.name === correctSymbol) {
+                    hintsOpen = false;
+                    document.getElementById("textboxLake").innerHTML = `<p>As it seems, you may continue your expedition...</p>`
+                    document.getElementById("lake").style.display = "none";
+                    setTimeout(() => document.getElementById("textboxLake").style.display = "none", 3000);
+                    setTimeout(() => gameLoop(), 3000);
                 } else {
-                    alert("❌ Das war nicht das richtige Symbol.");
+                    document.getElementById("textboxLake").innerHTML = `<p>Oh no... You chosen the wrong symbol!</p>`
+                    gameEnded = true;
+                    setTimeout(() => gameOver(), 3000);
                 }
             }
         }
     }
     canvas.style.display = "block";
+}
+function showItemsSpecialBox(){
+    document.getElementById("transparent-box").style.display = "block";
+    document.getElementById("itemSpecialBox").style.display = "block";
+
+    document.getElementById("img1").onclick = () => {
+        document.getElementById("itemSpecialBox").innerHTML = `<img class="clicked-img-specialBox" src="img/tatort-map-lvl4.png">`;
+    };
+
+    document.getElementById("img2").onclick = () => {
+        document.getElementById("itemSpecialBox").innerHTML = `<img class="clicked-img-specialBox" src="img/open-scroll-lvl4.png"> `;
+    };
+
+    document.getElementById("img3").onclick = () => {
+        document.getElementById("itemSpecialBox").innerHTML = `<img class="clicked-img-specialBox" id="zeiger-lvl4" src="img/zeiger-lvl4.png">`;
+    };
 }

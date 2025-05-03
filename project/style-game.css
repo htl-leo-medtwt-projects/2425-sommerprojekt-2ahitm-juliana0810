@@ -989,3 +989,78 @@
 #symbolCanvas {
     cursor: pointer;
 }
+#textboxLake{
+    text-align: center; 
+    font-size: 175%;
+    margin: 0 auto;
+    width: 70%; 
+    position: absolute;
+    top: 30vh;
+    left: 15vw;
+    font-family: message;
+    font-weight: bold;
+    background-color: #080200be;
+    text-shadow: 1px 1px 1px #9e8769;
+    box-shadow: 2px 2px 2px #fcf3cf;
+    z-index: 10;
+    display: none;
+    padding: 1em 2em;
+    color: #fcf3cf;
+}
+.clicked-img-specialBox{
+    width: 50vw;
+    height: auto;
+    position: absolute;
+    left: 27.5vw;
+    top: 20vh;
+    z-index: 10;
+}
+#zeiger-lvl4{
+    transform: rotate(-25deg);
+    width: 30vw;
+    top: 47vh;
+}
+#itemSpecialBox{
+    display: none;
+}
+.clickable-img{
+    width: 20vw;
+    height: auto;
+    cursor: pointer;
+    animation: movingImg 2s infinite ease;
+    position: absolute;
+    z-index: 10;
+}
+#img1{
+    top: 35vh;
+    left: 25vw;
+}
+#img2{
+    top: 25vh;
+    left: 45vw;
+}
+#img3{
+    top: 47vh;
+    left: 60vw;
+}
+@keyframes movingImg {
+    0%{transform: rotate(20deg);}
+    50%{transform: rotate(-10deg);}
+    100%{transform: rotate(20deg);}
+}
+#selectItemSpecialbox{
+    z-index: 999;
+    pointer-events: auto;
+    display: none;
+    position: absolute;
+    background-color: #080200be;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    font-family: basicFont;
+    color: #fcf3cf;
+    box-shadow: 1px 1px 1px #c1bebb;
+    letter-spacing: 0.2em;
+    text-align: center;
+    top: 75vh;
+    left: 43vw;
+}
