@@ -92,6 +92,10 @@ let TEXTSNIPPETS = [
         "I’ll admit, the previous levels were almost too easy...",
         "But in this one, something unexpected waits in the shadows."
     ]
+    ,[
+        "Five ancient symbols rise from the sacred lake.",
+        "Only the watcher knows the truth. Choose wisely..."
+    ]
 ];
 
 let timeLeft;
@@ -197,6 +201,7 @@ function writeText(index) {
                 gameLoop();
             }
             else if(index == 10){
+                document.getElementById("special-box").style.display = "block";
                 gameLoop();
             }
         };
@@ -370,6 +375,14 @@ function gameLoop() {
         if (isCollidingWith("door-lvl3")) {
             hintsOpen = true;
             switchToMystery3();
+        }
+
+        /*********** level 4 *********** */
+        if (isCollidingWith("lake")) {
+            hintsOpen = true;
+            document.getElementById("symbolCanvas").style.display = "block";
+            document.getElementById("text-container-level1").style.top = "60vh";
+            startSymbolPuzzle();
         }
 
         /*********** ENEMYS *********** */

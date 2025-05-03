@@ -1333,12 +1333,6 @@
     top: 68.75vh;
     left: 34.7vw;
 }
-#lake{
-    width: 6.5vw;
-    height: 4.5vh;
-    top: 72vh;
-    left: 34.7vw;
-}
 #collider179{
     width: 7vw;
     height: 0.6vh;
@@ -1392,4 +1386,13 @@
     height: 10vh;
     top: 75vh;
     left: 68vw;
+}
+
+#lake{
+    width: 6.5vw;
+    height: 4.5vh;
+    top: 72vh;
+    left: 34.7vw;
+    position: absolute;
+    z-index: 100;
 }

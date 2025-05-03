@@ -1,9 +1,7 @@
 /***********************************
- * LEVEL 3
+ * LEVEL 4
  * **********************************/
 function switchToLevelFour(){
-
-    valueEnemy2 = LEVEL_FOUR_X;
     hintsOpen = false;
 
     //switch to right board
@@ -17,9 +15,10 @@ function switchToLevelFour(){
     document.getElementById("enemy").style.width = "2.75vw";
 
     document.getElementById("random-enemy").style.display = "none";
-    document.getElementById("random-enemy3").style.display = "block";
-    document.getElementById("random-enemy2").style.display = "none";
-    document.getElementById("random-enemy2-img").style.display = "none";
+    document.getElementById("random-enemy2-img").src = "img/enemy2-lvl4.png";
+    document.getElementById("random-enemy2").style.display = "block";
+    document.getElementById("random-enemy2").style.opacity = "1";
+    document.getElementById("random-enemy2-img").style.display = "block";
    
 
     //change background
@@ -62,13 +61,12 @@ function switchToLevelFour(){
     ENEMY.box.style.opacity = '1';
     ENEMY3.box.style.left = "750px";
     ENEMY3.box.style.top = "300px";
-    ENEMY3.box.style.opacity = "1";
 
-    ENEMY.speed = 0.6;
+    ENEMY.speed = 0.8;
+    ENEMY3.speed = 1.1;
 
     document.getElementById("enemy-skeleton").style.right = '0px';
-    document.getElementById("random-enemy3-img").style.right = '0px';
-    document.getElementById("random-enemy3-img").style.right = '0px';
+    document.getElementById("random-enemy2-img").style.right = '0px';
 
     /*just for now*/
     playerImage = `<img id="spriteImg" src="${players[counter]}">`;
@@ -77,97 +75,99 @@ function switchToLevelFour(){
     resetLevel();
     writeText(10);
 }
+/*fremdcode */
+function startSymbolPuzzle(){
+    document.getElementById("transparent-box").style.display = "block";
+    
+    const canvas = document.getElementById("symbolCanvas");
+    const ctx = canvas.getContext("2d");
 
-/***********************************
- *  ENEMY 4
- * **********************************/
+    const correctSymbol = "Eye";
 
-let ENEMY4 = {
-    box: document.getElementById("random-enemy3"),
-    sprite: document.getElementById("random-enemy3-img"),
-    speed: 1.2,
-    spriteImgNumber: 0,
-    direction: 'down',
-    yOffset: 0,
-    targetX: 0,
-    targetY: 0
-};
+    const symbols = [
+        { name: "Anch", x: 275, y: 100, imgSrc: "img/anch-lvl4.png", floatOffset: 0 },
+        { name: "Skarabäus", x: 425, y: 80, imgSrc: "img/skarabäus-lvl4.png", floatOffset: 0 },
+        { name: "Eye", x: 575, y: 120, imgSrc: "img/eye-lvl4.png", floatOffset: 0 },
+        { name: "Papyrus", x: 725, y: 90, imgSrc: "img/papyrus-lvl4.png", floatOffset: 0 },
+        { name: "Temple", x: 825, y: 130, imgSrc: "img/temple-lvl4.png", floatOffset: 0 },
+    ];
 
-function animateEnemy2() {
-    if (ENEMY2.spriteImgNumber < 8) {
-        ENEMY2.spriteImgNumber++;
-        let x = parseFloat(ENEMY2.sprite.style.right) || 0;
-        x += 31;
-        ENEMY2.sprite.style.right = x + "px";
-        ENEMY2.sprite.style.top= ENEMY2.yOffset + "px";
-    } else {
-        ENEMY2.sprite.style.right= "0px";
-        ENEMY2.spriteImgNumber = 0;
-    }
-}
 
-function pickRandomTargetForEnemy2() {
-    const surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
-    const topR    = document.getElementById('collidertop').getBoundingClientRect();
-    const bottomR = document.getElementById('colliderbottom').getBoundingClientRect();
-    const leftR   = document.getElementById('colliderleft').getBoundingClientRect();
-    const rightR  = document.getElementById('colliderright').getBoundingClientRect();
-  
-  
-    const minX = leftR.right   - surfaceRect.left;
-    const maxX = rightR.left   - surfaceRect.left - ENEMY2.box.offsetWidth;
-    const minY = topR.bottom   - surfaceRect.top;
-    const maxY = bottomR.top   - surfaceRect.top - ENEMY2.box.offsetHeight;
-  
-    ENEMY2.targetX = Math.random() * (maxX - minX) + minX;
-    ENEMY2.targetY = Math.random() * (maxY - minY) + minY;
-}
+    const images = {};
+    let imagesLoaded = 0;
 
-setInterval(() => {
-    if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy2();
-}, 4000);
+    symbols.forEach(sym => {
+        const img = new Image();
+        img.src = sym.imgSrc;
+        img.onload = () => {
+            imagesLoaded++;
+            if (imagesLoaded === symbols.length) {
+                startAnimation();
+            }
+        };
+        images[sym.name] = img;
+    });
 
-function moveEnemy2Randomly() {
-    const enemyRect   = ENEMY2.box.getBoundingClientRect();
-    const surfaceRect = GAME_SCREEN.surface.getBoundingClientRect();
-  
-    const currX = enemyRect.left - surfaceRect.left;
-    const currY = enemyRect.top  - surfaceRect.top;
-  
-   
-    let dx = ENEMY2.targetX - currX;
-    let dy = ENEMY2.targetY - currY;
-    const dist = Math.hypot(dx, dy);
-    if (dist > 0) {
-      dx /= dist;
-      dy /= dist;
-      
-      const stepX = dx * ENEMY2.speed;
-      const stepY = dy * ENEMY2.speed;
-      const newX = currX + stepX;
-      const newY = currY + stepY;
-      ENEMY2.box.style.left = `${newX}px`;
-      ENEMY2.box.style.top  = `${newY}px`;
-    }
-  
-    if (Math.abs(dx) > Math.abs(dy)) {
-      ENEMY2.direction = dx > 0 ? 'right' : 'left';
-    } else {
-      ENEMY2.direction = dy > 0 ? 'down' : 'up';
-    }
-    switch (ENEMY2.direction) {
-      case 'up':    ENEMY2.yOffset = 0;    break;
-      case 'down':  ENEMY2.yOffset = -75;  break;
-      case 'left':  ENEMY2.yOffset = -110; break;
-      case 'right': ENEMY2.yOffset = -110; break;
+    let floatAngle = 0;
+    function startAnimation(){
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            floatAngle += 0.05;
+        
+            const scale = 0.03; 
+        
+            symbols.forEach(sym => {
+                const img = images[sym.name];
+                const floatY = Math.sin(floatAngle + sym.x / 100) * 5;
+                sym.floatOffset = floatY;
+        
+                const imgWidth = img.width * scale;
+                const imgHeight = img.height * scale;
+                const drawX = sym.x - imgWidth / 2;
+                const drawY = sym.y + floatY - imgHeight / 2;
+        
+                ctx.drawImage(img, drawX, drawY, imgWidth, imgHeight);
+        
+                ctx.fillStyle = "#ddba82";
+                ctx.font = "14px sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(sym.name, sym.x, sym.y + floatY + imgHeight / 2 + 15);
+            });
+        
+            requestAnimationFrame(draw);
+        }
+        
+    
+        draw();
     }
     
+    writeText(11);
 
-    if (ENEMY2.direction === 'left') {
-        ENEMY2.box.style.transform = 'scaleX(-1)';
-    } else if (ENEMY2.direction === 'right') {
-        ENEMY2.box.style.transform = 'scaleX(1)';
-    }    
-  
-    animateEnemy2();
+    canvas.addEventListener("click", handleClick);
+
+    function handleClick(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        for (let sym of symbols) {
+            const imgX = sym.x - 32;
+            const imgY = sym.y + sym.floatOffset - 32;
+            if (
+                mouseX >= imgX &&
+                mouseX <= imgX + 64 &&
+                mouseY >= imgY &&
+                mouseY <= imgY + 64
+            ) {
+                if (sym.name === correctSymbol) {
+                    alert("✅ Du hast das richtige Symbol gewählt!");
+                    canvas.removeEventListener("click", handleClick);
+                    canvas.style.display = "none";
+                } else {
+                    alert("❌ Das war nicht das richtige Symbol.");
+                }
+            }
+        }
+    }
+    canvas.style.display = "block";
 }
