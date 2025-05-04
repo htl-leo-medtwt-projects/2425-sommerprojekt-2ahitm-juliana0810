@@ -185,15 +185,97 @@ function showItemsSpecialBox(){
     document.getElementById("transparent-box").style.display = "block";
     document.getElementById("itemSpecialBox").style.display = "block";
 
+
+    writeText(12);
+
     document.getElementById("img1").onclick = () => {
+        document.getElementById("text-container-level1").style.display = "none";
+        document.getElementById("selectItemSpecialbox").style.display = "block";
         document.getElementById("itemSpecialBox").innerHTML = `<img class="clicked-img-specialBox" src="img/tatort-map-lvl4.png">`;
     };
 
     document.getElementById("img2").onclick = () => {
+        document.getElementById("text-container-level1").style.display = "none";
+        document.getElementById("selectItemSpecialbox").style.display = "block";
         document.getElementById("itemSpecialBox").innerHTML = `<img class="clicked-img-specialBox" src="img/open-scroll-lvl4.png"> `;
     };
 
     document.getElementById("img3").onclick = () => {
+        document.getElementById("text-container-level1").style.display = "none";
+        document.getElementById("selectItemSpecialbox").style.display = "block";
         document.getElementById("itemSpecialBox").innerHTML = `<img class="clicked-img-specialBox" id="zeiger-lvl4" src="img/zeiger-lvl4.png">`;
     };
+}
+function continueSpecialBox(){
+    document.getElementById("selectItemSpecialbox").style.display = "none";
+    document.getElementById("transparent-box").style.display = "none";
+    document.getElementById("itemSpecialBox").style.display = "none";
+    document.getElementById("special-box").style.display = "none";
+    document.getElementById("tatort").style.display = "block";
+
+    hintsOpen = false;
+    gameLoop();
+}
+function showMysteriousSpace(){
+    document.getElementById("transparent-box").style.display = "block";
+    document.getElementById("handscan-wrapper").style.display = "block";
+}
+function startHandScan() {
+    const scanner = document.getElementById("scanner-line");
+    const result = document.getElementById("scan-result");
+  
+    scanner.style.display = "block";
+  
+    scanner.classList.remove("scanned"); 
+    void scanner.offsetWidth; 
+    scanner.classList.add("scanned");
+  
+    setTimeout(() => {
+      scanner.style.display = "none";
+      result.style.display = "block";
+      result.innerHTML = "<p>Zugriff gewährt – willkommen zurück, Archäologe!</p>";
+    }, 2000); 
+  }
+  
+function startSliderPuzzle(){
+    interact('.tile').draggable({
+        inertia: true,
+        modifiers: [
+          interact.modifiers.restrict({
+            restriction: '#slider-puzzle',
+            endOnly: true
+          })
+        ],
+        listeners: {
+          move (event) {
+            const tile = event.target;
+            const empty = document.querySelector('.tile.empty');
+            
+            const tileRect = tile.getBoundingClientRect();
+            const emptyRect = empty.getBoundingClientRect();
+      
+            const dx = Math.abs(tileRect.left - emptyRect.left);
+            const dy = Math.abs(tileRect.top - emptyRect.top);
+      
+            // Nur benachbarte Tiles verschieben
+            if ((dx === 105 && dy === 0) || (dy === 105 && dx === 0)) {
+              // Tausche Positionen im DOM
+              const parent = tile.parentNode;
+              parent.insertBefore(tile, empty);
+              parent.insertBefore(empty, tile.nextSibling);
+            }
+          }
+        }
+      });
+}
+function checkIfPuzzleSolved() {
+    const tiles = Array.from(document.querySelectorAll('.tile'));
+    const correct = tiles.every((tile, index) => {
+      const num = parseInt(tile.textContent);
+      return tile.classList.contains("empty") || num === index + 1;
+    });
+    if (correct) {
+      alert("Puzzle gelöst!");
+    
+    }
 }

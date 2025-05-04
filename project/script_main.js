@@ -95,6 +95,14 @@ let TEXTSNIPPETS = [
     ,[
         "Five ancient symbols rise from the sacred lake.",
         "Only the watcher knows the truth. Choose wisely..."
+    ],
+    [
+        'Three special items were found in the mysterious box...',
+        'Choose one, i’ll guide you the way'
+    ]
+    ,
+    [
+        
     ]
 ];
 
@@ -388,6 +396,10 @@ function gameLoop() {
         if (isCollidingWith("special-box")) {
             hintsOpen = true;
             showItemsSpecialBox();
+        }
+        if (isCollidingWith("tatort")) {
+            hintsOpen = true;
+            showMysteriousSpace();
         }
 
         /*********** ENEMYS *********** */

@@ -1396,3 +1396,12 @@
     position: absolute;
     z-index: 100;
 }
+#tatort{
+    display: none;
+    width: 2vw;
+    height: 4vh;
+    top: 40vh;
+    left: 37vw;
+    position: absolute;
+    z-index: 100;
+}
