@@ -259,7 +259,8 @@ function closeHandScan(){
 function showFootPrints(){
     document.getElementById("transparent-box").style.display = "block";
     document.getElementById("medicine-box").style.display = "block";
-    setTimeout(setupMedicineSelection, 50);
+    document.getElementById("text-container-level1").style.top = "65vh";
+    writeText(14);
 }
 
 /* medicine */
@@ -285,29 +286,36 @@ function setupMedicineSelection() {
 
 
 function selectedAnswerMedicine() {
+    document.getElementById("medicine-box").style.height = "20vh";
+    document.getElementById("footprints").style.display = "none";
     if (!selectedMedicine) {
         alert("Please select a medicine first!");
         return;
     }
     if (selectedMedicine === "bandage") {
         document.getElementById("medicine-box").innerHTML =
-            `<p class="medicine-result">Yes you saved him! You gained a new buddy!</p>`;
+            `<p class="medicine-result">Yes you saved him! You gained a new buddy!</p>
+             <p onclick="closeMedicine()" class="close-medicine">close</p>`;
     } else {
         document.getElementById("medicine-box").innerHTML =
-            `<p class="medicine-result">No that was the wrong medicine! It's to late...</p>`;
+            `<p class="medicine-result">No that was the wrong medicine! It's to late...</p>
+            <p onclick="closeMedicine()" class="close-medicine">close</p>`;
         removeLife();
     }
-    setTimeout(() => closeMedicine(), 2500);
 }
 function closeMedicine(){
     document.getElementById("transparent-box").style.display = "none";
     document.getElementById("medicine-box").style.display = "none";
 
-    hintsOpen = false;
-    gameLoop();
+    document.getElementById("text-container-level1").style.top = "30vh";
+    writeText(15);
 }
 
 /* QUIZ LEVEL FOUR */
+function switchToMystery4(){
+    document.getElementById("gameBody").style.display = "none";
+    document.getElementById("quiz-lvl4").style.display = "block";
+}
 function startSliderPuzzle(){
     interact('.tile').draggable({
         inertia: true,

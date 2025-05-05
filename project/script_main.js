@@ -104,6 +104,13 @@ let TEXTSNIPPETS = [
     [
         "The wall bears an ancient print – a hand printed onto stone.",
         "The handprint was not left by chance – you have to identify it’s owner.",
+    ],
+    [
+        'Three options...one choice to make, that could cost a life...',
+        'Choose wise if you want Jack to be by your side from now on.'
+    ],
+    [
+        'Still alive? The stairs in the top left corner lead to freedom...'
     ]
 ];
 
@@ -217,6 +224,12 @@ function writeText(index) {
             else if(index == 13){
                 document.getElementById("transparent-box").style.display = "block";
                 document.getElementById("handscan-wrapper").style.display = "block";
+            }
+            else if(index == 14){
+                setTimeout(()=> setupMedicineSelection(), 500);
+            }
+            else if(index == 15){
+                document.getElementById("door-lvl4").style.display = "block";
             }
         };
         textContainer.appendChild(closeHint);
@@ -409,6 +422,10 @@ function gameLoop() {
         if (isCollidingWith("footprints")) {
             hintsOpen = true;
             showFootPrints();
+        }
+        if (isCollidingWith("door-lvl4")) {
+            hintsOpen = true;
+            switchToMystery4();
         }
 
 

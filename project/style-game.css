@@ -1199,8 +1199,32 @@
     letter-spacing: 0.2em;
     text-shadow: 1px 1px 1px #9e8769;
     color: #fcf3cf;
-    margin-top: 3em;
+    margin-top: 5vh;
 }
+.close-medicine{
+    font-family: basicFont;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #9e8769;
+    color: #fcf3cf;
+    margin: 2.2em;
+}
+
+/*door*/
+#door-lvl4{
+    position: absolute;
+    z-index: 100;
+    top: 11.25vh;
+    left: 30.5vw;
+    width: 4vw;
+    height: 1.75vh;
+    background-color: #9e8769;
+    box-shadow: 1px 1px 1px #fcf3cf;
+    display: none;
+}
+
 /*********** MYSTERY FOUR ***********/
 /*slider puzzle*/
 #slider-puzzle {
