@@ -102,7 +102,8 @@ let TEXTSNIPPETS = [
     ]
     ,
     [
-        
+        "The wall bears an ancient print – a hand printed onto stone.",
+        "The handprint was not left by chance – you have to identify it’s owner.",
     ]
 ];
 
@@ -212,6 +213,10 @@ function writeText(index) {
                 document.getElementById("special-box").style.display = "block";
                 startTimer();
                 gameLoop();
+            }
+            else if(index == 13){
+                document.getElementById("transparent-box").style.display = "block";
+                document.getElementById("handscan-wrapper").style.display = "block";
             }
         };
         textContainer.appendChild(closeHint);

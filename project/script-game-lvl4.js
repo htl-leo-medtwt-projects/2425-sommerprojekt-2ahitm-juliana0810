@@ -216,13 +216,13 @@ function continueSpecialBox(){
     hintsOpen = false;
     gameLoop();
 }
+
 function showMysteriousSpace(){
-    document.getElementById("transparent-box").style.display = "block";
-    document.getElementById("handscan-wrapper").style.display = "block";
+    document.getElementById("text-container-level1").style.top = "30vh";
+    writeText(13);
 }
 function startHandScan() {
     const scanner = document.getElementById("scanner-line");
-    const result = document.getElementById("scan-result");
   
     scanner.style.display = "block";
   
@@ -232,11 +232,29 @@ function startHandScan() {
   
     setTimeout(() => {
       scanner.style.display = "none";
-      result.style.display = "block";
-      result.innerHTML = "<p>Zugriff gewährt – willkommen zurück, Archäologe!</p>";
+      document.getElementById("scan-button").style.display = "none";
+      document.getElementById("identify-text").style.display = "block";
+      document.getElementById("close-handscan").style.display = "block";
+      document.getElementById("handprint").src = "img/other-explorer-singleImg.png";
+      document.getElementById("handprint").style.width = "35vw";
+      document.getElementById("handprint").style.marginTop = "3em";
     }, 2000); 
   }
   
+function closeHandScan(){
+    document.getElementById("identify-text").style.display = "none";
+    document.getElementById("close-handscan").style.display = "none";
+    document.getElementById("transparent-box").style.display = "none";
+    document.getElementById("handscan-wrapper").style.display = "none";
+
+    document.getElementById("footprints").style.display = "block";
+    document.getElementById("footprints-img").style.display = "block";
+
+    hintsOpen = false;
+    gameLoop();
+}
+
+/* QUIZ LEVEL FOUR */
 function startSliderPuzzle(){
     interact('.tile').draggable({
         inertia: true,
