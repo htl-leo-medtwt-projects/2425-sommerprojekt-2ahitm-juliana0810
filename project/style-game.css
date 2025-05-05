@@ -1141,24 +1141,66 @@
 /* footprints */
 #footprints-img{
     width: 7.5vw;
-    opacity: 0.7;
+    opacity: 1;
     position: absolute;
     z-index: 10;
-    top: 40vh;
-    left: 55vw;
-    transform: rotate(20deg);
+    top: 30vh;
+    left: 45vw;
+    transform: rotate(30deg);
+    display: none;
 }
 #footprints{
-    background-color: #591d3163;
-    height: 10vh;
-    width: 5vw;
+    height: 4.5vh;
+    width: 3vw;
     opacity: 0.7;
     position: absolute;
     z-index: 10;
-    top: 40vh;
-    left: 55vw;
+    top: 32vh;
+    left: 47.5vw;
+    display: none;
 }
-
+#medicine-box{
+    position: absolute;
+    width: 65vw;
+    height: 40vh;
+    margin: auto;
+    display: none;
+    left: 18vw;
+    top: 15vh;
+    background-color: #080200be;
+    padding: 1em;
+    box-shadow: 2px 2px 2px #fcf3cf;
+    z-index: 10;
+}
+#medicine-img-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2em;
+    margin-top: 2.5em;
+}
+#medicine-img-container img{
+    cursor: pointer;
+    width: auto;
+    height: 20vh;
+}
+#select-medicine{
+    font-family: basicFont;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #9e8769;
+    color: #fcf3cf;
+}
+.medicine-result{
+    font-family: basicFont;
+    text-align: center;
+    letter-spacing: 0.2em;
+    text-shadow: 1px 1px 1px #9e8769;
+    color: #fcf3cf;
+    margin-top: 3em;
+}
 /*********** MYSTERY FOUR ***********/
 /*slider puzzle*/
 #slider-puzzle {

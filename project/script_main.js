@@ -406,6 +406,11 @@ function gameLoop() {
             hintsOpen = true;
             showMysteriousSpace();
         }
+        if (isCollidingWith("footprints")) {
+            hintsOpen = true;
+            showFootPrints();
+        }
+
 
         /*********** ENEMYS *********** */
         if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {

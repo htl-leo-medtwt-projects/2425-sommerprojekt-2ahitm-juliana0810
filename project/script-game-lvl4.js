@@ -246,9 +246,62 @@ function closeHandScan(){
     document.getElementById("close-handscan").style.display = "none";
     document.getElementById("transparent-box").style.display = "none";
     document.getElementById("handscan-wrapper").style.display = "none";
+    document.getElementById("tatort").style.display = "none";
+
 
     document.getElementById("footprints").style.display = "block";
     document.getElementById("footprints-img").style.display = "block";
+
+    hintsOpen = false;
+    gameLoop();
+}
+
+function showFootPrints(){
+    document.getElementById("transparent-box").style.display = "block";
+    document.getElementById("medicine-box").style.display = "block";
+    setTimeout(setupMedicineSelection, 50);
+}
+
+/* medicine */
+let selectedMedicine = null;
+
+function setupMedicineSelection() {
+    const medicineContainer = document.getElementById("medicine-img-container");
+
+    medicineContainer.addEventListener("click", function (e) {
+        if (e.target.tagName.toLowerCase() === "img") {
+            const images = medicineContainer.querySelectorAll("img");
+            images.forEach(img => {
+                img.style.border = "none";
+                img.style.borderRadius = "0";
+            });
+            e.target.style.border = "2px solid rgb(231, 226, 224)";
+            e.target.style.borderRadius = "1em";
+
+            selectedMedicine = e.target.id;
+        }
+    });
+}
+
+
+function selectedAnswerMedicine() {
+    if (!selectedMedicine) {
+        alert("Please select a medicine first!");
+        return;
+    }
+    if (selectedMedicine === "bandage") {
+        document.getElementById("medicine-box").innerHTML =
+            `<p class="medicine-result">Yes you saved him! You gained a new buddy!</p>`;
+    } else {
+        document.getElementById("medicine-box").innerHTML =
+            `<p class="medicine-result">No that was the wrong medicine! It's to late...</p>`;
+        removeLife();
+    }
+    setTimeout(() => closeMedicine(), 2500);
+}
+function closeMedicine(){
+    document.getElementById("transparent-box").style.display = "none";
+    document.getElementById("medicine-box").style.display = "none";
 
     hintsOpen = false;
     gameLoop();
