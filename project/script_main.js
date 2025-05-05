@@ -230,6 +230,8 @@ function writeText(index) {
             }
             else if(index == 15){
                 document.getElementById("door-lvl4").style.display = "block";
+                hintsOpen = false;
+                gameLoop();
             }
         };
         textContainer.appendChild(closeHint);
@@ -479,5 +481,6 @@ function gameOver(){
     document.getElementById("quiz-lvl1").style.display = "none";
     document.getElementById("quiz-lvl2").style.display = "none";
     document.getElementById("quiz-lvl3").style.display = "none";
+    document.getElementById("quiz-lvl4").style.display = "none";
     document.getElementById("game-over").style.display = "block";
 }

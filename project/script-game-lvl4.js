@@ -311,50 +311,111 @@ function closeMedicine(){
     writeText(15);
 }
 
-/* QUIZ LEVEL FOUR */
-function switchToMystery4(){
+/****************** MYSTERY FOUR - JS LIBRARY **************/
+
+function switchToMystery4() {
+    document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl4").style.display = "block";
+    document.getElementById("slider-puzzle").style.display = "grid";
+
+    initializeSliderPuzzle(); 
+    setTimeout(() => startSliderPuzzle(), 500); 
 }
-function startSliderPuzzle(){
+
+function initializeSliderPuzzle() {
+    const puzzle = document.getElementById('slider-puzzle');
+    puzzle.innerHTML = '';
+
+    let numbers;
+
+    do {
+        numbers = [...Array(8).keys()].map(n => n + 1); 
+        shuffleArray(numbers);
+    } while (!isSolvable(numbers));
+
+    numbers.push(null); 
+
+    numbers.forEach((num, index) => {
+        const tile = document.createElement('div');
+        tile.classList.add('tile');
+        tile.dataset.position = index;
+
+        if (num === null) {
+            tile.classList.add('empty');
+            tile.textContent = '';
+        } else {
+            tile.textContent = num;
+        }
+
+        puzzle.appendChild(tile);
+    });
+}
+
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+function isSolvable(array) {
+    let inversions = 0;
+    for (let i = 0; i < array.length; i++) {
+        for (let j = i + 1; j < array.length; j++) {
+            if (array[i] > array[j]) inversions++;
+        }
+    }
+    return inversions % 2 === 0;
+}
+
+function startSliderPuzzle() {
     interact('.tile').draggable({
         inertia: true,
         modifiers: [
-          interact.modifiers.restrict({
-            restriction: '#slider-puzzle',
-            endOnly: true
-          })
+            interact.modifiers.restrict({
+                restriction: '#slider-puzzle',
+                endOnly: true
+            })
         ],
         listeners: {
-          move (event) {
-            const tile = event.target;
-            const empty = document.querySelector('.tile.empty');
-            
-            const tileRect = tile.getBoundingClientRect();
-            const emptyRect = empty.getBoundingClientRect();
-      
-            const dx = Math.abs(tileRect.left - emptyRect.left);
-            const dy = Math.abs(tileRect.top - emptyRect.top);
-      
-            // Nur benachbarte Tiles verschieben
-            if ((dx === 105 && dy === 0) || (dy === 105 && dx === 0)) {
-              // Tausche Positionen im DOM
-              const parent = tile.parentNode;
-              parent.insertBefore(tile, empty);
-              parent.insertBefore(empty, tile.nextSibling);
+            move(event) {
+                const tile = event.target;
+                const empty = document.querySelector('.tile.empty');
+
+                const tileRect = tile.getBoundingClientRect();
+                const emptyRect = empty.getBoundingClientRect();
+
+                const dx = Math.abs(tileRect.left - emptyRect.left);
+                const dy = Math.abs(tileRect.top - emptyRect.top);
+
+                if ((dx === 105 && dy === 0) || (dy === 105 && dx === 0)) {
+                    const temp = tile.textContent;
+                    tile.textContent = '';
+                    empty.textContent = temp;
+
+                    tile.classList.add('empty');
+                    empty.classList.remove('empty');
+                }
             }
-          }
         }
-      });
+    });
 }
+
 function checkIfPuzzleSolved() {
     const tiles = Array.from(document.querySelectorAll('.tile'));
     const correct = tiles.every((tile, index) => {
-      const num = parseInt(tile.textContent);
-      return tile.classList.contains("empty") || num === index + 1;
+        const num = parseInt(tile.textContent);
+        return tile.classList.contains("empty") || num === index + 1;
     });
     if (correct) {
-      alert("Puzzle gelöst!");
-    
+        document.getElementById("quiz-lvl4").innerHTML += 
+            `<div id="result-puzzle">You solved the puzzle. Good luck on your last challenge...</div>`
+    }
+    else{
+         document.getElementById("quiz-lvl4").innerHTML += 
+            `<div id="result-puzzle">The puzzle is not solved. I think your expedition is over...</div>`
+        gameEnded = true;
+        setTimeout(() => gameOver(), 3000);
     }
 }
