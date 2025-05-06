@@ -43,6 +43,8 @@ function switchToStory(){
     document.getElementById("storyTelling").style.display = "block";
 }
 function switchToEntry(){
+    SOUNDS.background_music.play();
+    SOUNDS.background_music.duration = Infinity;
     document.getElementById("startpage").style.display = "none";
     document.getElementById("entry").style.display = "block";
 }
@@ -96,7 +98,7 @@ function switchToCharacter(){
                 </div>
                 <img onclick="goRight()" class="arrows-character" src="img/arrow-right.png">
             </div>
-            <p id="select" onclick="switchToLevelFour()">select</p>
+            <p id="select" onclick="switchToGame()">select</p>
         </div>`
     }
     

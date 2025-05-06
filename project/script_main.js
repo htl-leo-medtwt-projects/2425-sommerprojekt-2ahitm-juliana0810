@@ -49,7 +49,14 @@ let SPEED_ITEM = {
     element: null 
 };
 
-
+let SOUNDS = {
+    collect: new Audio("audio/collect.mp3"),
+    countdown: new Audio("audio/countdown-sound.mp3"),
+    background_music: new Audio("audio/Frank Ocean - Pyramids.mp3"),
+    lifeLost: new Audio("audio/life-lost.mp3"),
+    gameEndedSound: new Audio("audio/game-over.mp3"),
+    speedCollect: new Audio("audio/speed-audio.mp3"),
+}
 
 let TEXTSNIPPETS = [
     [
@@ -129,12 +136,16 @@ let timeLeft;
 /*******  TIMER *********** */
 function startTimer() {
     clearInterval(countdown)
-    timeLeft = 200;
+    timeLeft = 100;
     document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
     
     countdown = setInterval(() => {
         timeLeft--
         document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
+
+        if(timeLeft == 5){
+            SOUNDS.countdown.play();
+        }
 
         if (timeLeft <= 0) {
             clearInterval(countdown)
@@ -294,6 +305,7 @@ function respawnCoin() {
 
 function handleCollision() {
     if (isColliding(PLAYER.box, GAME_SCREEN.coinbox)) {
+        SOUNDS.collect.play();
         PLAYER.coins++;
         document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
         respawnCoin();
@@ -304,30 +316,53 @@ function handleCollision() {
  * SPEED ITEM
  * **********************************/
 function spawnSpeedItem() {
-    SPEED_ITEM.active = true;
-
-    let speedItemElement = document.createElement("img");
-    speedItemElement.src = SPEED_ITEM.image;
-    speedItemElement.classList.add("speedItem");
-    document.getElementById("surface").appendChild(speedItemElement);
-
     const surface = GAME_SCREEN.surface.getBoundingClientRect();
-    const colliderTop = document.getElementById('collidertop').getBoundingClientRect();
-    const colliderBottom = document.getElementById('colliderbottom').getBoundingClientRect();
-    const colliderRight = document.getElementById('colliderright').getBoundingClientRect();
-    const colliderLeft = document.getElementById('colliderleft').getBoundingClientRect();
+    const colliders = document.querySelectorAll('.collider, .collider-lvl2, .collider-lvl3, .collider-lvl4');
+    const colliderRects = Array.from(colliders).map(c => c.getBoundingClientRect());
 
-    const safeLeft = colliderLeft.right - surface.left;
-    const safeRight = colliderRight.left - surface.left;
-    const safeTop = colliderTop.bottom - surface.top;
-    const safeBottom = colliderBottom.top - surface.top;
+    const itemWidth = 20; 
+    const itemHeight = 20;
 
-    const randomX = Math.floor(Math.random() * (safeRight - safeLeft)) + safeLeft; 
-    const randomY = Math.floor(Math.random() * (safeBottom - safeTop)) + safeTop;
+    const safeLeft = surface.left;
+    const safeRight = surface.right - itemWidth;
+    const safeTop = surface.top;
+    const safeBottom = surface.bottom - itemHeight;
 
-    speedItemElement.style.position = "absolute";
-    speedItemElement.style.left = `${randomX}px`;
-    speedItemElement.style.top = `${randomY}px`;
+    let randomX, randomY, isColliding;
+
+    do {
+        randomX = Math.floor(Math.random() * (safeRight - safeLeft)) + safeLeft;
+        randomY = Math.floor(Math.random() * (safeBottom - safeTop)) + safeTop;
+
+        const newItemRect = {
+            left: randomX,
+            right: randomX + itemWidth,
+            top: randomY,
+            bottom: randomY + itemHeight
+        };
+
+        isColliding = colliderRects.some(collider =>
+            !(newItemRect.right < collider.left ||
+              newItemRect.left > collider.right ||
+              newItemRect.bottom < collider.top ||
+              newItemRect.top > collider.bottom)
+        );
+
+    } while (isColliding);
+
+    const speedItemElement = document.createElement("img");
+    speedItemElement.src = SPEED_ITEM.image; 
+    speedItemElement.classList.add("item", "speedItem");
+    speedItemElement.style.position = 'absolute';
+    speedItemElement.style.left = `${randomX - surface.left}px`;
+    speedItemElement.style.top = `${randomY - surface.top}px`;
+    speedItemElement.style.width = '2.5em';
+    speedItemElement.style.height = '2.5em';
+    speedItemElement.style.zIndex = '1000';
+
+    GAME_SCREEN.surface.appendChild(speedItemElement);
+
+    SPEED_ITEM.active = true;
     SPEED_ITEM.element = speedItemElement;
 
     setTimeout(() => {
@@ -336,6 +371,7 @@ function spawnSpeedItem() {
         }
     }, 5000);
 }
+
 
 function removeSpeedItem() {
     if (SPEED_ITEM.active && SPEED_ITEM.element) {
@@ -348,8 +384,8 @@ function activateSpeedBoost() {
     if (GAME_CONFIG.characterSpeed == 5) {
         GAME_CONFIG.characterSpeed += 3; 
     }
-    document.getElementById("speed-grey").innerHTML = "<img class='item' src='img/speed.png' alt='speed'>";
-    document.getElementById("speed-grey").classList.add("speed-on");
+    document.getElementById("speed-grey").innerHTML = "<img class='item' id='speed-grey-img' src='img/speed.png' alt='speed'>";
+    document.getElementById("speed-grey-img").classList.add("speed-on");
 
     setTimeout(() => {
         if (GAME_CONFIG.characterSpeed != 5) {
@@ -362,6 +398,7 @@ function activateSpeedBoost() {
 function checkSpeedItemCollision() {
     if (SPEED_ITEM.active && SPEED_ITEM.element) {
         if (isColliding(PLAYER.box, SPEED_ITEM.element)) {
+            SOUNDS.speedCollect.play();
             activateSpeedBoost();
             removeSpeedItem();
         }
@@ -376,10 +413,12 @@ function removeLife(){
     if(LIFES.lifesCount == 3){
         LIFES.life3.style.opacity = '0';
         LIFES.lifesCount--;
+        SOUNDS.lifeLost.play();
     }
     else if(LIFES.lifesCount == 2){
         LIFES.life2.style.opacity = '0';
         LIFES.lifesCount--;
+        SOUNDS.lifeLost.play();
     }
     else{
         LIFES.life1.style.opacity = '0';
@@ -548,7 +587,8 @@ function gameLoop() {
 
         checkSpeedItemCollision();
 
-        if (!SPEED_ITEM.active && Math.random() < 0.005) { 
+        if (!SPEED_ITEM.active && Math.random() < 0.01) { 
+            console.log("speed item active");
             spawnSpeedItem();
         }
 
@@ -562,6 +602,7 @@ function gameLoop() {
  * GAME OVER
  * **********************************/
 function gameOver(){
+    SOUNDS.gameEndedSound.play();
     gameEnded = true;
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl1").style.display = "none";
