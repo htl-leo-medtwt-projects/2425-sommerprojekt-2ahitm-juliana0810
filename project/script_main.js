@@ -39,6 +39,16 @@ let GAME_CONFIG = {
     characterSpeed: 5
 }
 
+/***********************************
+ * SPEED ITEM
+ * **********************************/
+let SPEED_ITEM = {
+    name: "Speed Boost",
+    image: "img/speed.png",
+    active: false, 
+    element: null 
+};
+
 
 
 let TEXTSNIPPETS = [
@@ -291,6 +301,75 @@ function handleCollision() {
 }
 
 /***********************************
+ * SPEED ITEM
+ * **********************************/
+function spawnSpeedItem() {
+    SPEED_ITEM.active = true;
+
+    let speedItemElement = document.createElement("img");
+    speedItemElement.src = SPEED_ITEM.image;
+    speedItemElement.classList.add("speedItem");
+    document.getElementById("surface").appendChild(speedItemElement);
+
+    const surface = GAME_SCREEN.surface.getBoundingClientRect();
+    const colliderTop = document.getElementById('collidertop').getBoundingClientRect();
+    const colliderBottom = document.getElementById('colliderbottom').getBoundingClientRect();
+    const colliderRight = document.getElementById('colliderright').getBoundingClientRect();
+    const colliderLeft = document.getElementById('colliderleft').getBoundingClientRect();
+
+    const safeLeft = colliderLeft.right - surface.left;
+    const safeRight = colliderRight.left - surface.left;
+    const safeTop = colliderTop.bottom - surface.top;
+    const safeBottom = colliderBottom.top - surface.top;
+
+    const randomX = Math.floor(Math.random() * (safeRight - safeLeft)) + safeLeft; 
+    const randomY = Math.floor(Math.random() * (safeBottom - safeTop)) + safeTop;
+
+    speedItemElement.style.position = "absolute";
+    speedItemElement.style.left = `${randomX}px`;
+    speedItemElement.style.top = `${randomY}px`;
+    SPEED_ITEM.element = speedItemElement;
+
+    setTimeout(() => {
+        if (SPEED_ITEM.active) {
+            removeSpeedItem();
+        }
+    }, 5000);
+}
+
+function removeSpeedItem() {
+    if (SPEED_ITEM.active && SPEED_ITEM.element) {
+        SPEED_ITEM.element.remove(); 
+        SPEED_ITEM.active = false;
+        SPEED_ITEM.element = null;
+    }
+}
+function activateSpeedBoost() {
+    if (GAME_CONFIG.characterSpeed == 5) {
+        GAME_CONFIG.characterSpeed += 3; 
+    }
+    document.getElementById("speed-grey").innerHTML = "<img class='item' src='img/speed.png' alt='speed'>";
+    document.getElementById("speed-grey").classList.add("speed-on");
+
+    setTimeout(() => {
+        if (GAME_CONFIG.characterSpeed != 5) {
+            GAME_CONFIG.characterSpeed -= 3; 
+        }
+        document.getElementById("speed-grey").innerHTML = "<img class='item' src='img/speed-grey.png' alt='speed-grey'>";
+        document.getElementById("speed-grey").classList.remove("speed-on");
+    }, 5000);
+}
+function checkSpeedItemCollision() {
+    if (SPEED_ITEM.active && SPEED_ITEM.element) {
+        if (isColliding(PLAYER.box, SPEED_ITEM.element)) {
+            activateSpeedBoost();
+            removeSpeedItem();
+        }
+    }
+}
+
+
+/***********************************
  * HANDEL LIFES
  * **********************************/
 function removeLife(){
@@ -466,6 +545,13 @@ function gameLoop() {
         moveEnemy();
         moveEnemy2Randomly();
         moveEnemy3Randomly();
+
+        checkSpeedItemCollision();
+
+        if (!SPEED_ITEM.active && Math.random() < 0.005) { 
+            spawnSpeedItem();
+        }
+
        
     
         setTimeout(gameLoop, 1000 / GAME_CONFIG.gameSpeed); 

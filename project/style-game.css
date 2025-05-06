@@ -124,6 +124,37 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+/*SPEED*/
+
+#speed-grey{
+    background-color: #dabb8d99;
+    width: 2.5vw;
+    margin-left: 1.5em;
+    border-radius: 1em;
+    height: auto;
+}
+#speed-grey img{
+    width: 3vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+.speedItem{
+    width: 2em;
+    animation: speedVibrate 0.5s infinite ease;
+}
+.speed-on{
+    animation: speedVibrate 0.5s infinite ease;
+}
+.item{
+    width: 3vw;
+}
+@keyframes speedVibrate {
+    0%{transform: scale3d(1.1,1.1,1.1);}
+    50%{transform: scale3d(1.0,1.0,1.0);}
+    100%{transform: scale3d(1.1,1.1,1.1);}
+}
+
 /* level anzeige */
 #levelbox{
     position: absolute;
