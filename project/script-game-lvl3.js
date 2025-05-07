@@ -335,9 +335,12 @@ function closeSecretRoomMap(){
 /*************** MYSTERY ******************* */
 let countMistakes = 0;
 function switchToMystery3() {
-    clearInterval(countdown);
     hintsOpen = true;
     gameEnded = false;
+
+    console.log("gameEnded:", gameEnded);
+    console.log("hintsOpen:", hintsOpen);
+    
     
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl3").style.display = "block";

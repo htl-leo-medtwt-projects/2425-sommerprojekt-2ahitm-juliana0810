@@ -1395,6 +1395,7 @@
     left: 34.7vw;
     position: absolute;
     z-index: 100;
+    display: none;
 }
 #tatort{
     display: none;

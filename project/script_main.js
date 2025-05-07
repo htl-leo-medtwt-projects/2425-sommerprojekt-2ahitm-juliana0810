@@ -423,6 +423,7 @@ function removeLife(){
     else{
         LIFES.life1.style.opacity = '0';
         LIFES.lifesCount--;
+        console.log("lifes ran out")
         gameOver();
     }
 
@@ -550,35 +551,38 @@ function gameLoop() {
 
 
         /*********** ENEMYS *********** */
-        if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {
-            removeLife();
-            isInvincible = true;
-            PLAYER.box.classList.add('invincible');
-        
-            setTimeout(() => {
-                isInvincible = false;
-                PLAYER.box.classList.remove('invincible');
-            }, 2000);
-        }        
-        if (isColliding(PLAYER.box, ENEMY.box) && !isInvincible) {
-            removeLife();
-            isInvincible = true;
-            PLAYER.box.classList.add('invincible');
-        
-            setTimeout(() => {
-                isInvincible = false;
-                PLAYER.box.classList.remove('invincible');
-            }, 2000);
-        }    
-        if (isColliding(PLAYER.box, ENEMY3.box) && !isInvincible) {
-            removeLife();
-            isInvincible = true;
-            PLAYER.box.classList.add('invincible');
-        
-            setTimeout(() => {
-                isInvincible = false;
-                PLAYER.box.classList.remove('invincible');
-            }, 2000);
+        /*********** ENEMYS *********** */
+        if (!hintsOpen && !gameEnded) {  
+            if (isColliding(PLAYER.box, ENEMY2.box) && !isInvincible) {
+                removeLife();
+                isInvincible = true;
+                PLAYER.box.classList.add('invincible');
+            
+                setTimeout(() => {
+                    isInvincible = false;
+                    PLAYER.box.classList.remove('invincible');
+                }, 2000);
+            }        
+            if (isColliding(PLAYER.box, ENEMY.box) && !isInvincible) {
+                removeLife();
+                isInvincible = true;
+                PLAYER.box.classList.add('invincible');
+            
+                setTimeout(() => {
+                    isInvincible = false;
+                    PLAYER.box.classList.remove('invincible');
+                }, 2000);
+            }    
+            if (isColliding(PLAYER.box, ENEMY3.box) && !isInvincible) {
+                removeLife();
+                isInvincible = true;
+                PLAYER.box.classList.add('invincible');
+            
+                setTimeout(() => {
+                    isInvincible = false;
+                    PLAYER.box.classList.remove('invincible');
+                }, 2000);
+            }
         }
         
         moveEnemy();

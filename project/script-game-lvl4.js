@@ -25,7 +25,7 @@ function switchToLevelFour(){
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level4.png')";
 
     //set colliders display none
-    const colliders = document.querySelectorAll('.collider, .collider-lvl2');
+    const colliders = document.querySelectorAll('.collider, .collider-lvl2, .collider-lvl3');
     colliders.forEach(collider => {
         collider.style.display = "none";
     });
@@ -71,6 +71,8 @@ function switchToLevelFour(){
     /*just for now*/
     playerImage = `<img id="spriteImg" src="${players[counter]}">`;
     document.getElementById("player").innerHTML = playerImage;
+
+    document.getElementById("lake").style.display = "block";
 
     resetLevel();
     writeText(10);
@@ -137,7 +139,6 @@ function startSymbolPuzzle(){
             requestAnimationFrame(draw);
         }
         
-    
         draw();
     }
     
