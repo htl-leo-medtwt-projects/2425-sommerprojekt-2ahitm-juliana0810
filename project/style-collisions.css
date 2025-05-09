@@ -2,6 +2,7 @@
 .collider{
     background-color: transparent;
     pointer-events: none;
+    background-color: rgba(255, 0, 0, 0.441);
 }
 #colliderright{
     position: absolute;
@@ -1405,4 +1406,116 @@
     left: 37vw;
     position: absolute;
     z-index: 100;
+}
+
+/************************************/
+/*        COLLIDER LEVEL 5          */
+/************************************/
+.collider-lvl5{
+    background-color: transparent;
+    position: absolute;
+    z-index: 100;
+    background-color: rgba(36, 44, 255, 0.511);
+}
+#collider188{
+    width: 1.3vw;
+    height: 12vh;
+    top: 69vh;
+    left: 68vw;
+}
+#collider189{
+    width: 7vw;
+    height: 0.5vh;
+    top: 69vh;
+    left: 68vw;
+}
+#collider190{
+    width: 7vw;
+    height: 0.5vh;
+    top: 81.5vh;
+    left: 68vw;
+}
+#collider191{
+    width: 7vw;
+    height: 0.6vh;
+    top: 60.5vh;
+    left: 68vw;
+}
+#collider192{
+    width: 0.33vw;
+    height: 11vh;
+    top: 49.5vh;
+    left: 68vw;
+}
+#collider193{
+    width: 2.7vw;
+    height: 0.6vh;
+    top: 49.7vh;
+    left: 68vw;
+}
+#collider194{
+    width: 6vw;
+    height: 4vh;
+    top: 37vh;
+    left: 68vw;
+}
+#collider195{
+    width: 0.34vw;
+    height: 16vh;
+    top: 21vh;
+    left: 68vw;
+}
+#collider196{
+    width: 8vw;
+    height: 2.7vh;
+    top: 27vh;
+    left: 60vw;
+}
+#collider197{
+    width: 0.34vw;
+    height: 17vh;
+    top: 12vh;
+    left: 59.5vw;
+}
+#collider198{
+    width: 1.5vw;
+    height: 12.5vh;
+    top: 20.5vh;
+    left: 52.5vw;
+}
+#collider199{
+    width: 1.8vw;
+    height: 0.6vh;
+    top: 26.5vh;
+    left: 54vw;
+}
+#collider200{
+    width: 5vw;
+    height: 0.6vh;
+    top: 20.5vh;
+    left: 47.5vw;
+}
+#collider201{
+    width: 0.34vw;
+    height: 8vh;
+    top: 12vh;
+    left: 46.5vw;
+}
+#collider202{
+    width: 1.5vw;
+    height: 7.5vh;
+    top: 20vh;
+    left: 46.5vw;
+}
+#collider203{
+    width: 0.34vw;
+    height: 11vh;
+    top: 12vh;
+    left: 36vw;
+}
+#collider203{
+    width: 0.34vw;
+    height: 11vh;
+    top: 12vh;
+    left: 36vw;
 }

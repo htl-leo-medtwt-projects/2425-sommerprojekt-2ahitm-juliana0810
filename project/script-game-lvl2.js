@@ -3,6 +3,7 @@
  * **********************************/
 
 function switchToLevelTwo() {
+    levelCount++;
     hintsOpen = false;
 
     //switch to right board
@@ -58,6 +59,10 @@ function switchToLevelTwo() {
     ENEMY2.box.style.left = "500px";
     ENEMY2.box.style.top = "300px";
     ENEMY2.box.style.opacity = "1";
+
+    /*just for now*/
+    playerImage = `<img id="spriteImg" src="${players[counter]}">`;
+    document.getElementById("player").innerHTML = playerImage;
 
     //reset booleans
     collectedKey = false;

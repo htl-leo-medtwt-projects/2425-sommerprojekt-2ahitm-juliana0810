@@ -412,6 +412,7 @@ function checkIfPuzzleSolved() {
     if (correct) {
         document.getElementById("quiz-lvl4").innerHTML += 
             `<div id="result-puzzle">You solved the puzzle. Good luck on your last challenge...</div>`
+            setTimeout(() => switchToLevelFive(), 3000);
     }
     else{
          document.getElementById("quiz-lvl4").innerHTML += 

@@ -98,7 +98,7 @@ function switchToCharacter(){
                 </div>
                 <img onclick="goRight()" class="arrows-character" src="img/arrow-right.png">
             </div>
-            <p id="select" onclick="switchToGame()">select</p>
+            <p id="select" onclick="switchToLevelFive()">select</p>
         </div>`
     }
     
