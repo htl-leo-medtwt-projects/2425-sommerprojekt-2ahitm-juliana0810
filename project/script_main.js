@@ -550,6 +550,11 @@ function gameLoop() {
         }
 
 
+        /*********** level 5 *********** */
+        if (isCollidingWith("gras")) {
+            hintsOpen = true;
+        }
+
         /*********** ENEMYS *********** */
         /*********** ENEMYS *********** */
         if (!hintsOpen && !gameEnded) {  
@@ -588,8 +593,10 @@ function gameLoop() {
         moveEnemy();
         moveEnemy2Randomly();
         moveEnemy3Randomly();
+        
 
         checkSpeedItemCollision();
+        checkGrassCollision();
 
         if (!SPEED_ITEM.active && Math.random() < 0.01) { 
             console.log("speed item active");

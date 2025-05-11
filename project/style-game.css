@@ -1344,3 +1344,28 @@
 .lvl4-items{
     display: none;
 }
+
+/********* LEVEL 5 **********/
+.items-lvl5{
+    display: none;
+    position: absolute;
+    z-index: 100;
+}
+.vine {
+    position: absolute;
+    width: 8px;
+    background-color: green;
+    z-index: 500;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.danger-grass {
+    animation: danger-pulse 1s infinite;
+}
+
+@keyframes danger-pulse {
+    0% { opacity: 0.7; }
+    50% { opacity: 1; }
+    100% { opacity: 0.7; }
+}
