@@ -1513,9 +1513,123 @@
     top: 12vh;
     left: 36vw;
 }
-#collider203{
-    width: 0.34vw;
-    height: 11vh;
-    top: 12vh;
+#collider204{
+    width: 6vw;
+    height: 2.5vh;
+    top: 20.5vh;
     left: 36vw;
+}
+#collider205{
+    width: 1.25vw;
+    height: 7vh;
+    top: 20.5vh;
+    left: 40.5vw;
+}
+#collider206{
+    width: 8.5vw;
+    height: 2.5vh;
+    top: 35vh;
+    left: 30vw;
+}
+#collider207{
+    width: 5vw;
+    height: 0.7vh;
+    top: 37.25vh;
+    left: 38.5vw;
+}
+#collider208{
+    width: 5.7vw;
+    height: 9vh;
+    top: 38.5vh;
+    left: 33.5vw;
+}
+#collider209{
+    width: 6vw;
+    height: 0.6vh;
+    top: 48vh;
+    left: 33.5vw;
+}
+#collider215{
+    width: 0.34vw;
+    height: 8vh;
+    top: 48vh;
+    left: 33.5vw;
+}
+#collider210{
+    width: 3.5vw;
+    height: 0.6vh;
+    top: 56.25vh;
+    left: 30vw;
+}
+#collider211{
+    width: 1.5vw;
+    height: 8vh;
+    top: 61vh;
+    left: 36vw;
+}
+#collider212{
+    width: 0.34vw;
+    height: 12vh;
+    top: 69vh;
+    left: 34.75vw;
+}
+#collider213{
+    width: 6vw;
+    height: 2.5vh;
+    top: 79vh;
+    left: 34.75vw;
+}
+#gras{
+    width: 5.5vw;
+    height: 8vh;
+    top: 82vh;
+    left: 30vw;
+}
+#collider214{
+    width: 0.34vw;
+    height: 5vh;
+    top: 75vh;
+    left: 40.5vw;
+}
+#collider216{
+    width: 3.7vw;
+    height: 0.6vh;
+    top: 75vh;
+    left: 40.5vw;
+}
+#collider217{
+    width: 0.34vw;
+    height: 12vh;
+    top: 63vh;
+    left: 44.25vw;
+}
+#lake-lvl5{
+    width: 4.25vw;
+    height: 12vh;
+    top: 64vh;
+    left: 44.7vw;
+}
+#collider218{
+    width: 0.34vw;
+    height: 15vh;
+    top: 60vh;
+    left: 49vw;
+}
+#collider219{
+    width: 10vw;
+    height: 0.6vh;
+    top: 75vh;
+    left: 49vw;
+}
+#collider220{
+    width: 1.5vw;
+    height: 17vh;
+    top: 69vh;
+    left: 59.5vw;
+}
+#collider221{
+    width: 4vw;
+    height: 0.6vh;
+    top: 88vh;
+    left: 59.5vw;
 }
