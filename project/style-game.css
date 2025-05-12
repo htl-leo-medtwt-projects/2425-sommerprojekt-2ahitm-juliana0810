@@ -1352,20 +1352,41 @@
     z-index: 100;
 }
 .vine {
+    transition: transform 0.05s linear;
+    overflow: hidden;
+    position: relative;
+}
+#lianen-box{
+    text-align: center; 
+    font-size: 125%;
+    margin: 0 auto;
+    width: 70%; 
+    height: 60%;
     position: absolute;
-    width: 8px;
-    background-color: green;
-    z-index: 500;
+    top: 15vh;
+    left: 15vw;
+    font-family: message;
+    font-weight: bold;
+    background-color: #080200be;
+    box-shadow: 2px 2px 2px #fcf3cf;
+    z-index: 10;
+    display: none;
+    padding: 1em 2em;
+}
+#lianen-player{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 20px;
+    background-color: red;
     border-radius: 4px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    z-index: 1000;
 }
-
-.danger-grass {
-    animation: danger-pulse 1s infinite;
-}
-
-@keyframes danger-pulse {
-    0% { opacity: 0.7; }
-    50% { opacity: 1; }
-    100% { opacity: 0.7; }
+#timer-lianen{
+    color: red;
+    position: absolute;
+    top: 0;
+    right: 0;
 }

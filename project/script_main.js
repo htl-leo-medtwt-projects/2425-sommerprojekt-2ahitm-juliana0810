@@ -551,9 +551,6 @@ function gameLoop() {
 
 
         /*********** level 5 *********** */
-        if (isCollidingWith("gras")) {
-            hintsOpen = true;
-        }
 
         /*********** ENEMYS *********** */
         /*********** ENEMYS *********** */
