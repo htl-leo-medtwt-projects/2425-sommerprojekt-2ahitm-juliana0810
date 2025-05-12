@@ -17,6 +17,7 @@ let openedPergamentStatistics = false;
 let collectedKey = false;
 let gameEnded = false;
 let isInvincible = false;
+let mysteryOpen = false;
 
 
 let LIFES = {
@@ -128,7 +129,8 @@ let TEXTSNIPPETS = [
     ],
     [
         'Still alive? The stairs in the top left corner lead to freedom...'
-    ]
+    ],
+    
 ];
 
 let timeLeft;
@@ -139,21 +141,24 @@ function startTimer() {
     timeLeft = 100;
     document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
     
-    countdown = setInterval(() => {
-        timeLeft--
-        document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
+    if(!mysteryOpen){
+        countdown = setInterval(() => {
+            timeLeft--
+            document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
 
-        if(timeLeft == 5){
-            SOUNDS.countdown.play();
-        }
+            if(timeLeft == 5){
+                SOUNDS.countdown.play();
+            }
 
-        if (timeLeft <= 0) {
-            clearInterval(countdown)
-            document.getElementById("sanduhr-box").innerHTML = "";
-            console.log("time ran out");
-            gameOver();
-        }
-    }, 1000)
+            if (timeLeft <= 0) {
+                clearInterval(countdown)
+                document.getElementById("sanduhr-box").innerHTML = "";
+                console.log("time ran out");
+                gameOver();
+            }
+        }, 1000)
+    }
+    
 }
 
 /***********************************
@@ -451,7 +456,7 @@ function resetLevel(){
  * GAME LOOP
  * **********************************/
 function gameLoop() {
-    if(!hintsOpen && !gameEnded){
+    if(!hintsOpen && !gameEnded && !mysteryOpen){
         if (KEY_EVENTS.leftArrow) {
             movePlayer((-1) * GAME_CONFIG.characterSpeed, 0, -1);
             animatePlayer();
@@ -551,6 +556,15 @@ function gameLoop() {
 
 
         /*********** level 5 *********** */
+        if (isCollidingWith("collider240")) {
+            if (!PLAYER.triggeredCollider240) {
+                hintsOpen = true;
+                document.getElementById("raetsel-lianen").style.display = "block"; // zeigt das Rätsel an
+                document.getElementById("text-container-level1").style.top = "60vh"; // optional: Position Text
+                PLAYER.triggeredCollider240 = true; // verhindert, dass das mehrfach aufgerufen wird
+            }
+        }
+
 
         /*********** ENEMYS *********** */
         /*********** ENEMYS *********** */

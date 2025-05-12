@@ -5,6 +5,7 @@
 function switchToLevelTwo() {
     levelCount++;
     hintsOpen = false;
+    mysteryOpen = false;
 
     //switch to right board
     document.getElementById("storyTelling").style.display = "none";
@@ -241,6 +242,7 @@ function selectOptionStone(){
 }
 function switchToMystery2(){
     hintsOpen = true;
+    mysteryOpen = true;
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl2").style.display = "block";
     document.getElementById("quiz-lvl2").innerHTML = 

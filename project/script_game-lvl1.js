@@ -140,7 +140,7 @@ function checkDoorCollision() {
 
 function doorEntered(){
     if(collectedKey){
-        hintsOpen = true;
+        mysteryOpen = true;
         document.getElementById("gameBody").style.display = "none";
         document.getElementById("quiz-lvl1").style.display = "block";
 

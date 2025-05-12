@@ -1733,3 +1733,10 @@
     top: 62.5vh;
     left: 59.5vw;
 }
+#collider240{
+    width: 6vw;
+    height: 5vh;
+    top: 45vh;
+    left: 40.5vw;
+    transform: rotate(35deg);
+}

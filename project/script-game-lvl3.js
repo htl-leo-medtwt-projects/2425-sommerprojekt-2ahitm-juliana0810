@@ -95,6 +95,7 @@ function moveEnemy3Randomly() {
  * **********************************/
 function switchToLevelThree(){
     hintsOpen = false;
+    mysteryOpen = false;
     //switch to right board
     document.getElementById("storyTelling").style.display = "none";
    
@@ -337,6 +338,7 @@ let countMistakes = 0;
 function switchToMystery3() {
     hintsOpen = true;
     gameEnded = false;
+    mysteryOpen = true;
 
     console.log("gameEnded:", gameEnded);
     console.log("hintsOpen:", hintsOpen);

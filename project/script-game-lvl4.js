@@ -3,6 +3,7 @@
  * **********************************/
 function switchToLevelFour(){
     hintsOpen = false;
+    mysteryOpen = false;
 
     //switch to right board
     document.getElementById("storyTelling").style.display = "none";
@@ -315,6 +316,7 @@ function closeMedicine(){
 /****************** MYSTERY FOUR - JS LIBRARY **************/
 
 function switchToMystery4() {
+    mysteryOpen = true;
     document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl4").style.display = "block";

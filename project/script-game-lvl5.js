@@ -3,6 +3,7 @@
  * **********************************/
 function switchToLevelFive(){
     hintsOpen = false;
+    mysteryOpen = false;
     initVines();
 
     //switch to right board
@@ -74,17 +75,18 @@ function switchToLevelFive(){
     document.getElementById("player").innerHTML = playerImage;
 
     resetLevel();
+    startTimer();
     gameLoop();
 }
 
 /**********************************\
-* LIANEN MECHANIK BEI GRASKOLLISION
+*             LIANEN 
 \**********************************/
 let vinesActive = false;
 let vines = [];
 let vineInterval;
 let vineUpdateInterval;
-const VINE_SPEED = 3;
+const VINE_SPEED = 2.5;
 
 function initVines() {
     const style = document.createElement('style');
@@ -124,7 +126,7 @@ function createVine() {
     const centerMin = boxWidth * 0.3;
     const centerMax = boxWidth * 0.7;
     const startX = centerMin + Math.random() * (centerMax - centerMin);
-    
+
     vine.style.left = `${startX}px`;
     vine.style.top = '0px';
     
@@ -208,8 +210,9 @@ function checkGrassCollision() {
     if (grassCollision && !vinesActive) {
         hintsOpen = true;
         document.getElementById("lianen-box").style.display = "block";
+        document.getElementById("lianen-textbox").style.display = "block";
         startVines();
-    
+        startTimerLianen();
     } 
     else if (!grassCollision && vinesActive) {
         stopVines();
@@ -228,3 +231,113 @@ document.addEventListener('keydown', (e) => {
 
     fangbox.style.left = `${fangboxX}%`;
 });
+
+let countdownVine;
+let timeLeftLil;
+
+/*******  TIMER *********** */
+function startTimerLianen() {
+    clearInterval(countdownVine)
+    timeLeftLil = 30;
+    document.getElementById("timer-lianen").innerHTML = `<p>${timeLeftLil}s</p>`
+    
+    countdownVine = setInterval(() => {
+        timeLeftLil--
+        document.getElementById("timer-lianen").innerHTML = `<p>${timeLeftLil}s</p>`
+
+        if (timeLeftLil <= 0) {
+            clearInterval(countdownVine)
+            document.getElementById("lianen-box").style.display = "none";
+            document.getElementById("gras").style.display = "none";
+            document.getElementById("lianen-textbox").style.display = "none";
+            hintsOpen = false;  
+            gameLoop();
+        }
+    }, 1000)
+}
+
+
+
+function startPlankPuzzle() {
+    const TARGET_POSITIONS = [
+        {x: 100, y: 50},
+        {x: 150, y: 50},
+        {x: 200, y: 50},
+        {x: 250, y: 50},
+        {x: 300, y: 50},
+        {x: 350, y: 50},
+        {x: 400, y: 50},
+    ];
+
+    const plankOverlay = document.getElementById('board-overlay');
+    const planks = document.querySelectorAll('.plank');
+    let draggedPlank = null;
+    let countMistakes = 0;
+
+    planks.forEach(plank => {
+        plank.addEventListener('dragstart', (e) => {
+            draggedPlank = plank;
+            e.dataTransfer.setData('text/plain', plank.id);
+        });
+    });
+
+    plankOverlay.addEventListener('dragover', (e) => e.preventDefault());
+
+    plankOverlay.addEventListener('drop', (e) => {
+        document.getElementById("text-planks").style.display= "none";
+        if (!draggedPlank) return;
+        const rect = plankOverlay.getBoundingClientRect();
+        const x = e.clientX - rect.left - 15;
+        const y = e.clientY - rect.top - 15;
+        draggedPlank.style.position = 'absolute';
+        draggedPlank.style.left = `${x}px`;
+        draggedPlank.style.top = `${y}px`;
+        plankOverlay.appendChild(draggedPlank);
+    });
+
+    document.getElementById('check-planks').addEventListener('click', () => {
+        const placedPlanks = plankOverlay.querySelectorAll('.plank');
+        const usedTargets = [...TARGET_POSITIONS];
+        const TOLERANCE = 20;
+        let correct = 0;
+
+        placedPlanks.forEach(plank => {
+            plank.style.border = "none";
+        });
+
+        placedPlanks.forEach(plank => {
+            const x = parseFloat(plank.style.left);
+            const y = parseFloat(plank.style.top);
+
+            const matchIndex = usedTargets.findIndex(target =>
+                Math.abs(x - target.x) < TOLERANCE &&
+                Math.abs(y - target.y) < TOLERANCE
+            );
+
+            if (matchIndex !== -1) {
+                correct++;
+                usedTargets.splice(matchIndex, 1);
+            } else {
+                plank.style.border = "2px solid red";
+            }
+        });
+
+        if (correct === TARGET_POSITIONS.length) {
+            document.getElementById("check-planks").style.display = "none";
+            document.getElementById("text-planks").style.display= "block";
+            document.getElementById("text-planks").innerText = "All planks are correctly placed!";
+            setTimeout(() => nextLevel(), 2500);
+        } else {
+            countMistakes++;
+            const message = countMistakes < 3
+                ? `You placed ${correct}/${TARGET_POSITIONS.length} correctly. Try again!`
+                : `You failed to build the plank wall...`;
+            document.getElementById("text-planks").style.display = "block";
+            document.getElementById("text-planks").innerText = message;
+
+            if (countMistakes >= 3) {
+                setTimeout(() => gameOver(), 2500);
+            }
+        }
+    });
+}

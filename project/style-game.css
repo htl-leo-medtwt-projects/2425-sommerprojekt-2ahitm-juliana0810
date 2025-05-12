@@ -1360,11 +1360,11 @@
     text-align: center; 
     font-size: 125%;
     margin: 0 auto;
-    width: 70%; 
-    height: 60%;
+    width: 50%; 
+    height: 55vh;
     position: absolute;
-    top: 15vh;
-    left: 15vw;
+    top: 7vh;
+    left: 22.5vw;
     font-family: message;
     font-weight: bold;
     background-color: #080200be;
@@ -1373,6 +1373,7 @@
     display: none;
     padding: 1em 2em;
 }
+
 #lianen-player{
     position: absolute;
     bottom: 0;
@@ -1385,8 +1386,31 @@
     z-index: 1000;
 }
 #timer-lianen{
-    color: red;
+    color: rgb(159, 2, 2);
     position: absolute;
     top: 0;
     right: 0;
+    width: 3vw;
+    height: 2vh;
+    padding: 0.5em 1em;
+    font-family: basicFont;
+    margin-right: 1em;
+}
+#lianen-textbox{
+    text-align: center; 
+    font-size: 150%;
+    margin: 0 auto;
+    width: 50%; 
+    height: 15vh;
+    position: absolute;
+    top: 70vh;
+    left: 22.5vw;
+    font-family: message;
+    font-weight: bold;
+    background-color: #080200be;
+    color: #fcf3cf;
+    box-shadow: 2px 2px 2px #fcf3cf;
+    z-index: 10;
+    display: none;
+    padding: 1em 2em;
 }
