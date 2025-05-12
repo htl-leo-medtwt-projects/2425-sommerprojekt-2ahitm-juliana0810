@@ -4,6 +4,8 @@
 function switchToLevelFive(){
     hintsOpen = false;
     mysteryOpen = false;
+    document.getElementById("pergament-box").style.display = "none"
+    document.getElementById("collider240").style.display = "block"
     initVines();
 
     //switch to right board
@@ -238,7 +240,7 @@ let timeLeftLil;
 /*******  TIMER *********** */
 function startTimerLianen() {
     clearInterval(countdownVine)
-    timeLeftLil = 30;
+    timeLeftLil = 5;
     document.getElementById("timer-lianen").innerHTML = `<p>${timeLeftLil}s</p>`
     
     countdownVine = setInterval(() => {
@@ -256,18 +258,15 @@ function startTimerLianen() {
     }, 1000)
 }
 
-
+const TARGET_POSITIONS = [
+    {x: 120, y: 20},
+    
+];
 
 function startPlankPuzzle() {
-    const TARGET_POSITIONS = [
-        {x: 100, y: 50},
-        {x: 150, y: 50},
-        {x: 200, y: 50},
-        {x: 250, y: 50},
-        {x: 300, y: 50},
-        {x: 350, y: 50},
-        {x: 400, y: 50},
-    ];
+   
+
+    createTargetBoxes();
 
     const plankOverlay = document.getElementById('board-overlay');
     const planks = document.querySelectorAll('.plank');
@@ -339,5 +338,24 @@ function startPlankPuzzle() {
                 setTimeout(() => gameOver(), 2500);
             }
         }
+    });
+}
+function createTargetBoxes() {
+    const plankOverlay = document.getElementById('board-overlay');
+    const BOX_WIDTH = 280;
+    const BOX_HEIGHT = 60;
+
+    TARGET_POSITIONS.forEach((pos) => {
+        const box = document.createElement('div');
+        box.classList.add('target-box');
+        box.style.position = 'absolute';
+        box.style.left = `${pos.x - BOX_WIDTH / 2}px`;
+        box.style.top = `${pos.y - BOX_HEIGHT / 2}px`;
+        box.style.width = `${BOX_WIDTH}px`;
+        box.style.height = `${BOX_HEIGHT}px`;
+        box.style.border = '2px dashed red';
+        box.style.backgroundColor = 'rgba(0, 128, 0, 0.1)';
+        box.style.pointerEvents = 'none'; // Damit das Draggen funktioniert
+        plankOverlay.appendChild(box);
     });
 }

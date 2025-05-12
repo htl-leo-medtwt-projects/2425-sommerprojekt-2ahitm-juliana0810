@@ -557,12 +557,9 @@ function gameLoop() {
 
         /*********** level 5 *********** */
         if (isCollidingWith("collider240")) {
-            if (!PLAYER.triggeredCollider240) {
-                hintsOpen = true;
-                document.getElementById("raetsel-lianen").style.display = "block"; // zeigt das Rätsel an
-                document.getElementById("text-container-level1").style.top = "60vh"; // optional: Position Text
-                PLAYER.triggeredCollider240 = true; // verhindert, dass das mehrfach aufgerufen wird
-            }
+            hintsOpen = true;
+            document.getElementById("container-blanks").style.display = "block"; 
+            startPlankPuzzle();
         }
 
 

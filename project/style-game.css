@@ -1351,6 +1351,8 @@
     position: absolute;
     z-index: 100;
 }
+
+/********* Lianen **********/
 .vine {
     transition: transform 0.05s linear;
     overflow: hidden;
@@ -1413,4 +1415,31 @@
     z-index: 10;
     display: none;
     padding: 1em 2em;
+}
+
+/********* blanks **********/
+#container-blanks{
+    display: none;
+    position: absolute;
+    top: 10vh;
+    right: 20vh;
+    width: 65%;
+    height: 75%;
+    background-color: #00000083;
+    box-shadow: 1px 1px 1px #9e8769;
+    z-index: 10;
+    padding: 2em 3em;
+}
+.plank{
+    width: 22.5vw;
+}
+#planks{
+    margin-top: 2em;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2em;
+    flex-wrap: wrap;
+}
+#board-overlay{
+    margin-left: 23vw;
 }
