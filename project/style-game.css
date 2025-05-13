@@ -1500,5 +1500,25 @@
     letter-spacing: 0.1em;
     color: #f3f3f3;
     text-shadow: #9e8769;
-    margin-top: 1em;
+    margin-top: 2em;
+}
+
+/* dinosaur mystery */
+#textboxDino{
+    text-align: center; 
+    font-size: 175%;
+    margin: 0 auto;
+    width: 70%; 
+    position: absolute;
+    top: 30vh;
+    left: 15vw;
+    font-family: message;
+    font-weight: bold;
+    background-color: #080200be;
+    text-shadow: 1px 1px 1px #9e8769;
+    box-shadow: 2px 2px 2px #fcf3cf;
+    z-index: 10;
+    display: none;
+    padding: 1em 2em;
+    color: #fcf3cf;
 }

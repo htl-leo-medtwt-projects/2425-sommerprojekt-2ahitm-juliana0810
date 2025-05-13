@@ -135,6 +135,14 @@ let TEXTSNIPPETS = [
         'A voice is resting on the other side of the lake',
         'Build yourself a way to get to the hidden answers',
     ],
+    [
+        'One last challenge is remaining... ',
+        'look under the dinosaur remains, you will find the way out'
+    ],
+    [
+        'Three tools I offer, cold and true —',
+        'One bends the lock, the door breaks through.'
+    ],
 ];
 
 let timeLeft;
@@ -267,6 +275,11 @@ function writeText(index) {
                 hintsOpen = true;
                 document.getElementById("container-blanks").style.display = "block"; 
                 startPlankPuzzle();
+            }
+            else if(index == 17){
+                hintsOpen = false;
+                document.getElementById("dinosaur").style.display = "block";
+                gameLoop();
             }
         };
         textContainer.appendChild(closeHint);
@@ -576,6 +589,10 @@ function gameLoop() {
         if (isCollidingWith("audio-device")) {
             hintsOpen = true;
             document.getElementById("audio-container").style.display = "block";
+        }
+        if (isCollidingWith("dinosaur")) {
+            hintsOpen = true;
+            startDinoPuzzle();
         }
 
         /*********** ENEMYS *********** */

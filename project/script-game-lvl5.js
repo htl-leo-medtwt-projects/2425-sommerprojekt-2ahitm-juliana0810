@@ -4,7 +4,7 @@
 function switchToLevelFive(){
     hintsOpen = false;
     mysteryOpen = false;
-    document.getElementById("pergament-box").style.display = "none"
+    document.getElementById("collider16").style.display = "none"
     document.getElementById("collider240").style.display = "block"
     initVines();
 
@@ -398,6 +398,114 @@ function playSound(){
     SOUNDS.audioSpeech.play();
 }
 function closeAudio(){
+    hintsOpen = true;
     document.getElementById("audio-device").style.display = "none";
     document.getElementById("audio-container").style.display = "none";
+    writeText(17);
+}
+
+/* dinosaur mystery*/
+function startDinoPuzzle(){
+    document.getElementById("transparent-box").style.display = "block";
+    
+    const canvas = document.getElementById("symbolCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const correctSymbol = "Crowbar";
+
+    const symbols = [
+        { name: "Crowbar", x: 275, y: 100, imgSrc: "img/crowbar-door-lvl5.png", floatOffset: 0 },
+        { name: "Axt", x: 575, y: 120, imgSrc: "img/axt-door-lvl5.png", floatOffset: 0 },
+        { name: "Key", x: 825, y: 130, imgSrc: "img/key-door-lvl5.png", floatOffset: 0 },
+    ];
+
+
+    const images = {};
+    let imagesLoaded = 0;
+
+    symbols.forEach(sym => {
+        const img = new Image();
+        img.src = sym.imgSrc;
+        img.onload = () => {
+            imagesLoaded++;
+            if (imagesLoaded === symbols.length) {
+                startAnimationDino();
+            }
+        };
+        images[sym.name] = img;
+    });
+
+    let floatAngle = 0;
+    function startAnimationDino(){
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            floatAngle += 0.05;
+        
+            const scale = 0.03; 
+        
+            symbols.forEach(sym => {
+                const img = images[sym.name];
+                const floatY = Math.sin(floatAngle + sym.x / 100) * 5;
+                sym.floatOffset = floatY;
+        
+                const imgWidth = img.width * scale;
+                const imgHeight = img.height * scale;
+                const drawX = sym.x - imgWidth / 2;
+                const drawY = sym.y + floatY - imgHeight / 2;
+        
+                ctx.drawImage(img, drawX, drawY, imgWidth, imgHeight);
+        
+                ctx.fillStyle = "#ddba82";
+                ctx.font = "14px sans-serif";
+                ctx.textAlign = "center";
+                ctx.fillText(sym.name, sym.x, sym.y + floatY + imgHeight / 2 + 15);
+            });
+        
+            requestAnimationFrame(draw);
+        }
+        
+        draw();
+    }
+    
+    document.getElementById("text-container-level1").style.top = "60vh";
+    writeText(18);
+
+    canvas.addEventListener("click", handleClickDino);
+
+    function handleClickDino(e) {
+        const rect = canvas.getBoundingClientRect();
+        const mouseX = e.clientX - rect.left;
+        const mouseY = e.clientY - rect.top;
+
+        for (let sym of symbols) {
+            const imgX = sym.x - 32;
+            const imgY = sym.y + sym.floatOffset - 32;
+            if (
+                mouseX >= imgX &&
+                mouseX <= imgX + 64 &&
+                mouseY >= imgY &&
+                mouseY <= imgY + 64
+            ) {
+                canvas.removeEventListener("click", handleClickDino);
+                    canvas.style.display = "none";
+                    document.getElementById("text-container-level1").style.display = "none";
+                    document.getElementById("transparent-box").style.display = "none";
+                    document.getElementById("textboxDino").style.display = "block";
+
+                if (sym.name === correctSymbol) {
+                    hintsOpen = false;
+                    document.getElementById("textboxDino").innerHTML = `<p>You've chosen right. The door will open for your freedom!</p>`
+                    document.getElementById("dinosaur").style.display = "none";
+                    document.getElementById("door-lvl5").style.display = "block";
+                    setTimeout(() => document.getElementById("textboxDino").style.display = "none", 3000);
+                    setTimeout(() => gameLoop(), 3000);
+                } else {
+                    document.getElementById("textboxDino").innerHTML = `<p>You have chosen the wrong symbol! Sadly your expedition is over now...</p>`
+                    gameEnded = true;
+                    setTimeout(() => gameOver(), 3000);
+                }
+            }
+        }
+    }
+    canvas.style.display = "block";
 }

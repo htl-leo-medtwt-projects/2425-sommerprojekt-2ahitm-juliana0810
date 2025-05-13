@@ -1756,3 +1756,21 @@
     width: 1vw;
     height: 3vh;
 }
+#dinosaur{
+    position: absolute;
+    z-index: 5;
+    display: none;
+    left: 59vw;
+    top: 51vh;
+    width: 3.5vw;
+    height: 9vh;
+}
+#door-lvl5{
+    z-index: 5;
+    position: absolute;
+    left: 30.5vw;
+    top: 13vh;
+    width: 5vw;
+    height: 2vh;
+    display: none;
+}

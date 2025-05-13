@@ -174,7 +174,7 @@ function startSymbolPuzzle(){
                     setTimeout(() => document.getElementById("textboxLake").style.display = "none", 3000);
                     setTimeout(() => gameLoop(), 3000);
                 } else {
-                    document.getElementById("textboxLake").innerHTML = `<p>Oh no... You chosen the wrong symbol!</p>`
+                    document.getElementById("textboxLake").innerHTML = `<p>Oh no... You've chosen the wrong symbol!</p>`
                     gameEnded = true;
                     setTimeout(() => gameOver(), 3000);
                 }
