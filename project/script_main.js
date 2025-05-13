@@ -130,7 +130,10 @@ let TEXTSNIPPETS = [
     [
         'Still alive? The stairs in the top left corner lead to freedom...'
     ],
-    
+    [
+        'A voice is resting on the other side of the lake',
+        'Build yourself a way to get to the hidden answers',
+    ],
 ];
 
 let timeLeft;
@@ -138,7 +141,7 @@ let timeLeft;
 /*******  TIMER *********** */
 function startTimer() {
     clearInterval(countdown)
-    timeLeft = 100;
+    timeLeft = 300;
     document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
     
     if(!mysteryOpen){
@@ -258,6 +261,11 @@ function writeText(index) {
                 document.getElementById("door-lvl4").style.display = "block";
                 hintsOpen = false;
                 gameLoop();
+            }
+            else if(index == 16){
+                hintsOpen = true;
+                document.getElementById("container-blanks").style.display = "block"; 
+                startPlankPuzzle();
             }
         };
         textContainer.appendChild(closeHint);
@@ -558,10 +566,12 @@ function gameLoop() {
         /*********** level 5 *********** */
         if (isCollidingWith("collider240")) {
             hintsOpen = true;
-            document.getElementById("container-blanks").style.display = "block"; 
-            startPlankPuzzle();
+            writeText(16);
         }
-
+        if (isCollidingWith("lake-lvl5")) {
+            hintsOpen = true;
+            writeText(16);
+        }
 
         /*********** ENEMYS *********** */
         /*********** ENEMYS *********** */

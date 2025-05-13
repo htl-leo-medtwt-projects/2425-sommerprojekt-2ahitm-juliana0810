@@ -1431,7 +1431,7 @@
     padding: 2em 3em;
 }
 .plank{
-    width: 22.5vw;
+    width: 18vw;
 }
 #planks{
     margin-top: 2em;
@@ -1442,4 +1442,15 @@
 }
 #board-overlay{
     margin-left: 23vw;
+}
+#check-planks{
+    cursor: pointer;
+}
+#text-planks{
+    color: #fcf3cf;
+    text-shadow: #9e8769;
+    font-family: message;
+    text-align: center;
+    margin-top: 1em;
+    font-size: 150%;
 }

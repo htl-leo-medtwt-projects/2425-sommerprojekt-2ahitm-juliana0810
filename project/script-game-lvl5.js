@@ -58,10 +58,10 @@ function switchToLevelFive(){
     PLAYER.box.style.opacity = '1';
 
     //enemy position
-    ENEMY.box.style.left = '500px';
-    ENEMY.box.style.top = "200px";
+    ENEMY.box.style.left = '700px';
+    ENEMY.box.style.top = "100px";
     ENEMY.box.style.opacity = '1';
-    ENEMY3.box.style.left = "750px";
+    ENEMY3.box.style.left = "550px";
     ENEMY3.box.style.top = "300px";
 
     ENEMY.speed = 0.8;
@@ -71,6 +71,7 @@ function switchToLevelFive(){
     document.getElementById("random-enemy2-img").style.right = '0px';
 
     document.getElementById("gras").style.display = "block";
+    document.getElementById("lake-lvl5").style.display = "block";
 
     /*just for now*/
     playerImage = `<img id="spriteImg" src="${players[counter]}">`;
@@ -259,9 +260,17 @@ function startTimerLianen() {
 }
 
 const TARGET_POSITIONS = [
-    {x: 120, y: 20},
-    
+    {x: 125, y: 25},
+    /*{x: 125, y: 75},
+    {x: 125, y: 125},
+    {x: 125, y: 175},
+    {x: 125, y: 225},
+    {x: 125, y: 275},
+    {x: 125, y: 325},*/
 ];
+
+const BOX_WIDTH = 290;
+const BOX_HEIGHT = 60;
 
 function startPlankPuzzle() {
    
@@ -300,6 +309,8 @@ function startPlankPuzzle() {
         const TOLERANCE = 20;
         let correct = 0;
 
+
+
         placedPlanks.forEach(plank => {
             plank.style.border = "none";
         });
@@ -308,10 +319,26 @@ function startPlankPuzzle() {
             const x = parseFloat(plank.style.left);
             const y = parseFloat(plank.style.top);
 
-            const matchIndex = usedTargets.findIndex(target =>
-                Math.abs(x - target.x) < TOLERANCE &&
-                Math.abs(y - target.y) < TOLERANCE
-            );
+            const PLANK_WIDTH = draggedPlank.offsetWidth;
+            const PLANK_HEIGHT = draggedPlank.offsetHeight;
+
+            const matchIndex = usedTargets.findIndex(target => {
+                const boxLeft = target.x - BOX_WIDTH / 2;
+                const boxRight = target.x + BOX_WIDTH / 2;
+                const boxTop = target.y - BOX_HEIGHT / 2;
+                const boxBottom = target.y + BOX_HEIGHT / 2;
+
+                const plankRight = x + PLANK_WIDTH;
+                const plankBottom = y + PLANK_HEIGHT;
+
+                return (
+                    x >= boxLeft &&
+                    plankRight <= boxRight &&
+                    y >= boxTop &&
+                    plankBottom <= boxBottom
+                );
+            });
+            
 
             if (matchIndex !== -1) {
                 correct++;
@@ -325,7 +352,7 @@ function startPlankPuzzle() {
             document.getElementById("check-planks").style.display = "none";
             document.getElementById("text-planks").style.display= "block";
             document.getElementById("text-planks").innerText = "All planks are correctly placed!";
-            setTimeout(() => nextLevel(), 2500);
+            setTimeout(() => closeBlanks(), 2500);
         } else {
             countMistakes++;
             const message = countMistakes < 3
@@ -340,10 +367,9 @@ function startPlankPuzzle() {
         }
     });
 }
+
 function createTargetBoxes() {
     const plankOverlay = document.getElementById('board-overlay');
-    const BOX_WIDTH = 280;
-    const BOX_HEIGHT = 60;
 
     TARGET_POSITIONS.forEach((pos) => {
         const box = document.createElement('div');
@@ -353,9 +379,13 @@ function createTargetBoxes() {
         box.style.top = `${pos.y - BOX_HEIGHT / 2}px`;
         box.style.width = `${BOX_WIDTH}px`;
         box.style.height = `${BOX_HEIGHT}px`;
-        box.style.border = '2px dashed red';
-        box.style.backgroundColor = 'rgba(0, 128, 0, 0.1)';
-        box.style.pointerEvents = 'none'; // Damit das Draggen funktioniert
+        box.style.pointerEvents = 'none'; 
         plankOverlay.appendChild(box);
     });
+}
+function closeBlanks(){
+    document.getElementById("container-blanks").style.display = "none";
+    document.getElementById("collider240").style.display = "none";
+    hintsOpen = false;
+    gameLoop();
 }

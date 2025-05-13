@@ -1606,6 +1606,9 @@
     height: 12vh;
     top: 64vh;
     left: 44.7vw;
+    position: absolute;
+    z-index: 100;
+    display: none;
 }
 #collider218{
     width: 0.34vw;
