@@ -57,6 +57,7 @@ let SOUNDS = {
     lifeLost: new Audio("audio/life-lost.mp3"),
     gameEndedSound: new Audio("audio/game-over.mp3"),
     speedCollect: new Audio("audio/speed-audio.mp3"),
+    audioSpeach: new Audio("audio/speech-lvl5.wav"),
 }
 
 let TEXTSNIPPETS = [
@@ -571,6 +572,10 @@ function gameLoop() {
         if (isCollidingWith("lake-lvl5")) {
             hintsOpen = true;
             writeText(16);
+        }
+        if (isCollidingWith("audio-device")) {
+            hintsOpen = true;
+            document.getElementById("audio-container").style.display = "block";
         }
 
         /*********** ENEMYS *********** */

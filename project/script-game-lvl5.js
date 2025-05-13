@@ -72,6 +72,7 @@ function switchToLevelFive(){
 
     document.getElementById("gras").style.display = "block";
     document.getElementById("lake-lvl5").style.display = "block";
+    document.getElementById("audio-device").style.display = "block";
 
     /*just for now*/
     playerImage = `<img id="spriteImg" src="${players[counter]}">`;
@@ -386,6 +387,17 @@ function createTargetBoxes() {
 function closeBlanks(){
     document.getElementById("container-blanks").style.display = "none";
     document.getElementById("collider240").style.display = "none";
+    document.getElementById("planks-lake-box").style.display = "block";
+    document.getElementById("lake-lvl5").style.display = "none";
     hintsOpen = false;
     gameLoop();
+}
+
+/* audio */
+function playSound(){
+    SOUNDS.audioSpeech.play();
+}
+function closeAudio(){
+    document.getElementById("audio-device").style.display = "none";
+    document.getElementById("audio-container").style.display = "none";
 }

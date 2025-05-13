@@ -1535,11 +1535,14 @@
     top: 37.25vh;
     left: 38.5vw;
 }
-#collider208{
+#lake-lvl5{
     width: 5.7vw;
     height: 9vh;
     top: 38.5vh;
     left: 33.5vw;
+    position: absolute;
+    z-index: 100;
+    display: none;
 }
 #collider209{
     width: 6vw;
@@ -1601,14 +1604,12 @@
     top: 63vh;
     left: 44.25vw;
 }
-#lake-lvl5{
+#collider208{
     width: 4.25vw;
     height: 12vh;
     top: 64vh;
     left: 44.7vw;
-    position: absolute;
-    z-index: 100;
-    display: none;
+    
 }
 #collider218{
     width: 0.34vw;
@@ -1745,4 +1746,13 @@
     top: 45vh;
     left: 40.5vw;
     transform: rotate(35deg);
+}
+#audio-device{
+    position: absolute;
+    z-index: 5;
+    display: none;
+    left: 30.5vw;
+    top: 53vh;
+    width: 1vw;
+    height: 3vh;
 }
