@@ -29,6 +29,9 @@ function switchToLevelFive(){
         document.getElementById("random-enemy").style.opacity = "1";
         document.getElementById("random-enemy-img").style.display = "block";
     }
+    else{
+        initBuddy();
+    }
 
 
     //change background
@@ -92,6 +95,8 @@ function switchToLevelFive(){
     startTimer();
     gameLoop();
 }
+
+let originalEnemySpeed = 0.3;
 
 /**********************************\
 *             LIANEN 
@@ -525,90 +530,125 @@ function startDinoPuzzle(){
  * BUDDY SYSTEM
  ***********************************/
 let BUDDY = {
-    box: document.getElementById('random-enemy'),
-    spriteImg: document.getElementById('random-enemy-img'),
+    box: document.getElementById('buddy'),
+    spriteImg: document.getElementById('buddy-img'),
     spriteImgNumber: 0,
-    followingDistance: 100, // Abstand zum Spieler
-    stoppingRadius: 150, // Radius in dem der Buddy den Gegner aufhält
-    speed: 3 // Geschwindigkeit des Buddys
+    followingDistance: 50, 
+    stoppingRadius: 150, 
+    speed: 5,
+    direction: 'right',
+    yOffset: 0,
 };
 
-// Buddy-Animation ähnlich wie der Spieler
 function animateBuddy() {
     if (BUDDY.spriteImgNumber < 8) {
         BUDDY.spriteImgNumber++;
-        let x = parseFloat(BUDDY.spriteImg.style.right);
-        x += VALUES[value]; 
+        let x = parseFloat(BUDDY.spriteImg.style.right) || 0;
+        x += 31; 
         BUDDY.spriteImg.style.right = x + "px";
-        BUDDY.spriteImg.style.top = yValue + "px";
+        BUDDY.spriteImg.style.top = BUDDY.yOffset + "px";
     } else {
         BUDDY.spriteImg.style.right = "0px";
         BUDDY.spriteImgNumber = 0;
     }
 }
-
-// Bewegung des Buddys
 function moveBuddy() {
     if (!savedExplorer || gameEnded || hintsOpen || mysteryOpen) return;
 
     const playerRect = PLAYER.box.getBoundingClientRect();
     const buddyRect = BUDDY.box.getBoundingClientRect();
     const enemyRect = ENEMY.box.getBoundingClientRect();
-    
-    // Berechne Entfernungen
-    const distanceToPlayer = Math.sqrt(
-        Math.pow(playerRect.left - buddyRect.left, 2) + 
-        Math.pow(playerRect.top - buddyRect.top, 2)
+
+    const distanceToPlayer = Math.hypot(
+        playerRect.left - buddyRect.left,
+        playerRect.top - buddyRect.top
     );
     
-    const distanceToEnemy = Math.sqrt(
-        Math.pow(enemyRect.left - buddyRect.left, 2) + 
-        Math.pow(enemyRect.top - buddyRect.top, 2)
+    const distanceToEnemy = Math.hypot(
+        enemyRect.left - buddyRect.left,
+        enemyRect.top - buddyRect.top
     );
 
-    // Wenn Gegner in Stopping-Radius und Buddy in Spieler-Radius
+    let dx = 0;
+    let dy = 0;
+    let isAttacking = false;
+
+
     if (distanceToEnemy < BUDDY.stoppingRadius && distanceToPlayer < BUDDY.followingDistance * 2) {
-        // Blockiere den Gegner
+        
         const angle = Math.atan2(enemyRect.top - buddyRect.top, enemyRect.left - buddyRect.left);
         const targetX = enemyRect.left - Math.cos(angle) * 30;
         const targetY = enemyRect.top - Math.sin(angle) * 30;
         
-        // Bewege Buddy zum Gegner
-        const dx = (targetX - buddyRect.left) * 0.1;
-        const dy = (targetY - buddyRect.top) * 0.1;
+        dx = (targetX - buddyRect.left) * 0.1;
+        dy = (targetY - buddyRect.top) * 0.1;
         
-        BUDDY.box.style.left = (parseFloat(BUDDY.box.style.left) + dx) + 'px';
-        BUDDY.box.style.top = (parseFloat(BUDDY.box.style.top) + dy) + 'px';
-        
-        // Halte den Gegner an
-        ENEMY.box.style.left = (parseFloat(ENEMY.box.style.left) - dx * 0.5) + 'px';
-        ENEMY.box.style.top = (parseFloat(ENEMY.box.style.top) - dy * 0.5) + 'px';
+       
+        ENEMY.speed = 0;
+        isAttacking = true;
     } else {
-        // Normales Folgen des Spielers
+       
         const targetX = playerRect.left - BUDDY.followingDistance;
         const targetY = playerRect.top;
         
-        const dx = (targetX - buddyRect.left) * 0.05;
-        const dy = (targetY - buddyRect.top) * 0.05;
+        dx = targetX - buddyRect.left;
+        dy = targetY - buddyRect.top;
+        const dist = Math.hypot(dx, dy);
         
-        BUDDY.box.style.left = (parseFloat(BUDDY.box.style.left) + dx) + 'px';
-        BUDDY.box.style.top = (parseFloat(BUDDY.box.style.top) + dy) + 'px';
+        if (dist > 0) {
+            dx = (dx / dist) * BUDDY.speed;
+            dy = (dy / dist) * BUDDY.speed;
+        }
+
+        if (ENEMY.speed === 0) {
+            ENEMY.speed = originalEnemySpeed; 
+        }
     }
-    
-    // Animation nur wenn sich der Buddy bewegt
+
+    BUDDY.box.style.left = (buddyRect.left - GAME_SCREEN.surface.getBoundingClientRect().left + dx) + 'px';
+    BUDDY.box.style.top = (buddyRect.top - GAME_SCREEN.surface.getBoundingClientRect().top + dy) + 'px';
+
+    if (Math.abs(dx) > Math.abs(dy)) {
+        BUDDY.direction = dx > 0 ? 'right' : 'left';
+    } else {
+        BUDDY.direction = dy > 0 ? 'down' : 'up';
+    }
+
+
+    switch (BUDDY.direction) {
+        case 'up':    
+            BUDDY.yOffset = 0;    
+            break;
+        case 'down':  
+            BUDDY.yOffset = -75;  
+            break;
+        case 'left':  
+            BUDDY.yOffset = -110;  
+            break;
+        case 'right': 
+            BUDDY.yOffset = -110; 
+            break;
+    }
+
+    if (BUDDY.direction === 'left') {
+        BUDDY.box.style.transform = 'scaleX(-1)';
+    } else if (BUDDY.direction === 'right') {
+        BUDDY.box.style.transform = 'scaleX(1)';
+    }
+
     if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
         animateBuddy();
     }
 }
 
-// Initialisiere den Buddy wenn savedExplorer true ist
+
 function initBuddy() {
     if (savedExplorer) {
         BUDDY.box.style.display = 'block';
         BUDDY.box.style.opacity = '1';
+        BUDDY.box.style.left = '630px'; 
+        BUDDY.box.style.top = '600px'; 
         BUDDY.spriteImg.style.display = 'block';
-        BUDDY.box.style.left = (parseFloat(PLAYER.box.style.left) - 100) + 'px';
-        BUDDY.box.style.top = PLAYER.box.style.top;
     } else {
         BUDDY.box.style.display = 'none';
     }

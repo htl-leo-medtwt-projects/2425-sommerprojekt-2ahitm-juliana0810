@@ -606,12 +606,12 @@ function gameLoop() {
             startDinoPuzzle();
         }
 
-        if (isCollidingWith("door-lvl5")) {
+        if (isCollidingWith("door-lvl5")&& !collectedKey) {
             hintsOpen = true;
             document.getElementById("text-container-level1").style.top = "30vh";
             writeText(19);
         }
-        if (isCollidingWith("key-door-lvl5") && !collectedKey) {
+        if (isCollidingWith("key-door-lvl5") ) {
             collectedKeyLvl5 = true;
             document.getElementById("door-lvl5").style.display = "block";
             document.getElementById("key-door-lvl5").style.display = "none";
@@ -655,13 +655,17 @@ function gameLoop() {
                     PLAYER.box.classList.remove('invincible');
                 }, 2000);
             }
+
         }
         
         moveEnemy();
         moveEnemy2Randomly();
         moveEnemy3Randomly();
-        
 
+        if (savedExplorer) {
+            moveBuddy();
+        }
+    
         checkSpeedItemCollision();
         checkGrassCollision();
 

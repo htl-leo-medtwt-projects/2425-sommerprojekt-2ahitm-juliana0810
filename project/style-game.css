@@ -1531,3 +1531,23 @@
     display: none;
     z-index: 5;
 }
+
+/************ buddy **************/
+
+#buddy{
+    background-color: transparent;
+    position: absolute;
+    z-index: 5;
+    width: 2.5vw; 
+    height: 5vh; 
+    overflow: hidden;
+    opacity: 0;
+    display: none;
+}
+#buddy-img{
+    height: 20vh;
+    position: absolute;
+    top: 0;        
+    left: 0;      
+    width: auto;  
+}

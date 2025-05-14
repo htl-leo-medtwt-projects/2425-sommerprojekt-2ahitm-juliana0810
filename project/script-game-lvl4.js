@@ -1,7 +1,7 @@
 /***********************************
  * LEVEL 4
  * **********************************/
-let savedExplorer = false;
+let savedExplorer = true;
 
 function switchToLevelFour(){
     hintsOpen = false;
