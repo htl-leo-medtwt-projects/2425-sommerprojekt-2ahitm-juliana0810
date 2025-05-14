@@ -1522,3 +1522,12 @@
     padding: 1em 2em;
     color: #fcf3cf;
 }
+#key-door-lvl5{
+    position: absolute;
+    width: 5vw;
+    height: auto;
+    top: 62vh;
+    left: 55vw;
+    display: none;
+    z-index: 5;
+}

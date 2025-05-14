@@ -23,6 +23,13 @@ function switchToLevelFive(){
     document.getElementById("random-enemy2").style.opacity = "1";
     document.getElementById("random-enemy2-img").style.display = "block";
    
+    if(!savedExplorer){
+        document.getElementById("random-enemy-img").src = "img/otherExplorer.png";
+        document.getElementById("random-enemy").style.display = "block";
+        document.getElementById("random-enemy").style.opacity = "1";
+        document.getElementById("random-enemy-img").style.display = "block";
+    }
+
 
     //change background
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level5.png')";
@@ -63,9 +70,12 @@ function switchToLevelFive(){
     ENEMY.box.style.opacity = '1';
     ENEMY3.box.style.left = "550px";
     ENEMY3.box.style.top = "300px";
+    ENEMY2.box.style.left = "600px";
+    ENEMY2.box.style.top = "200px";
 
-    ENEMY.speed = 0.8;
+    ENEMY.speed = 0.3;
     ENEMY3.speed = 1.1;
+    ENEMY2.speed = 0.9;
 
     document.getElementById("enemy-skeleton").style.right = '0px';
     document.getElementById("random-enemy2-img").style.right = '0px';
@@ -508,4 +518,98 @@ function startDinoPuzzle(){
         }
     }
     canvas.style.display = "block";
+}
+
+/* BUDDY */
+/***********************************
+ * BUDDY SYSTEM
+ ***********************************/
+let BUDDY = {
+    box: document.getElementById('random-enemy'),
+    spriteImg: document.getElementById('random-enemy-img'),
+    spriteImgNumber: 0,
+    followingDistance: 100, // Abstand zum Spieler
+    stoppingRadius: 150, // Radius in dem der Buddy den Gegner aufhält
+    speed: 3 // Geschwindigkeit des Buddys
+};
+
+// Buddy-Animation ähnlich wie der Spieler
+function animateBuddy() {
+    if (BUDDY.spriteImgNumber < 8) {
+        BUDDY.spriteImgNumber++;
+        let x = parseFloat(BUDDY.spriteImg.style.right);
+        x += VALUES[value]; 
+        BUDDY.spriteImg.style.right = x + "px";
+        BUDDY.spriteImg.style.top = yValue + "px";
+    } else {
+        BUDDY.spriteImg.style.right = "0px";
+        BUDDY.spriteImgNumber = 0;
+    }
+}
+
+// Bewegung des Buddys
+function moveBuddy() {
+    if (!savedExplorer || gameEnded || hintsOpen || mysteryOpen) return;
+
+    const playerRect = PLAYER.box.getBoundingClientRect();
+    const buddyRect = BUDDY.box.getBoundingClientRect();
+    const enemyRect = ENEMY.box.getBoundingClientRect();
+    
+    // Berechne Entfernungen
+    const distanceToPlayer = Math.sqrt(
+        Math.pow(playerRect.left - buddyRect.left, 2) + 
+        Math.pow(playerRect.top - buddyRect.top, 2)
+    );
+    
+    const distanceToEnemy = Math.sqrt(
+        Math.pow(enemyRect.left - buddyRect.left, 2) + 
+        Math.pow(enemyRect.top - buddyRect.top, 2)
+    );
+
+    // Wenn Gegner in Stopping-Radius und Buddy in Spieler-Radius
+    if (distanceToEnemy < BUDDY.stoppingRadius && distanceToPlayer < BUDDY.followingDistance * 2) {
+        // Blockiere den Gegner
+        const angle = Math.atan2(enemyRect.top - buddyRect.top, enemyRect.left - buddyRect.left);
+        const targetX = enemyRect.left - Math.cos(angle) * 30;
+        const targetY = enemyRect.top - Math.sin(angle) * 30;
+        
+        // Bewege Buddy zum Gegner
+        const dx = (targetX - buddyRect.left) * 0.1;
+        const dy = (targetY - buddyRect.top) * 0.1;
+        
+        BUDDY.box.style.left = (parseFloat(BUDDY.box.style.left) + dx) + 'px';
+        BUDDY.box.style.top = (parseFloat(BUDDY.box.style.top) + dy) + 'px';
+        
+        // Halte den Gegner an
+        ENEMY.box.style.left = (parseFloat(ENEMY.box.style.left) - dx * 0.5) + 'px';
+        ENEMY.box.style.top = (parseFloat(ENEMY.box.style.top) - dy * 0.5) + 'px';
+    } else {
+        // Normales Folgen des Spielers
+        const targetX = playerRect.left - BUDDY.followingDistance;
+        const targetY = playerRect.top;
+        
+        const dx = (targetX - buddyRect.left) * 0.05;
+        const dy = (targetY - buddyRect.top) * 0.05;
+        
+        BUDDY.box.style.left = (parseFloat(BUDDY.box.style.left) + dx) + 'px';
+        BUDDY.box.style.top = (parseFloat(BUDDY.box.style.top) + dy) + 'px';
+    }
+    
+    // Animation nur wenn sich der Buddy bewegt
+    if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+        animateBuddy();
+    }
+}
+
+// Initialisiere den Buddy wenn savedExplorer true ist
+function initBuddy() {
+    if (savedExplorer) {
+        BUDDY.box.style.display = 'block';
+        BUDDY.box.style.opacity = '1';
+        BUDDY.spriteImg.style.display = 'block';
+        BUDDY.box.style.left = (parseFloat(PLAYER.box.style.left) - 100) + 'px';
+        BUDDY.box.style.top = PLAYER.box.style.top;
+    } else {
+        BUDDY.box.style.display = 'none';
+    }
 }

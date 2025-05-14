@@ -1,6 +1,8 @@
 /***********************************
  * LEVEL 4
  * **********************************/
+let savedExplorer = false;
+
 function switchToLevelFour(){
     hintsOpen = false;
     mysteryOpen = false;
@@ -298,6 +300,7 @@ function selectedAnswerMedicine() {
         document.getElementById("medicine-box").innerHTML =
             `<p class="medicine-result">Yes you saved him! You gained a new buddy!</p>
              <p onclick="closeMedicine()" class="close-medicine">close</p>`;
+             savedExplorer = true;
     } else {
         document.getElementById("medicine-box").innerHTML =
             `<p class="medicine-result">No that was the wrong medicine! It's to late...</p>

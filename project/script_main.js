@@ -18,6 +18,7 @@ let collectedKey = false;
 let gameEnded = false;
 let isInvincible = false;
 let mysteryOpen = false;
+let collectedKeyLvl5 = false;
 
 
 let LIFES = {
@@ -142,6 +143,10 @@ let TEXTSNIPPETS = [
     [
         'Three tools I offer, cold and true —',
         'One bends the lock, the door breaks through.'
+    ],
+    [
+        'The crowbar was mighty—it shattered the first door with ease!',
+        'But... the second is still closed - find the key to overcome the last barrier'
     ],
 ];
 
@@ -279,6 +284,12 @@ function writeText(index) {
             else if(index == 17){
                 hintsOpen = false;
                 document.getElementById("dinosaur").style.display = "block";
+                gameLoop();
+            }
+            else if(index == 19){
+                document.getElementById("door-lvl5").style.display = "none";
+                document.getElementById("key-door-lvl5").style.display = "block";
+                hintsOpen = false;
                 gameLoop();
             }
         };
@@ -575,7 +586,7 @@ function gameLoop() {
             hintsOpen = true;
             switchToMystery4();
         }
-
+        
 
         /*********** level 5 *********** */
         if (isCollidingWith("collider240")) {
@@ -593,6 +604,22 @@ function gameLoop() {
         if (isCollidingWith("dinosaur")) {
             hintsOpen = true;
             startDinoPuzzle();
+        }
+
+        if (isCollidingWith("door-lvl5")) {
+            hintsOpen = true;
+            document.getElementById("text-container-level1").style.top = "30vh";
+            writeText(19);
+        }
+        if (isCollidingWith("key-door-lvl5") && !collectedKey) {
+            collectedKeyLvl5 = true;
+            document.getElementById("door-lvl5").style.display = "block";
+            document.getElementById("key-door-lvl5").style.display = "none";
+            document.getElementById("key-statistics").innerHTML = `<img id="key-statistics-img" src="img/key-door-lvl5.png" alt="key-door-lvl5">`
+            document.getElementById("key-statistics").style.display = "block";
+        }
+        if (isCollidingWith("door-lvl5") && collectedKeyLvl5) {
+            hintsOpen = true;
         }
 
         /*********** ENEMYS *********** */
