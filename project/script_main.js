@@ -606,7 +606,8 @@ function gameLoop() {
             startDinoPuzzle();
         }
 
-        if (isCollidingWith("door-lvl5")&& !collectedKey) {
+        if (isCollidingWith("door-lvl5") && !collectedKeyLvl5) {
+            console.log(collectedKeyLvl5)
             hintsOpen = true;
             document.getElementById("text-container-level1").style.top = "30vh";
             writeText(19);
@@ -619,7 +620,10 @@ function gameLoop() {
             document.getElementById("key-statistics").style.display = "block";
         }
         if (isCollidingWith("door-lvl5") && collectedKeyLvl5) {
+            console.log(collectedKeyLvl5)
             hintsOpen = true;
+            gameEnded = true;
+            switchToLeavingRoom()
         }
 
         /*********** ENEMYS *********** */

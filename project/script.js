@@ -166,3 +166,30 @@ function openScroll(){
 function readyButton(){
     document.getElementById("ready").innerHTML = "ready";
 }
+
+/* END */
+function switchToLeavingRoom(){
+    document.getElementById("gameBody").style.display = "none";
+    document.getElementById("door-leave-body").style.display = "none";
+    openScrollEnd();
+}
+function openScrollEnd(){
+    document.getElementById("container-end-scroll").innerHTML = 
+        `<img id="scroll-opened" src="img/scroll-opened.png" alt="scroll-opened">
+        <div class="text-container">
+            <p class="typewriter delay-1">Welcome, Explorer...</p>
+            <p class="typewriter delay-2">You have gone where few dare to go </p>
+            <p class="typewriter delay-3">—the cursed depths of an ancient pyramid,</p>
+            <p class="typewriter delay-4">where forgotten secrets whisper in the dark.</p>
+            <p class="typewriter delay-5">But beware... your curiosity has stirred the ancient sands, </p>
+            <p class="typewriter delay-6">awakening a curse long forgotten.</p>
+            <p class="typewriter delay-7">Run. Solve the riddles.</p>
+            <p class="typewriter delay-8">This is your final expedition. Make it count.</p>
+        </div>`;
+
+}
+function leaveButton(){
+    document.getElementById("container-end-scroll").style.display = "none";
+    document.getElementById("done").style.display = "none";
+    document.getElementById("leaveText").style.display = "block";
+}
