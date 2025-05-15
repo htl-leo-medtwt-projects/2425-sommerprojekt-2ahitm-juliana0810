@@ -43,6 +43,11 @@ function switchToLevelFive(){
         collider.style.display = "none";
     });
 
+    const collidersLvl5 = document.querySelectorAll('.collider-lvl5');
+    collidersLvl5.forEach(collider => {
+        collider.style.display = "block";
+    });
+
     document.getElementById("collidertop").style.display = "block";
     document.getElementById("colliderleft").style.display = "block";
     document.getElementById("colliderright").style.display = "block";
@@ -295,6 +300,7 @@ function startPlankPuzzle() {
 
     const plankOverlay = document.getElementById('board-overlay');
     const planks = document.querySelectorAll('.plank');
+    document.getElementById("check-planks").style.display = "block";
     let draggedPlank = null;
     let countMistakes = 0;
 

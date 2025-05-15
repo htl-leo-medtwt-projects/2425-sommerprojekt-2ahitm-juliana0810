@@ -506,9 +506,9 @@
                 <div id="timer-lianen"></div>
                 <div id="lianen-player"></div>
             </div>
-            <div id="lianen-textbox"><p>Oh no you got stuck in the wilderness! Evade the lianas and carve your path through the underbrush</p></div>
+            <div class="items-lvl5" id="lianen-textbox"><p>Oh no you got stuck in the wilderness! Evade the lianas and carve your path through the underbrush</p></div>
             
-            <div id="container-blanks">
+            <div class="items-lvl5" id="container-blanks">
                 <div id="board-overlay" style="position: relative; width: 250px; height: 350px; background-image: url('img/board-background.png'); background-size: cover;"></div>
             
                 <div id="planks">
@@ -520,10 +520,10 @@
                     <img src="img/plank.png" id="plank6" class="plank" draggable="true" />
                     <img src="img/plank.png" id="plank7" class="plank" draggable="true" />
                 </div>
-                <button id="check-planks">Check</button>
+                <button class="items-lvl5" id="check-planks">Check</button>
                 <p id="text-planks" style="display: none;"></p>
             </div>
-            <div id="planks-lake-box"><img src="img/planks-lake.png" alt="planks-lake"></div>
+            <div class="items-lvl5" id="planks-lake-box"><img src="img/planks-lake.png" alt="planks-lake"></div>
             <div class="items-lvl5" id="audio-device"></div>
 
             <div id="audio-container">
@@ -603,10 +603,11 @@
 
     <!-- leave room -->
     <div id="door-leave-body">
+        <div id="container-end-scroll"></div>
         <div>
             <p onclick="leaveButton()" id="done">done</p>
         </div>
-        <p id="leave-Text"></p>
+        <p onclick="switchToEndPage()" id="leaveText">leave</p>
     </div>
 
 
@@ -618,7 +619,7 @@
                 <p>Sadly you didn't manage to complete your last expedition...</p>
             </div>
             <div id="game-over-buttons">
-                <div>
+                <div onclick="tryAgain()">
                     <img src="img/try-again-button.png" alt="try-again-button">
                     <p>try again</p>
                 </div>
@@ -626,7 +627,31 @@
                     <img src="img/leaderboard-button.png" alt="leaderboard-button">
                     <p>leaderboard</p>
                 </div>
+                <div onclick="backToStart()">
+                    <img src="img/start-button.png" alt="start-button">
+                    <p>back to start</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ending screen -->
+    <div id="lastPage">
+        <div>
+            <div id="game-over-box">
+                <h1>expedition over !</h1>
+                <p>Well done! You managed to complete your last expedition</p>
+            </div>
+            <div id="game-over-buttons">
+                <div onclick="tryAgain()">
+                    <img src="img/try-again-button.png" alt="try-again-button">
+                    <p>try again</p>
+                </div>
                 <div>
+                    <img src="img/leaderboard-button.png" alt="leaderboard-button">
+                    <p>leaderboard</p>
+                </div>
+                <div onclick="backToStart()">
                     <img src="img/start-button.png" alt="start-button">
                     <p>back to start</p>
                 </div>

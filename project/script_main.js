@@ -155,7 +155,7 @@ let timeLeft;
 /*******  TIMER *********** */
 function startTimer() {
     clearInterval(countdown)
-    timeLeft = 300;
+    timeLeft = 150;
     document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
     
     if(!mysteryOpen){
@@ -475,7 +475,7 @@ function resetLevel(){
     //reset stats
     levelCount++;
     document.getElementById("level").innerHTML = `<p>${levelCount}</p>`
-    timeLeft = 200;
+    timeLeft = 250;
     LIFES.life1.style.opacity = "1";
     LIFES.life2.style.opacity = "1";
     LIFES.life3.style.opacity = "1";

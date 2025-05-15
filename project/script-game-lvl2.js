@@ -3,7 +3,6 @@
  * **********************************/
 
 function switchToLevelTwo() {
-    levelCount++;
     hintsOpen = false;
     mysteryOpen = false;
 

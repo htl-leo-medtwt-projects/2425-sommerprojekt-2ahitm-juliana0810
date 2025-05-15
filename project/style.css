@@ -414,23 +414,36 @@ body{
     cursor: pointer;
 }
 
-#leave-text{
+#leaveText{
     display: none;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 8em;
+    margin-top: 3.25em;
     font-size: 3em;
     text-align: center;
     font-family: headline;
-    color: #592a1d;
-    text-shadow: 2px 2px 2px #ffcc99;
+    color: #fcf3cf;
+    text-shadow: 2px 2px 2px #210b05;
     cursor: pointer;
     animation: leaveText 1s infinite ease;
 }
 
-/*animation for "enter" text */
+/*animation for "leave" text */
 @keyframes leaveText {
     0%{transform: scale3d(1,1,1);}
     50%{transform: scale3d(1.1,1.1,1.1);}
     100%{transform: scale3d(1,1,1);}
+}
+
+#lastPage{
+    background-image: url(img/story-background-text.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    display: none;
+    margin: 0;
+    padding: 0;
+    animation: slowChange 1.5s ease;
 }

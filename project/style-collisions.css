@@ -1414,6 +1414,7 @@
     background-color: transparent;
     position: absolute;
     z-index: 100;
+    display: none;
 }
 #collider188{
     width: 1.3vw;

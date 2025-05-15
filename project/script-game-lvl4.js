@@ -320,6 +320,7 @@ function closeMedicine(){
 
 function switchToMystery4() {
     mysteryOpen = true;
+    document.getElementById("door-lvl4").style.display = "none";
     document.getElementById("storyTelling").style.display = "none";
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl4").style.display = "block";
