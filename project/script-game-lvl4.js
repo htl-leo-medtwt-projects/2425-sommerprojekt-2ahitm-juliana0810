@@ -57,6 +57,7 @@ function switchToLevelFour(){
     PLAYER.box.style.left = '560px'; 
     PLAYER.box.style.top = '600px'; 
     PLAYER.box.style.opacity = '1';
+    PLAYER.speed = 7;
 
     //enemy position
     ENEMY.box.style.left = '500px';

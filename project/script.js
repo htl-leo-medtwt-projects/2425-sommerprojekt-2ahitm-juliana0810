@@ -100,7 +100,7 @@ function switchToCharacter(){
                 </div>
                 <img onclick="goRight()" class="arrows-character" src="img/arrow-right.png">
             </div>
-            <p id="select" onclick="switchToLevelFive()">select</p>
+            <p id="select" onclick="switchToGame()">select</p>
         </div>`
     }
     
@@ -212,15 +212,24 @@ function backToStart() {
 
 function tryAgain() {
     firstTimePlaying = false;
-    console.log("Selected character path:", selectedCharacter);
     document.getElementById("lastPage").style.display = "none";
     document.getElementById("game-over").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
     
     resetGameState();
-    resetLevel();
+
+    //set colliders display none
+    const colliders = document.querySelectorAll('.collider-lvl5, .collider-lvl2, .collider-lvl3, .collider-lvl4');
+    colliders.forEach(collider => {
+        collider.style.display = "none";
+    });
+
+    const collidersLvl1 = document.querySelectorAll('.collider');
+    collidersLvl1.forEach(collider => {
+        collider.style.display = "block";
+    });
     
-    levelCount = 1;
+    levelCount = 0;
     document.getElementById("level").innerHTML = `<p>${levelCount}</p>`;
 
     document.getElementById("gameBoard").style.backgroundImage = "url('img/game-board-level1.png')";
@@ -244,14 +253,12 @@ function tryAgain() {
     img.onload = function() {
         document.getElementById("player").innerHTML = `<img id="spriteImg" src="${selectedCharacter}">`;
         gameEnded = false;
-        startGame();
+        switchToGame();
     };
     img.onerror = function() {
         console.error("Failed to load player image:", selectedCharacter);
     };
-    
-    gameEnded = false;
-    switchToGame();
+       
 }
 
 function resetGameState() {
@@ -259,6 +266,54 @@ function resetGameState() {
     LIFES.life1.style.opacity = "1";
     LIFES.life2.style.opacity = "1";
     LIFES.life3.style.opacity = "1";
+
+    PLAYER.triggeredCollider16 = false;
+    PLAYER.triggeredScarab = false;
+    PLAYER.triggeredBench = false;
+    PLAYER.triggeredVase = false;
+
+
+    /*reset all enemys*/ 
+    ENEMY.currentFrame = 0;
+    ENEMY.totalFrames = 8; 
+    ENEMY.frameWidth = 1.5; 
+
+    ENEMY.box.style.transform = 'scaleX(1)'; 
+    ENEMY.box.style.opacity = '1';
+    ENEMY.sprite.style.right = '0px';
+    ENEMY.spriteImgNumber = 0;
+    ENEMY.yOffset = 0;
+    ENEMY.direction = 'down';
+    ENEMY.currentFrame = 0;
+    ENEMY.box.style.left = '500px';
+    ENEMY.box.style.top = '400px';
+
+    ENEMY3.box.style.transform = 'scaleX(1)';
+    ENEMY3.spriteImgNumber = 0;
+    ENEMY3.direction = 'down';
+    ENEMY3.yOffset = 0;
+    ENEMY3.targetX = 0;
+    ENEMY3.targetY = 0;
+    document.getElementById("random-enemy2-img").style.right = '0px';
+
+    ENEMY2.box.style.transform = 'scaleX(1)';
+    ENEMY2.spriteImgNumber = 0;
+    ENEMY2.direction = 'down';
+    ENEMY2.yOffset = 0;
+    ENEMY2.targetX = 0;
+    ENEMY2.targetY = 0;
+    document.getElementById("random-enemy-img").style.right = '0px';
+    
+    document.getElementById("enemy-skeleton").style.right = '0px';
+    document.getElementById("enemy-skeleton").style.top = '0px';
+
+    document.getElementById("collider16").style.display = "block";
+
+    ENEMY.speed = 0.8;
+    ENEMY2.speed = 1.2;
+    ENEMY3.speed = 0.8;
+
+    document.getElementById("text-container-level1").style.top = "30vh"
     
     PLAYER.coins = 0;
     document.getElementById("coins-box").innerHTML = `<p>${PLAYER.coins} coins</p>`;
@@ -279,4 +334,42 @@ function resetGameState() {
 
     playerImage = `<img id="spriteImg" src="${selectedCharacter}">`;
     document.getElementById("player").innerHTML = playerImage;
+
+    if (window.enemy3Interval) clearInterval(window.enemy3Interval);
+    if (window.enemy2Interval) clearInterval(window.enemy2Interval);
+
+    window.enemy3Interval = setInterval(() => {
+        if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy3();
+    }, 2500);
+
+    window.enemy2Interval = setInterval(() => {
+        if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy2(); 
+    }, 2500);
 }
+
+/* LEADERBOARD */
+/*
+function saveToLeaderBoard(name) {
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || []; 
+    leaderboard.push({ name: name, score: PLAYER.score }); 
+    leaderboard.sort((a, b) => b.score - a.score); // Sort by highest score
+    if (leaderboard.length > 10) leaderboard = leaderboard.slice(0, 10); // Keep top 10 scores
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard)); // Save updated leaderboard
+    displayLeaderBoard();
+}
+
+// Function to display leaderboard
+function displayLeaderBoard() {
+    document.getElementById("leaderboard").style.display = "block";
+    document.getElementById("nameInputBox").style.display = "none";
+    document.getElementById("message").style.display = "none";
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    let list = document.getElementById("leaderboardList");
+    list.innerHTML = ""; // Clear the list
+
+    leaderboard.forEach((entry, index) => {
+        let li = document.createElement("li");
+        li.textContent = `${index + 1}. ${entry.name} - ${entry.score}`;
+        list.appendChild(li);
+    });
+}*/
