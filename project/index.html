@@ -623,7 +623,7 @@
                     <img src="img/try-again-button.png" alt="try-again-button">
                     <p>try again</p>
                 </div>
-                <div>
+                <div onclick="toLeaderboard()">
                     <img src="img/leaderboard-button.png" alt="leaderboard-button">
                     <p>leaderboard</p>
                 </div>
@@ -647,7 +647,7 @@
                     <img src="img/try-again-button.png" alt="try-again-button">
                     <p>try again</p>
                 </div>
-                <div>
+                <div onclick="toLeaderboard()">
                     <img src="img/leaderboard-button.png" alt="leaderboard-button">
                     <p>leaderboard</p>
                 </div>
@@ -656,6 +656,14 @@
                     <p>back to start</p>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="leaderboard-body">
+        <div id="leaderboard">
+            <h2>Leaderboard</h2>
+            <ol id="leaderboardList"></ol>
+            <button id="leaderboard-button" onclick="hideLeaderboard()">Close</button>
         </div>
     </div>
 </body>

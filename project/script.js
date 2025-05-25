@@ -100,7 +100,7 @@ function switchToCharacter(){
                 </div>
                 <img onclick="goRight()" class="arrows-character" src="img/arrow-right.png">
             </div>
-            <p id="select" onclick="switchToGame()">select</p>
+            <p id="select" onclick="switchToLevelFive()">select</p>
         </div>`
     }
     
@@ -201,7 +201,12 @@ function leaveButton(){
     document.getElementById("done").style.display = "none";
     document.getElementById("leaveText").style.display = "block";
 }
-function switchToEndPage(){
+
+function switchToEndPage() {
+
+    let score = PLAYER.coins + levelCount * 10;
+    saveToLeaderBoard(username, score);
+    
     document.getElementById("lastPage").style.display = "block";
     document.getElementById("door-leave-body").style.display = "none";
 }
@@ -215,7 +220,7 @@ function tryAgain() {
     document.getElementById("lastPage").style.display = "none";
     document.getElementById("game-over").style.display = "none";
     document.getElementById("gameBody").style.display = "block";
-    
+
     resetGameState();
 
     //set colliders display none
@@ -278,6 +283,7 @@ function resetGameState() {
     ENEMY.totalFrames = 8; 
     ENEMY.frameWidth = 1.5; 
 
+    ENEMY.sprite = document.getElementById('enemy-skeleton');
     ENEMY.box.style.transform = 'scaleX(1)'; 
     ENEMY.box.style.opacity = '1';
     ENEMY.sprite.style.right = '0px';
@@ -335,41 +341,53 @@ function resetGameState() {
     playerImage = `<img id="spriteImg" src="${selectedCharacter}">`;
     document.getElementById("player").innerHTML = playerImage;
 
-    if (window.enemy3Interval) clearInterval(window.enemy3Interval);
-    if (window.enemy2Interval) clearInterval(window.enemy2Interval);
-
-    window.enemy3Interval = setInterval(() => {
-        if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy3();
-    }, 2500);
-
-    window.enemy2Interval = setInterval(() => {
-        if (!gameEnded && !hintsOpen) pickRandomTargetForEnemy2(); 
-    }, 2500);
 }
 
 /* LEADERBOARD */
-/*
-function saveToLeaderBoard(name) {
-    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || []; 
-    leaderboard.push({ name: name, score: PLAYER.score }); 
-    leaderboard.sort((a, b) => b.score - a.score); // Sort by highest score
-    if (leaderboard.length > 10) leaderboard = leaderboard.slice(0, 10); // Keep top 10 scores
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard)); // Save updated leaderboard
+// Leaderboard-Funktionen
+
+function toLeaderboard(){
+    document.getElementById("leaderboard-body").style.display = "block";
+    document.getElementById("lastPage").style.display = "none";
+    document.getElementById("game-over").style.display = "none";
+    showLeaderboard();
+}
+
+function showLeaderboard() {
+    document.getElementById("leaderboard").style.display = "block";
     displayLeaderBoard();
 }
 
-// Function to display leaderboard
+function hideLeaderboard() {
+    document.getElementById("leaderboard").style.display = "none";
+}
+
+function saveToLeaderBoard(name, score) {
+     console.log(`Saving: ${name} - ${score}`);
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || []; 
+    leaderboard.push({ name: name, score: score }); 
+    leaderboard.sort((a, b) => b.score - a.score);
+    if (leaderboard.length > 10) leaderboard = leaderboard.slice(0, 10); 
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard)); 
+    displayLeaderBoard();
+}
+
 function displayLeaderBoard() {
-    document.getElementById("leaderboard").style.display = "block";
-    document.getElementById("nameInputBox").style.display = "none";
-    document.getElementById("message").style.display = "none";
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     let list = document.getElementById("leaderboardList");
-    list.innerHTML = ""; // Clear the list
+    list.innerHTML = "";
+
+    if (leaderboard.length === 0) {
+        list.innerHTML = "<li>No entries yet</li>";
+        return;
+    }
 
     leaderboard.forEach((entry, index) => {
         let li = document.createElement("li");
-        li.textContent = `${index + 1}. ${entry.name} - ${entry.score}`;
+        li.style.backgroundColor = index % 2 === 0 ? "rgba(86, 47, 20, 0.3)" : "rgba(172, 137, 112, 0.3)";
+        li.style.borderRadius = "5px";
+        li.innerHTML = `<span id="leaderboard-number">${index + 1}.</span> ${entry.name} - <span id="leaderboard-score" >${entry.score} points</span>`;
         list.appendChild(li);
     });
-}*/
+    
+}

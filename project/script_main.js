@@ -690,6 +690,10 @@ function gameLoop() {
 function gameOver(){
     SOUNDS.gameEndedSound.play();
     gameEnded = true;
+    
+     const score = PLAYER.coins + levelCount * 10;
+    saveToLeaderBoard(username, score);
+
     document.getElementById("gameBody").style.display = "none";
     document.getElementById("quiz-lvl1").style.display = "none";
     document.getElementById("quiz-lvl2").style.display = "none";

@@ -211,7 +211,6 @@ function moveEnemy() {
     }
     
     switch (ENEMY.direction) {
-
         case 'up': ENEMY.yOffset = 0; break;
         case 'down': ENEMY.yOffset = -75; break;
         case 'left': ENEMY.yOffset = -110; break;
