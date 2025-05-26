@@ -100,7 +100,7 @@ function switchToCharacter(){
                 </div>
                 <img onclick="goRight()" class="arrows-character" src="img/arrow-right.png">
             </div>
-            <p id="select" onclick="switchToLevelFive()">select</p>
+            <p id="select" onclick="switchToGame()">select</p>
         </div>`
     }
     
@@ -347,6 +347,8 @@ function resetGameState() {
 // Leaderboard-Funktionen
 
 function toLeaderboard(){
+    hintsOpen = true;
+    gameEnded = true;
     document.getElementById("leaderboard-body").style.display = "block";
     document.getElementById("lastPage").style.display = "none";
     document.getElementById("game-over").style.display = "none";
@@ -360,6 +362,7 @@ function showLeaderboard() {
 
 function hideLeaderboard() {
     document.getElementById("leaderboard").style.display = "none";
+    backToStart()
 }
 
 function saveToLeaderBoard(name, score) {

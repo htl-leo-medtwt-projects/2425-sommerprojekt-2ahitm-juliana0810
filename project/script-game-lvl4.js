@@ -227,6 +227,7 @@ function showMysteriousSpace(){
     writeText(13);
 }
 function startHandScan() {
+    SOUNDS.scanner.play();
     const scanner = document.getElementById("scanner-line");
   
     scanner.style.display = "block";

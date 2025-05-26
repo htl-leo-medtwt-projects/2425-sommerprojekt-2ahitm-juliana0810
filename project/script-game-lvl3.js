@@ -374,6 +374,7 @@ function switchToMystery3() {
     starsOverlay.addEventListener('dragover', (e) => e.preventDefault());
 
     starsOverlay.addEventListener('drop', (e) => {
+        SOUNDS.stars.play();
         document.getElementById("text-stars").style.display= "none";
         e.preventDefault();
         if (!draggedStar) return;

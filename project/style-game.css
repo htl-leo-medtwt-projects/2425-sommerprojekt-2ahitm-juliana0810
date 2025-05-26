@@ -141,6 +141,7 @@
 }
 .speedItem{
     width: 2em;
+    z-index: 3;
     animation: speedVibrate 0.5s infinite ease;
 }
 .speed-on{

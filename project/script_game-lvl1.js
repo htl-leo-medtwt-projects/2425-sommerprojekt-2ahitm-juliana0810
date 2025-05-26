@@ -121,9 +121,11 @@ function openPergamentStatistiken(){
 /* KEY */
 function checkKeyCollision() {
     const key = document.getElementById("key-placeholder");
+    
     if (key.style.display !== "none" && isCollidingWith("key-placeholder")) {
         key.style.display = "none"; 
         collectedKey = true;
+        SOUNDS.keys.play();
         onKeyCollected(); 
     }
 }

@@ -59,6 +59,10 @@ let SOUNDS = {
     gameEndedSound: new Audio("audio/game-over.mp3"),
     speedCollect: new Audio("audio/speed-audio.mp3"),
     audioSpeach: new Audio("audio/speech-lvl5.wav"),
+    keys: new Audio("audio/keys-lvl1.mp3"),
+    scanner: new Audio("audio/scanner.mp3"),
+    stars: new Audio("audio/stars-mystery.mp3"),
+    map: new Audio("audio/map.mp3")
 }
 
 let TEXTSNIPPETS = [
@@ -160,6 +164,11 @@ function startTimer() {
     
     if(!mysteryOpen){
         countdown = setInterval(() => {
+            if (gameEnded) {  
+                clearInterval(countdown);
+                return;
+            }
+
             timeLeft--
             document.getElementById("sanduhr-box").innerHTML = `<p>${timeLeft}s</p>`
 
@@ -519,6 +528,7 @@ function gameLoop() {
         if (isCollidingWith("collider16")) {
             if (!PLAYER.triggeredCollider16) {
                 console.log("collider16")
+                SOUNDS.map.play()
                 showPergament();
             }
         }
@@ -555,6 +565,7 @@ function gameLoop() {
             showMummy();
         }
         if (isCollidingWith("map")) {
+            SOUNDS.map.play();
             hintsOpen = true;
             showMapLvl3();
         }
@@ -599,6 +610,7 @@ function gameLoop() {
         }
         if (isCollidingWith("audio-device")) {
             hintsOpen = true;
+            SOUNDS.background_music.volume = 0.3;
             document.getElementById("audio-container").style.display = "block";
         }
         if (isCollidingWith("dinosaur")) {
@@ -613,6 +625,7 @@ function gameLoop() {
             writeText(19);
         }
         if (isCollidingWith("key-door-lvl5") ) {
+            SOUNDS.keys.play();
             collectedKeyLvl5 = true;
             document.getElementById("door-lvl5").style.display = "block";
             document.getElementById("key-door-lvl5").style.display = "none";

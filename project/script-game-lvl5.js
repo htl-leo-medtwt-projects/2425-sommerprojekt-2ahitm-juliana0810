@@ -419,6 +419,7 @@ function playSound(){
     SOUNDS.audioSpeech.play();
 }
 function closeAudio(){
+    SOUNDS.background_music.volume = 1;
     hintsOpen = true;
     document.getElementById("audio-device").style.display = "none";
     document.getElementById("audio-container").style.display = "none";
