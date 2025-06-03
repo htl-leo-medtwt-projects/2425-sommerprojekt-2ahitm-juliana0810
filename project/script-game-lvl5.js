@@ -81,7 +81,7 @@ function switchToLevelFive(){
     ENEMY2.box.style.left = "600px";
     ENEMY2.box.style.top = "200px";
 
-    ENEMY.speed = 0.3;
+    ENEMY.speed = 0.8;
     ENEMY3.speed = 1.1;
     ENEMY2.speed = 0.9;
 
@@ -294,8 +294,6 @@ const BOX_WIDTH = 290;
 const BOX_HEIGHT = 60;
 
 function startPlankPuzzle() {
-   
-
     createTargetBoxes();
 
     const plankOverlay = document.getElementById('board-overlay');
